@@ -47,17 +47,10 @@
     .farm-badge{font-size:11px;color:#C09EDA;background:rgba(255,255,255,.08);padding:4px 10px;border-radius:99px;border:0.5px solid rgba(255,255,255,.15)}
     .home-link{font-size:11px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:5px;text-decoration:none;padding:4px 10px;border-radius:99px;border:0.5px solid rgba(255,255,255,.15)}
     .home-link:hover{color:#fff}
-    .layer-strip{background:#200A30;padding:.5rem 1.25rem;display:flex;align-items:center;gap:0;overflow-x:auto}
-    .layer-step{display:flex;align-items:center;flex-shrink:0}
-    .ls-pill{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:99px;font-size:11px;font-weight:500;cursor:pointer;white-space:nowrap}
-    .ls-pill.s1{background:#6B2D8B;color:#fff}.ls-pill.s2{background:#185FA5;color:#fff}.ls-pill.s3{background:#1A7A5A;color:#fff}.ls-pill.s4{background:#8B4A1A;color:#fff}
-    .ls-arrow{font-size:12px;color:rgba(255,255,255,.2);margin:0 4px}
-    .ls-detail{font-size:10px;color:rgba(255,255,255,.45);margin-left:auto;padding-left:1rem;white-space:nowrap;flex-shrink:0}
     .page-tabs{display:flex;gap:0;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:0 1.25rem}
     .p-tab{font-size:13px;padding:.75rem 1rem;border-bottom:2px solid transparent;cursor:pointer;color:var(--color-text-secondary);display:flex;align-items:center;gap:6px;transition:all .15s;margin-bottom:-0.5px}
     .p-tab.active{color:#2D1040;border-bottom-color:#6B2D8B;font-weight:500}
     .p-tab:hover:not(.active){color:var(--color-text-primary)}
-    .drill-btn{font-size:12px;padding:5px 14px;border-radius:var(--border-radius-md);border:0.5px solid #6B2D8B;background:#EEEDFE;color:#3C3489;cursor:pointer;align-self:center;display:flex;align-items:center;gap:6px;margin-left:auto}
     .content{padding:1rem 1.25rem}
     .ov-grid{display:grid;grid-template-columns:240px 1fr;gap:1rem;margin-bottom:1rem}
     .gauge-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.125rem;display:flex;flex-direction:column;align-items:center}
@@ -148,6 +141,8 @@
     .s-btn{font-size:11px;padding:4px 11px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);cursor:pointer}
     .s-btn.active{border-color:var(--color-border-primary);color:var(--color-text-primary);background:var(--color-background-secondary)}
     .s-btn:hover{background:var(--color-background-secondary)}
+    .how-link { font-size: 13px; padding: .75rem 1rem; color: var(--color-text-secondary); display: flex; align-items: center; gap: 6px; text-decoration: none; border-bottom: 2px solid transparent; margin-left: auto; transition: color .15s; }
+    .how-link:hover { color: var(--color-text-primary); }
   </style>
 </head>
 <body>
@@ -166,23 +161,11 @@
     </div>
   </div>
 
-  <div class="layer-strip">
-    <div class="layer-step"><span class="ls-pill s1" onclick="showLayer(1)"><i class="ti ti-chart-bar"></i> Score</span></div>
-    <span class="ls-arrow">→</span>
-    <div class="layer-step"><span class="ls-pill s2" onclick="showLayer(2)"><i class="ti ti-cube"></i> Visualise</span></div>
-    <span class="ls-arrow">→</span>
-    <div class="layer-step"><span class="ls-pill s3" onclick="showLayer(3)"><i class="ti ti-cpu"></i> Decide</span></div>
-    <span class="ls-arrow">→</span>
-    <div class="layer-step"><span class="ls-pill s4" onclick="showLayer(4)"><i class="ti ti-report-analytics"></i> Report</span></div>
-    <span class="ls-detail" id="layer-detail">OBI-adapted SA soil index · Cape granitic soils · viticulture + olive context</span>
-  </div>
-
   <div style="background:var(--color-background-primary)">
     <div class="page-tabs">
       <div class="p-tab active" id="tab-ov" onclick="showView('ov')"><i class="ti ti-home"></i> Overview</div>
       <div class="p-tab" id="tab-tw" onclick="showView('tw')"><i class="ti ti-cube"></i> Digital twin</div>
-      <div class="p-tab" id="tab-st" onclick="showView('st')"><i class="ti ti-stack"></i> How NAITRO works</div>
-      <button class="drill-btn" onclick="showView('tw')"><i class="ti ti-microscope"></i> Drill into detail</button>
+      <a class="how-link" href="../how-naitro-works/"><i class="ti ti-info-circle"></i> How NAITRO works</a>
     </div>
   </div>
 
@@ -382,9 +365,6 @@
         <button class="s-btn" onclick="setScen('full',this)">Full carbon + premium</button>
       </div>
     </div>
-
-    <div class="view" id="view-st">
-      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);margin-bottom:.875rem">NAITRO platform — SA3 Kaapzicht Estate context</div>
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.875rem">
         <div style="background:#EEEDFE;border:0.5px solid #AFA9EC;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
           <div style="font-size:11px;font-weight:500;color:#26215C;margin-bottom:.375rem"><i class="ti ti-chart-bar"></i> Score — viticulture calibration</div>
@@ -459,9 +439,7 @@ function renderAll(){renderScore();renderLayers();buildPanels();renderDetail();}
 function onTime(v){tTime=parseInt(v);document.getElementById('yr-lbl').textContent=BASE+tTime;document.querySelectorAll('.pb').forEach(b=>{b.classList.remove('active');if(tTime<-1&&b.dataset.ph==='past')b.classList.add('active');else if(tTime>1&&b.dataset.ph==='future')b.classList.add('active');else if(Math.abs(tTime)<=1&&b.dataset.ph==='present')b.classList.add('active');});renderAll();}
 function setPhase(p,btn){document.querySelectorAll('.pb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const sl=document.getElementById('tSlider');tTime=p==='past'?-5:p==='present'?0:5;sl.value=tTime;document.getElementById('yr-lbl').textContent=BASE+tTime;renderAll();}
 function setScen(sc,btn){tScen=sc;document.querySelectorAll('.s-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderAll();}
-function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));document.getElementById('view-'+id).classList.add('on');document.querySelectorAll('.p-tab').forEach(t=>t.classList.remove('active'));const map={ov:'tab-ov',tw:'tab-tw',st:'tab-st'};if(map[id])document.getElementById(map[id]).classList.add('active');}
-const layerDetails=['OBI-adapted · Cape granitic soils · AMF as primary indicator · wine quality correlation','Digital twin · mycorrhizal network · RDI water balance · Cape Climate 2035 projection','NAITRO AI · AMF priority · deficit irrigation · Verra VCS carbon credit MRV','HUIGE · Woolworths/M&S Scope 3 · Investec green loan · DWS water licence · EU Green Deal'];
-function showLayer(n){document.getElementById('layer-detail').textContent=layerDetails[n-1];showView('st');}
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));document.getElementById('view-'+id).classList.add('on');document.querySelectorAll('.p-tab').forEach(t=>t.classList.remove('active'));const map={ov:'tab-ov',tw:'tab-tw'};if(map[id])document.getElementById(map[id]).classList.add('active');}
 function toggleRec(card){const was=card.classList.contains('open');document.querySelectorAll('.rec-card').forEach(c=>c.classList.remove('open'));if(!was)card.classList.add('open');}
 renderAll();
 </script>

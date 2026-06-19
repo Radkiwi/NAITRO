@@ -53,15 +53,6 @@
     .nav-icon-btn { width: 30px; height: 30px; border-radius: 6px; border: 0.5px solid rgba(255,255,255,.2); background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #9FE1CB; font-size: 16px; }
 
     /* ── LAYER STRIP ── */
-    .layer-strip { background: #0A2E20; padding: .5rem 1.25rem; display: flex; align-items: center; gap: 0; overflow-x: auto; }
-    .layer-step { display: flex; align-items: center; gap: 0; flex-shrink: 0; }
-    .ls-pill { display: flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 99px; font-size: 11px; font-weight: 500; cursor: pointer; transition: all .15s; white-space: nowrap; }
-    .ls-pill.s1 { background: #1D9E75; color: #fff; }
-    .ls-pill.s2 { background: #185FA5; color: #fff; }
-    .ls-pill.s3 { background: #854F0B; color: #fff; }
-    .ls-pill.s4 { background: #534AB7; color: #fff; }
-    .ls-arrow { font-size: 12px; color: rgba(255,255,255,.2); margin: 0 4px; }
-    .ls-detail { font-size: 10px; color: rgba(255,255,255,.45); margin-left: auto; padding-left: 1rem; white-space: nowrap; flex-shrink: 0; }
 
     /* ── PAGE TABS ── */
     .page-tabs { display: flex; gap: 0; border-bottom: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); padding: 0 1.25rem; }
@@ -69,8 +60,6 @@
     .p-tab.active { color: #0F3D2E; border-bottom-color: #1D9E75; font-weight: 500; }
     .p-tab:hover:not(.active) { color: var(--color-text-primary); }
     .tab-count { font-size: 10px; background: var(--color-background-secondary); color: var(--color-text-secondary); padding: 1px 6px; border-radius: 99px; }
-    .drill-btn { font-size: 12px; padding: 5px 14px; border-radius: var(--border-radius-md); border: 0.5px solid #1D9E75; background: #E1F5EE; color: #085041; cursor: pointer; align-self: center; display: flex; align-items: center; gap: 6px; margin-left: auto; }
-    .drill-btn:hover { background: #C8EDE1; }
 
     /* ── CONTENT AREA ── */
     .content { padding: 1rem 1.25rem; }
@@ -236,8 +225,9 @@
       .report-row { grid-template-columns: repeat(2, 1fr); }
       .finance-grid { grid-template-columns: 1fr; }
       .twin-grid { grid-template-columns: 1fr; }
-      .ls-detail { display: none; }
     }
+    .how-link { font-size: 13px; padding: .75rem 1rem; color: var(--color-text-secondary); display: flex; align-items: center; gap: 6px; text-decoration: none; border-bottom: 2px solid transparent; margin-left: auto; transition: color .15s; }
+    .how-link:hover { color: var(--color-text-primary); }
   </style>
 </head>
 <body>
@@ -260,34 +250,12 @@
     </div>
   </div>
 
-  <div class="layer-strip">
-    <div class="layer-step">
-      <span class="ls-pill s1" onclick="showLayer(1)"><i class="ti ti-chart-bar"></i> Score</span>
-    </div>
-    <span class="ls-arrow">→</span>
-    <div class="layer-step">
-      <span class="ls-pill s2" onclick="showLayer(2)"><i class="ti ti-cube"></i> Visualise</span>
-    </div>
-    <span class="ls-arrow">→</span>
-    <div class="layer-step">
-      <span class="ls-pill s3" onclick="showLayer(3)"><i class="ti ti-cpu"></i> Decide</span>
-    </div>
-    <span class="ls-arrow">→</span>
-    <div class="layer-step">
-      <span class="ls-pill s4" onclick="showLayer(4)"><i class="ti ti-report-analytics"></i> Report</span>
-    </div>
-    <span class="ls-detail" id="layer-detail">OBI-adapted NZ soil index · 21 indicators · WUR-validated · bankable</span>
-  </div>
-
   <div style="background: var(--color-background-primary);">
     <div class="page-tabs">
       <div class="p-tab active" id="tab-ov" onclick="showView('ov')"><i class="ti ti-home"></i> Overview</div>
       <div class="p-tab" id="tab-tw" onclick="showView('tw')"><i class="ti ti-cube"></i> Digital twin</div>
-      <div class="p-tab" id="tab-st" onclick="showView('st')"><i class="ti ti-stack"></i> How NAITRO works</div>
       <div class="p-tab" id="tab-rp" onclick="showView('rp')"><i class="ti ti-report-analytics"></i> Reports <span class="tab-count">3</span></div>
-      <button class="drill-btn" onclick="showView('tw')">
-        <i class="ti ti-microscope"></i> Drill into detail
-      </button>
+      <a class="how-link" href="../how-naitro-works/"><i class="ti ti-info-circle"></i> How NAITRO works</a>
     </div>
   </div>
 
@@ -492,10 +460,6 @@
         <button class="s-btn" onclick="setScen('full',this)">Full biological transition</button>
       </div>
     </div>
-
-    <!-- ═══ HOW NAITRO WORKS ═══ -->
-    <div class="view" id="view-st">
-      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);margin-bottom:.875rem">Combined product stack — what NAITRO actually is</div>
       <div class="layers-row">
         <div class="lc lc1">
           <div class="lc-num"><i class="ti ti-chart-bar"></i> Layer 1 — Score</div>
@@ -730,18 +694,8 @@ function showView(id) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('on'));
   document.getElementById('view-' + id).classList.add('on');
   document.querySelectorAll('.p-tab').forEach(t => t.classList.remove('active'));
-  const map = {ov:'tab-ov', tw:'tab-tw', st:'tab-st', rp:'tab-rp'};
+  const map = {ov:'tab-ov', tw:'tab-tw', rp:'tab-rp'};
   if (map[id]) document.getElementById(map[id]).classList.add('active');
-}
-const layerDetails = [
-  'OBI-adapted NZ soil index · 21 indicators · WUR-validated · bankable',
-  '1m³ digital twin · IoT sensor fusion · time slider · SPARC visualisation',
-  'NAITRO AI engine · Priming Effect risk · BNF model · urea step-down planner',
-  'HUIGE MRV · one data source · five stakeholder outputs · NPS-FM 2020 · Cool Farm',
-];
-function showLayer(n) {
-  document.getElementById('layer-detail').textContent = layerDetails[n - 1];
-  showView('st');
 }
 function toggleRec(card) {
   const was = card.classList.contains('open');
