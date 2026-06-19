@@ -55,11 +55,11 @@
     .ov-grid{display:grid;grid-template-columns:240px 1fr;gap:1rem;margin-bottom:1rem}
     .gauge-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.125rem;display:flex;flex-direction:column;align-items:center}
     .gc-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);margin-bottom:.625rem}
-    .gauge-wrap{position:relative;width:180px;height:100px}
+    .gauge-wrap{position:relative;width:220px;height:140px}
     .gauge-score-box{position:absolute;bottom:0;left:50%;transform:translateX(-50%);text-align:center}
     .g-num{font-size:32px;font-weight:500;color:var(--color-text-primary);line-height:1}
     .g-den{font-size:12px;color:var(--color-text-secondary)}
-    .g-zone{font-size:12px;font-weight:500;margin-top:.375rem;color:#3C3489;display:flex;align-items:center;gap:5px}
+    .g-zone{font-size:12px;font-weight:500;margin-top:.375rem;color:#1D9E75;display:flex;align-items:center;gap:5px}
     .gc-bars{width:100%;margin-top:.875rem;display:flex;flex-direction:column;gap:5px}
     .gcb-row{display:flex;align-items:center;gap:7px;font-size:11px}
     .gcb-label{color:var(--color-text-secondary);width:72px;flex-shrink:0;text-align:right}
@@ -176,19 +176,37 @@
         <div class="gauge-card">
           <div class="gc-label">Soil health score</div>
           <div class="gauge-wrap">
-            <svg viewBox="0 0 180 100" width="180" height="100" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18,92 A72,72 0 0,1 162,92" fill="none" stroke="#EEEDFE" stroke-width="12" stroke-linecap="round"/>
-              <path d="M18,92 A72,72 0 0,1 162,92" fill="none" stroke="#6B2D8B" stroke-width="12" stroke-linecap="round" stroke-dasharray="226" stroke-dashoffset="66"/>
-              <text x="18" y="106" font-size="8" fill="#888780" font-family="sans-serif">Poor</text>
-              <text x="79" y="98" font-size="8" fill="#888780" font-family="sans-serif" text-anchor="middle">Fair</text>
-              <text x="162" y="106" font-size="8" fill="#888780" font-family="sans-serif" text-anchor="end">Optimal</text>
+            <svg viewBox="0 0 220 140" width="220" height="140" xmlns="http://www.w3.org/2000/svg">
+              <!-- Background track -->
+              <path d="M28,100 A82,82 0 0,1 192,100" fill="none" stroke="#e7e5e4" stroke-width="16" stroke-linecap="butt"/>
+              <!-- Poor zone: 0–30 (red) -->
+              <path d="M28,100 A82,82 0 0,1 62,34" fill="none" stroke="#C0392B" stroke-width="16" stroke-linecap="butt"/>
+              <!-- Average zone: 31–60 (amber) -->
+              <path d="M62,34 A82,82 0 0,1 135,22" fill="none" stroke="#E07B18" stroke-width="16" stroke-linecap="butt"/>
+              <!-- Optimal zone: 61–100 (green) -->
+              <path d="M135,22 A82,82 0 0,1 192,100" fill="none" stroke="#1D9E75" stroke-width="16" stroke-linecap="butt"/>
+              <!-- Divider ticks -->
+              <line x1="59" y1="36" x2="65" y2="32" stroke="white" stroke-width="2.5"/>
+              <line x1="132" y1="24" x2="138" y2="20" stroke="white" stroke-width="2.5"/>
+              <!-- Zone labels -->
+              <text x="22" y="118" font-size="10" font-weight="500" fill="#C0392B" font-family="Inter,sans-serif" text-anchor="middle">Poor</text>
+              <text x="22" y="129" font-size="9" fill="#c4b5b2" font-family="Inter,sans-serif" text-anchor="middle">0–30</text>
+              <text x="110" y="12" font-size="10" font-weight="500" fill="#E07B18" font-family="Inter,sans-serif" text-anchor="middle">Average</text>
+              <text x="110" y="23" font-size="9" fill="#c4b5b2" font-family="Inter,sans-serif" text-anchor="middle">31–60</text>
+              <text x="198" y="118" font-size="10" font-weight="500" fill="#1D9E75" font-family="Inter,sans-serif" text-anchor="middle">Optimal</text>
+              <text x="198" y="129" font-size="9" fill="#c4b5b2" font-family="Inter,sans-serif" text-anchor="middle">61–100</text>
+              <!-- Needle -->
+              <line x1="110" y1="100" x2="153" y2="45" stroke="#1c1917" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="110" cy="100" r="6" fill="#1c1917"/>
+              <circle cx="110" cy="100" r="2.5" fill="#fafaf9"/>
+              <!-- Score -->
+              <text x="110" y="130" font-size="36" font-weight="500" fill="#1c1917" font-family="Inter,sans-serif" text-anchor="middle">71</text>
+              <text x="110" y="141" font-size="11" fill="#78716c" font-family="Inter,sans-serif" text-anchor="middle">/ 100</text>
             </svg>
-            <div class="gauge-score-box">
-              <div class="g-num">71</div>
               <div class="g-den">/100</div>
             </div>
           </div>
-          <div class="g-zone"><i class="ti ti-trending-up"></i> Good — premium potential</div>
+          <div class="g-zone"><i class="ti ti-trending-up"></i> Optimal — premium potential</div>
           <div class="gc-bars">
             <div class="gcb-row"><span class="gcb-label">SOC</span><div class="gcb-track"><div class="gcb-fill" style="width:58%;background:#6B2D8B"></div></div><span class="gcb-val">2.9%</span></div>
             <div class="gcb-row"><span class="gcb-label">Mycorrhizae</span><div class="gcb-track"><div class="gcb-fill" style="width:62%;background:#185FA5"></div></div><span class="gcb-val">62%</span></div>
