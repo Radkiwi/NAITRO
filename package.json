@@ -1,0 +1,11 @@
+{
+  "name": "naitro",
+  "version": "1.0.0",
+  "description": "NAITRO — AI-powered soil health intelligence platform for NZ farming",
+  "scripts": {
+    "start": "serve . -p ${PORT:-3000}"
+  },
+  "dependencies": {
+    "serve": "^14.2.3"
+  }
+}
