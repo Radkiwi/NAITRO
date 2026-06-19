@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAITRO · SA3 — Kaapzicht Estate, Stellenbosch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    :root {
+      --font-sans:'Inter',system-ui,sans-serif;
+      --color-background-primary:#ffffff;
+      --color-background-secondary:#f5f5f4;
+      --color-background-tertiary:#f0efee;
+      --color-background-success:#e8f5f0;
+      --color-background-warning:#fef3c7;
+      --color-background-info:#eff6ff;
+      --color-text-primary:#1c1917;
+      --color-text-secondary:#57534e;
+      --color-text-tertiary:#a8a29e;
+      --color-text-success:#065f46;
+      --color-text-warning:#92400e;
+      --color-text-danger:#991b1b;
+      --color-text-info:#1e40af;
+      --color-border-primary:#1c1917;
+      --color-border-secondary:#d6d3d1;
+      --color-border-tertiary:#e7e5e4;
+      --color-border-success:#6ee7b7;
+      --color-border-warning:#fcd34d;
+      --color-border-info:#93c5fd;
+      --border-radius-sm:4px;
+      --border-radius-md:6px;
+      --border-radius-lg:10px;
+      --brand:#6B2D8B;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--font-sans);background:var(--color-background-tertiary);min-height:100vh}
+    .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+    .shell{background:var(--color-background-tertiary);padding-bottom:2rem;max-width:1200px;margin:0 auto}
+    .topnav{background:#2D1040;padding:.75rem 1.25rem;display:flex;align-items:center;justify-content:space-between;border-radius:var(--border-radius-lg) var(--border-radius-lg) 0 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand-logo{width:32px;height:32px;background:#6B2D8B;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:#fff}
+    .brand-name{font-size:15px;font-weight:500;color:#fff}
+    .brand-sub{font-size:11px;color:#C09EDA;margin-top:1px}
+    .nav-right{display:flex;align-items:center;gap:8px}
+    .farm-badge{font-size:11px;color:#C09EDA;background:rgba(255,255,255,.08);padding:4px 10px;border-radius:99px;border:0.5px solid rgba(255,255,255,.15)}
+    .home-link{font-size:11px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:5px;text-decoration:none;padding:4px 10px;border-radius:99px;border:0.5px solid rgba(255,255,255,.15)}
+    .home-link:hover{color:#fff}
+    .layer-strip{background:#200A30;padding:.5rem 1.25rem;display:flex;align-items:center;gap:0;overflow-x:auto}
+    .layer-step{display:flex;align-items:center;flex-shrink:0}
+    .ls-pill{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:99px;font-size:11px;font-weight:500;cursor:pointer;white-space:nowrap}
+    .ls-pill.s1{background:#6B2D8B;color:#fff}.ls-pill.s2{background:#185FA5;color:#fff}.ls-pill.s3{background:#1A7A5A;color:#fff}.ls-pill.s4{background:#8B4A1A;color:#fff}
+    .ls-arrow{font-size:12px;color:rgba(255,255,255,.2);margin:0 4px}
+    .ls-detail{font-size:10px;color:rgba(255,255,255,.45);margin-left:auto;padding-left:1rem;white-space:nowrap;flex-shrink:0}
+    .page-tabs{display:flex;gap:0;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:0 1.25rem}
+    .p-tab{font-size:13px;padding:.75rem 1rem;border-bottom:2px solid transparent;cursor:pointer;color:var(--color-text-secondary);display:flex;align-items:center;gap:6px;transition:all .15s;margin-bottom:-0.5px}
+    .p-tab.active{color:#2D1040;border-bottom-color:#6B2D8B;font-weight:500}
+    .p-tab:hover:not(.active){color:var(--color-text-primary)}
+    .drill-btn{font-size:12px;padding:5px 14px;border-radius:var(--border-radius-md);border:0.5px solid #6B2D8B;background:#EEEDFE;color:#3C3489;cursor:pointer;align-self:center;display:flex;align-items:center;gap:6px;margin-left:auto}
+    .content{padding:1rem 1.25rem}
+    .ov-grid{display:grid;grid-template-columns:240px 1fr;gap:1rem;margin-bottom:1rem}
+    .gauge-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.125rem;display:flex;flex-direction:column;align-items:center}
+    .gc-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);margin-bottom:.625rem}
+    .gauge-wrap{position:relative;width:180px;height:100px}
+    .gauge-score-box{position:absolute;bottom:0;left:50%;transform:translateX(-50%);text-align:center}
+    .g-num{font-size:32px;font-weight:500;color:var(--color-text-primary);line-height:1}
+    .g-den{font-size:12px;color:var(--color-text-secondary)}
+    .g-zone{font-size:12px;font-weight:500;margin-top:.375rem;color:#3C3489;display:flex;align-items:center;gap:5px}
+    .gc-bars{width:100%;margin-top:.875rem;display:flex;flex-direction:column;gap:5px}
+    .gcb-row{display:flex;align-items:center;gap:7px;font-size:11px}
+    .gcb-label{color:var(--color-text-secondary);width:72px;flex-shrink:0;text-align:right}
+    .gcb-track{flex:1;height:5px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden}
+    .gcb-fill{height:100%;border-radius:3px}
+    .gcb-val{color:var(--color-text-secondary);width:32px;flex-shrink:0}
+    .gc-drill{width:100%;margin-top:.875rem;font-size:12px;padding:6px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;color:var(--color-text-secondary)}
+    .gc-drill:hover{background:var(--color-background-secondary)}
+    .right-panel{display:flex;flex-direction:column;gap:.75rem}
+    .metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.625rem}
+    .mc{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.625rem .875rem}
+    .mc-label{font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.04em}
+    .mc-val{font-size:18px;font-weight:500;color:var(--color-text-primary);margin-top:2px}
+    .mc-unit{font-size:11px;color:var(--color-text-secondary)}
+    .mc-delta{font-size:11px;margin-top:2px;display:flex;align-items:center;gap:3px}
+    .d-up{color:var(--color-text-success)}.d-dn{color:var(--color-text-danger)}.d-neu{color:var(--color-text-secondary)}
+    .rec-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.875rem 1rem;cursor:pointer}
+    .rec-card:hover{border-color:var(--color-border-secondary)}.rec-card.open{border-color:var(--color-border-primary)}
+    .rec-hd{display:flex;align-items:flex-start;gap:10px}
+    .rec-num{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;margin-top:1px}
+    .rn1{background:#EEEDFE;color:#3C3489}.rn2{background:#FAEEDA;color:#633806}.rn3{background:#E1F5EE;color:#085041}
+    .rec-info{flex:1}
+    .rec-title{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+    .rec-tag{font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+    .rec-chev{font-size:16px;color:var(--color-text-tertiary);transition:transform .2s}
+    .rec-card.open .rec-chev{transform:rotate(180deg)}
+    .rec-body{display:none;margin-top:.75rem;padding-top:.75rem;border-top:0.5px solid var(--color-border-tertiary)}
+    .rec-card.open .rec-body{display:block}
+    .rec-sci,.rec-act{font-size:12px;line-height:1.65;color:var(--color-text-secondary);margin-bottom:.5rem}
+    .rec-sci strong,.rec-act strong{font-weight:500;color:var(--color-text-primary)}
+    .impact-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:.625rem}
+    .imp{font-size:11px;padding:3px 9px;border-radius:99px;background:var(--color-background-secondary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary)}
+    .alert-banner{display:flex;align-items:flex-start;gap:10px;background:var(--color-background-warning);border:0.5px solid var(--color-border-warning);color:var(--color-text-warning);border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:12px;line-height:1.6}
+    .opportunity-banner{display:flex;align-items:flex-start;gap:10px;background:#E1F5EE;border:0.5px solid #6ee7b7;color:#065f46;border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:12px;line-height:1.6}
+    .view{display:none}.view.on{display:block}
+    .twin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.875rem}
+    .back-btn{font-size:12px;padding:5px 12px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--color-text-secondary)}
+    .back-btn:hover{background:var(--color-background-secondary)}
+    .risk-pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:3px 9px;border-radius:99px}
+    .rp-h{background:#FCEBEB;color:#A32D2D}.rp-m{background:#FAEEDA;color:#633806}.rp-l{background:#E1F5EE;color:#085041}
+    .time-rail{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.875rem 1.125rem;margin-bottom:.875rem}
+    .tr-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.625rem}
+    .tr-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);display:flex;align-items:center;gap:6px}
+    .phase-btns{display:flex;gap:6px}
+    .pb{font-size:11px;padding:4px 11px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);cursor:pointer}
+    .pb.active{background:var(--color-background-success);color:var(--color-text-success);border-color:var(--color-border-success)}
+    .tr-slider{display:flex;align-items:center;gap:10px}
+    .tr-slider input[type=range]{flex:1;accent-color:#6B2D8B}
+    .tr-bands{display:flex;justify-content:space-between;font-size:10px;color:var(--color-text-tertiary);margin-top:3px}
+    .twin-grid{display:grid;grid-template-columns:172px 1fr 172px;gap:.75rem;align-items:start;margin-bottom:.875rem}
+    .io-panel{display:flex;flex-direction:column;gap:5px}
+    .io-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+    .io-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:6px 8px;cursor:pointer}
+    .io-card:hover{border-color:var(--color-border-secondary)}
+    .io-card.sel{border-color:var(--color-border-info);background:var(--color-background-info)}
+    .io-top{display:flex;align-items:center;gap:6px}
+    .io-top i{font-size:14px;color:var(--color-text-secondary)}
+    .io-card.sel .io-top i{color:var(--color-text-info)}
+    .io-name{font-size:11px;font-weight:500;color:var(--color-text-primary)}
+    .io-val{font-size:10px;color:var(--color-text-secondary);margin-top:1px}
+    .io-card.sel .io-val{color:var(--color-text-info)}
+    .lbars{width:100%;display:flex;flex-direction:column;gap:4px}
+    .lbar-row{display:flex;align-items:center;gap:6px}
+    .lb-name{font-size:10px;color:var(--color-text-secondary);width:68px;text-align:right;flex-shrink:0}
+    .lb-track{flex:1;height:8px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden}
+    .lb-fill{height:100%;border-radius:3px;transition:width .5s}
+    .lb-pct{font-size:10px;color:var(--color-text-secondary);width:26px}
+    .twin-detail{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.875rem 1.125rem}
+    .td-title{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:.375rem;display:flex;align-items:center;gap:7px}
+    .td-body{font-size:11px;color:var(--color-text-secondary);line-height:1.6}
+    .td-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:.5rem}
+    .td-stat{background:var(--color-background-primary);border-radius:var(--border-radius-md);padding:6px 9px;border:0.5px solid var(--color-border-tertiary)}
+    .td-stat-l{font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.03em}
+    .td-stat-v{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-top:1px}
+    .td-alert{border-radius:var(--border-radius-md);padding:6px 10px;font-size:11px;display:flex;align-items:flex-start;gap:7px;margin-top:.5rem;line-height:1.5}
+    .ta-warn{background:var(--color-background-warning);color:var(--color-text-warning);border:0.5px solid var(--color-border-warning)}
+    .ta-ok{background:var(--color-background-success);color:var(--color-text-success);border:0.5px solid var(--color-border-success)}
+    .scen-bar{display:flex;gap:6px;flex-wrap:wrap;margin-top:.875rem;align-items:center}
+    .s-btn{font-size:11px;padding:4px 11px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);cursor:pointer}
+    .s-btn.active{border-color:var(--color-border-primary);color:var(--color-text-primary);background:var(--color-background-secondary)}
+    .s-btn:hover{background:var(--color-background-secondary)}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <div class="topnav">
+    <div class="brand">
+      <div class="brand-logo">N</div>
+      <div>
+        <div class="brand-name">NAITRO · SA3</div>
+        <div class="brand-sub">Kaapzicht Estate — Stellenbosch, Western Cape</div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <span class="farm-badge">🇿🇦 Wine grapes · Olives · 185 ha · Mediterranean climate</span>
+      <a class="home-link" href="../"><i class="ti ti-arrow-left"></i> All farms</a>
+    </div>
+  </div>
+
+  <div class="layer-strip">
+    <div class="layer-step"><span class="ls-pill s1" onclick="showLayer(1)"><i class="ti ti-chart-bar"></i> Score</span></div>
+    <span class="ls-arrow">→</span>
+    <div class="layer-step"><span class="ls-pill s2" onclick="showLayer(2)"><i class="ti ti-cube"></i> Visualise</span></div>
+    <span class="ls-arrow">→</span>
+    <div class="layer-step"><span class="ls-pill s3" onclick="showLayer(3)"><i class="ti ti-cpu"></i> Decide</span></div>
+    <span class="ls-arrow">→</span>
+    <div class="layer-step"><span class="ls-pill s4" onclick="showLayer(4)"><i class="ti ti-report-analytics"></i> Report</span></div>
+    <span class="ls-detail" id="layer-detail">OBI-adapted SA soil index · Cape granitic soils · viticulture + olive context</span>
+  </div>
+
+  <div style="background:var(--color-background-primary)">
+    <div class="page-tabs">
+      <div class="p-tab active" id="tab-ov" onclick="showView('ov')"><i class="ti ti-home"></i> Overview</div>
+      <div class="p-tab" id="tab-tw" onclick="showView('tw')"><i class="ti ti-cube"></i> Digital twin</div>
+      <div class="p-tab" id="tab-st" onclick="showView('st')"><i class="ti ti-stack"></i> How NAITRO works</div>
+      <button class="drill-btn" onclick="showView('tw')"><i class="ti ti-microscope"></i> Drill into detail</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="view on" id="view-ov">
+      <div class="ov-grid">
+        <div class="gauge-card">
+          <div class="gc-label">Soil health score</div>
+          <div class="gauge-wrap">
+            <svg viewBox="0 0 180 100" width="180" height="100" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18,92 A72,72 0 0,1 162,92" fill="none" stroke="#EEEDFE" stroke-width="12" stroke-linecap="round"/>
+              <path d="M18,92 A72,72 0 0,1 162,92" fill="none" stroke="#6B2D8B" stroke-width="12" stroke-linecap="round" stroke-dasharray="226" stroke-dashoffset="66"/>
+              <text x="18" y="106" font-size="8" fill="#888780" font-family="sans-serif">Poor</text>
+              <text x="79" y="98" font-size="8" fill="#888780" font-family="sans-serif" text-anchor="middle">Fair</text>
+              <text x="162" y="106" font-size="8" fill="#888780" font-family="sans-serif" text-anchor="end">Optimal</text>
+            </svg>
+            <div class="gauge-score-box">
+              <div class="g-num">71</div>
+              <div class="g-den">/100</div>
+            </div>
+          </div>
+          <div class="g-zone"><i class="ti ti-trending-up"></i> Good — premium potential</div>
+          <div class="gc-bars">
+            <div class="gcb-row"><span class="gcb-label">SOC</span><div class="gcb-track"><div class="gcb-fill" style="width:58%;background:#6B2D8B"></div></div><span class="gcb-val">2.9%</span></div>
+            <div class="gcb-row"><span class="gcb-label">Mycorrhizae</span><div class="gcb-track"><div class="gcb-fill" style="width:62%;background:#185FA5"></div></div><span class="gcb-val">62%</span></div>
+            <div class="gcb-row"><span class="gcb-label">Priming risk</span><div class="gcb-track"><div class="gcb-fill" style="width:38%;background:#EF9F27"></div></div><span class="gcb-val">Low</span></div>
+            <div class="gcb-row"><span class="gcb-label">Water stress</span><div class="gcb-track"><div class="gcb-fill" style="width:55%;background:#EF9F27"></div></div><span class="gcb-val">Med</span></div>
+          </div>
+          <button class="gc-drill" onclick="showView('tw')"><i class="ti ti-zoom-in"></i> Open digital twin</button>
+        </div>
+
+        <div class="right-panel">
+          <div class="metric-row">
+            <div class="mc">
+              <div class="mc-label">N applied</div>
+              <div class="mc-val">48 <span class="mc-unit">kg N/ha</span></div>
+              <div class="mc-delta d-up"><i class="ti ti-trending-down"></i> −40% vs industry avg</div>
+            </div>
+            <div class="mc">
+              <div class="mc-label">Wine quality score</div>
+              <div class="mc-val">91 <span class="mc-unit">pts</span></div>
+              <div class="mc-delta d-up"><i class="ti ti-trending-up"></i> +4 pts since biodynamic</div>
+            </div>
+            <div class="mc">
+              <div class="mc-label">Irrigation use</div>
+              <div class="mc-val">320 <span class="mc-unit">mm/yr</span></div>
+              <div class="mc-delta d-dn"><i class="ti ti-alert-triangle"></i> DWS licence at limit</div>
+            </div>
+            <div class="mc">
+              <div class="mc-label">Carbon credits</div>
+              <div class="mc-val">28 <span class="mc-unit">t CO₂/yr</span></div>
+              <div class="mc-delta d-up"><i class="ti ti-coin"></i> Carbon market eligible</div>
+            </div>
+          </div>
+
+          <div class="opportunity-banner">
+            <i class="ti ti-circle-check" style="flex-shrink:0;margin-top:1px;font-size:16px"></i>
+            <span><strong>Premium export opportunity unlocked.</strong> Kaapzicht's NAITRO score of 71/100 qualifies for the Woolworths Food and Pick n Pay sustainability premium tier and meets the WWF Biodiversity &amp; Wine Initiative baseline. Targeting 80/100 by increasing mycorrhizal networks and cover crop diversity would unlock the EU Green Deal import premium — estimated +R18,000/ha/yr on export parcels.</span>
+          </div>
+
+          <div class="rec-card" onclick="toggleRec(this)">
+            <div class="rec-hd">
+              <div class="rec-num rn1">1</div>
+              <div class="rec-info">
+                <div class="rec-title">Expand mycorrhizal network with inter-row cover crops</div>
+                <div class="rec-tag">Wine quality · Drought resilience · EU premium unlock</div>
+              </div>
+              <i class="ti ti-chevron-down rec-chev"></i>
+            </div>
+            <div class="rec-body">
+              <div class="rec-sci"><strong>The science:</strong> Arbuscular mycorrhizal fungi (AMF) form the primary nutrient and water access network for grapevine roots in granitic soils. AMF colonisation of 62% is good but below the 80%+ achieved by Stellenbosch's highest-scoring biodynamic estates. AMF density directly correlates with berry skin phenolic compound concentration — the mechanism behind higher wine quality scores in lower-input systems.</div>
+              <div class="rec-act"><strong>The action:</strong> Plant a diverse inter-row cover crop mix (phacelia, crimson clover, buckwheat, borage) in autumn. Avoid any fungicide applications that contact the soil surface. Inoculate new vine rows with locally sourced mycorrhizal inoculant. Target cover crop diversity of 8+ species to maximise AMF species richness.</div>
+              <div class="impact-row">
+                <span class="imp"><i class="ti ti-trending-up"></i> Wine score +2–4 pts est.</span>
+                <span class="imp"><i class="ti ti-droplet"></i> Water use −18%</span>
+                <span class="imp"><i class="ti ti-coin"></i> EU premium eligible</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="rec-card" onclick="toggleRec(this)">
+            <div class="rec-hd">
+              <div class="rec-num rn2">2</div>
+              <div class="rec-info">
+                <div class="rec-title">Precision irrigation — deficit irrigation for quality</div>
+                <div class="rec-tag">Water licence · Berry concentration · DWS compliance</div>
+              </div>
+              <i class="ti ti-chevron-down rec-chev"></i>
+            </div>
+            <div class="rec-body">
+              <div class="rec-sci"><strong>The science:</strong> The Western Cape is experiencing a structural reduction in winter rainfall — the last 10 years have averaged 15% below the 30-year mean. DWS irrigation licences are being progressively cut. However, regulated deficit irrigation (RDI) — deliberately stressing vines at specific growth stages — is well-documented to improve berry quality by concentrating flavour compounds, reduce disease pressure, and increase water use efficiency by 25–35%.</div>
+              <div class="rec-act"><strong>The action:</strong> Install soil moisture sensors (NAITRO IoT integration) at 30 cm and 60 cm across all irrigation blocks. Switch from fixed-schedule irrigation to threshold-based deficit irrigation targeting 50–60% soil water depletion during berry development (véraison to harvest). Use NAITRO time slider to model the 5-year water balance under Cape Climate projections.</div>
+              <div class="impact-row">
+                <span class="imp"><i class="ti ti-droplet-off"></i> Water saving −25%</span>
+                <span class="imp"><i class="ti ti-trending-up"></i> Berry Brix +1.5–2°</span>
+                <span class="imp"><i class="ti ti-shield-check"></i> DWS licence protected</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="rec-card" onclick="toggleRec(this)">
+            <div class="rec-hd">
+              <div class="rec-num rn3">3</div>
+              <div class="rec-info">
+                <div class="rec-title">Register carbon sequestration for Verra VCS credit</div>
+                <div class="rec-tag">Carbon market · SOC increase · Export premium</div>
+              </div>
+              <i class="ti ti-chevron-down rec-chev"></i>
+            </div>
+            <div class="rec-body">
+              <div class="rec-sci"><strong>The science:</strong> Cape granitic soils under biodynamic viticulture can sequester 0.3–0.5 t C/ha/yr through increased cover crop biomass and mycorrhizal carbon pathways. At 185 ha, Kaapzicht is already sequestering an estimated 28 t CO₂/yr above the baseline. NAITRO's MRV framework provides the IoT-verified soil data required for Verra Verified Carbon Standard (VCS) or Gold Standard registration.</div>
+              <div class="rec-act"><strong>The action:</strong> Commission a baseline SOC audit using NAITRO's 1m³ soil block twin across 12 representative sampling points. File Verra VCS project documentation using NAITRO's export-ready MRV report. Carbon credits are typically issued in Year 2 after the 12-month monitoring period. At current voluntary carbon market prices (~$18–22/t CO₂), 28 t/yr = R9,000–11,000/yr passive income.</div>
+              <div class="impact-row">
+                <span class="imp"><i class="ti ti-coin"></i> R9–11k/yr carbon income</span>
+                <span class="imp"><i class="ti ti-certificate"></i> Verra VCS eligible</span>
+                <span class="imp"><i class="ti ti-trending-up"></i> Export brand premium</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="view" id="view-tw">
+      <div class="twin-header">
+        <div>
+          <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">1 m³ soil block · Kaapzicht Estate, Stellenbosch</div>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Cape granitic soil · Biodynamic viticulture · Mediterranean climate</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span id="tw-risk" class="risk-pill rp-l"><i class="ti ti-circle-check"></i> Low priming risk</span>
+          <button class="back-btn" onclick="showView('ov')"><i class="ti ti-arrow-left"></i> Back to overview</button>
+        </div>
+      </div>
+
+      <div class="time-rail">
+        <div class="tr-top">
+          <span class="tr-label"><i class="ti ti-clock"></i> time horizon</span>
+          <div class="phase-btns">
+            <button class="pb active" data-ph="past" onclick="setPhase('past',this)">Past</button>
+            <button class="pb" data-ph="present" onclick="setPhase('present',this)">Present</button>
+            <button class="pb" data-ph="future" onclick="setPhase('future',this)">Future</button>
+          </div>
+        </div>
+        <div class="tr-slider">
+          <span style="font-size:10px;color:var(--color-text-tertiary)">−10 yr</span>
+          <input type="range" id="tSlider" min="-10" max="10" value="-5" step="1" oninput="onTime(this.value)">
+          <span style="font-size:10px;color:var(--color-text-tertiary)">+10 yr</span>
+        </div>
+        <div class="tr-bands">
+          <span>2015 — conventional inputs</span>
+          <span id="yr-lbl" style="font-weight:500;color:var(--color-text-primary)">2020</span>
+          <span>2035 — full biodynamic + carbon credits</span>
+        </div>
+      </div>
+
+      <div class="twin-grid">
+        <div class="io-panel" id="inp-panel"><div class="io-label" style="color:#6B2D8B"><i class="ti ti-arrow-right"></i> inputs</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem">
+          <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="100,8 192,58 192,142 100,192 8,142 8,58" fill="#6B4A7A" opacity=".75"/>
+            <polygon points="100,8 192,58 100,108 8,58" fill="#8A608A" opacity=".9"/>
+            <polygon points="8,58 100,108 100,192 8,142" fill="#4A3058" opacity=".85"/>
+            <polygon points="192,58 100,108 100,192 192,142" fill="#583868" opacity=".85"/>
+            <polygon points="100,8 192,58 100,108 8,58" fill="none" stroke="#3A1848" stroke-width="1.5"/>
+            <polygon points="8,58 100,108 100,192 8,142" fill="none" stroke="#3A1848" stroke-width="1.5"/>
+            <polygon points="192,58 100,108 100,192 192,142" fill="none" stroke="#3A1848" stroke-width="1.5"/>
+            <line x1="8" y1="142" x2="192" y2="142" stroke="#3A1848" stroke-width="1.5"/>
+            <polyline points="92,108 88,128 82,148 78,168" fill="none" stroke="#8B6B2E" stroke-width="2.5" opacity=".8"/>
+            <polyline points="92,108 76,120 68,138 64,158" fill="none" stroke="#8B6B2E" stroke-width="1.5" opacity=".5"/>
+            <polyline points="92,108 108,122 114,140 112,162" fill="none" stroke="#8B6B2E" stroke-width="1.5" opacity=".5"/>
+            <circle cx="82" cy="122" r="3" fill="#6B2D8B" opacity=".5"/>
+            <circle cx="74" cy="135" r="2.5" fill="#6B2D8B" opacity=".4"/>
+            <circle cx="96" cy="118" r="2.5" fill="#6B2D8B" opacity=".4"/>
+            <ellipse cx="92" cy="106" rx="12" ry="5" fill="#7A3D7A" opacity=".8"/>
+            <text id="tw-score" x="100" y="138" text-anchor="middle" font-size="20" font-weight="500" fill="#FFF" opacity=".9">--</text>
+            <text x="100" y="151" text-anchor="middle" font-size="8" fill="#FFF" opacity=".6">health score</text>
+          </svg>
+          <div class="lbars" id="lbars"></div>
+        </div>
+        <div class="io-panel" id="out-panel"><div class="io-label" style="color:#185FA5"><i class="ti ti-arrow-right"></i> outputs</div></div>
+      </div>
+
+      <div class="twin-detail">
+        <div class="td-title"><i class="ti ti-info-circle"></i><span id="td-name">Select an input or output above</span></div>
+        <div class="td-body" id="td-body">Click any card to explore how that variable connects to the Cape granitic soil system and wine quality outcomes.</div>
+        <div class="td-grid" id="td-grid"></div>
+        <div id="td-alert"></div>
+      </div>
+
+      <div class="scen-bar">
+        <span style="font-size:11px;color:var(--color-text-tertiary);align-self:center">Scenario:</span>
+        <button class="s-btn active" onclick="setScen('baseline',this)">Current (biodynamic)</button>
+        <button class="s-btn" onclick="setScen('rdi',this)">+ Deficit irrigation</button>
+        <button class="s-btn" onclick="setScen('myco',this)">+ AMF cover crops</button>
+        <button class="s-btn" onclick="setScen('full',this)">Full carbon + premium</button>
+      </div>
+    </div>
+
+    <div class="view" id="view-st">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);margin-bottom:.875rem">NAITRO platform — SA3 Kaapzicht Estate context</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.875rem">
+        <div style="background:#EEEDFE;border:0.5px solid #AFA9EC;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
+          <div style="font-size:11px;font-weight:500;color:#26215C;margin-bottom:.375rem"><i class="ti ti-chart-bar"></i> Score — viticulture calibration</div>
+          <div style="font-size:12px;color:#26215C;line-height:1.65">OBI indicators adapted for Cape granitic soils and Mediterranean climate. Mycorrhizal network density replaces BNF as the primary biological indicator. Wine quality correlation module integrated — soil health score predicts premium export tier eligibility.</div>
+        </div>
+        <div style="background:#E6F1FB;border:0.5px solid #85B7EB;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
+          <div style="font-size:11px;font-weight:500;color:#0C447C;margin-bottom:.375rem"><i class="ti ti-cube"></i> Visualise — digital twin</div>
+          <div style="font-size:12px;color:#0C447C;line-height:1.65">1m³ soil block models mycorrhizal network density, deficit irrigation water balance, and granitic soil mineral weathering. Cape Climate projection layer — rainfall decline modelled to 2035 per UCT Climate Systems Analysis Group data. Carbon sequestration visualised in real time.</div>
+        </div>
+        <div style="background:#E1F5EE;border:0.5px solid #5DCAA5;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
+          <div style="font-size:11px;font-weight:500;color:#085041;margin-bottom:.375rem"><i class="ti ti-cpu"></i> Decide — AI recommendations</div>
+          <div style="font-size:12px;color:#085041;line-height:1.65">Priority focus: mycorrhizal health over N management. RDI irrigation scheduling aligned to vine phenology. Boron and potassium deficiency specific to granitic Cape soils. Biodynamic certification gap analysis. EU Green Deal import premium eligibility checker.</div>
+        </div>
+        <div style="background:#FAEEDA;border:0.5px solid #EF9F27;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
+          <div style="font-size:11px;font-weight:500;color:#7A4A08;margin-bottom:.375rem"><i class="ti ti-report-analytics"></i> Report — HUIGE for Cape wine</div>
+          <div style="font-size:12px;color:#7A4A08;line-height:1.65">Farmer + Woolworths Food / Marks &amp; Spencer Scope 3 + Investec green agri loan + DWS water licence compliance + DAFF export certification. Verra VCS carbon credit MRV pack. WWF Biodiversity &amp; Wine Initiative annual report. EU Green Deal import sustainability declaration.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const BASE=2025;
+let tTime=-5,tScen='baseline',tSel=null;
+const scens={
+  baseline:{n:48,water:320,soc:2.9,myco:62,comp:22,macro:58,infilt:18,quality:91,carbon:28},
+  rdi:     {n:45,water:240,soc:3.1,myco:65,comp:20,macro:62,infilt:20,quality:93,carbon:32},
+  myco:    {n:40,water:270,soc:3.5,myco:78,comp:18,macro:68,infilt:24,quality:95,carbon:38},
+  full:    {n:32,water:210,soc:4.2,myco:88,comp:12,macro:78,infilt:30,quality:98,carbon:52},
+};
+const mods={
+  baseline:{soc:[-.2,0,.5],myco:[-8,0,10],comp:[4,0,-5],n:[10,0,-8]},
+  rdi:     {soc:[-.1,0,.7],myco:[-6,0,12],comp:[3,0,-8],n:[8,0,-12]},
+  myco:    {soc:[-.1,0,1.0],myco:[-5,0,15],comp:[2,0,-10],n:[6,0,-15]},
+  full:    {soc:[-.05,0,1.5],myco:[-3,0,20],comp:[1,0,-14],n:[4,0,-20]},
+};
+const inputs=[
+  {id:'sun',icon:'ti-sun',name:'Sunlight',key:null,unit:'kJ/m²/day',desc:'Stellenbosch averages 3,100 sunshine hours/year — near-ideal for premium viticulture. Sunlight drives phenolic compound synthesis in the berry skin, the primary driver of wine quality.',stats:[{l:'Sunshine hours',v:'3,100/yr'},{l:'Optimal ripening',v:'Feb–Apr'}],alert:null},
+  {id:'rain',icon:'ti-cloud-rain',name:'Rainfall',key:null,unit:'mm/yr',desc:'Mediterranean winter rainfall averaging 680 mm — declining 15% over 10 years per Cape Climate data. Deficit irrigation bridges the dry summer growing season.',stats:[{l:'Annual rainfall',v:'680 mm'},{l:'10-yr trend',v:'−15% declining'}],alert:{t:'warn',m:'Cape Climate projections show a further 10–20% rainfall reduction by 2035. Soil health improvements (SOC, AMF) reduce irrigation need by 20–30%.'}},
+  {id:'n',icon:'ti-flask',name:'N applied',key:'n',unit:'kg N/ha/yr',desc:'48 kg N/ha is 40% below the Cape winelands average — a direct result of the biodynamic transition. Lower N reduces vegetative vigour and concentrates berry flavour compounds.',stats:[{l:'Current rate',v:null},{l:'Biodynamic target',v:'30–45 kg N/ha'}],alert:{t:'ok',m:'N application is already near-optimal. Further reductions to 30–35 kg/ha should be phased as mycorrhizal network develops — the AMF network will supplement mineral N access.'}},
+  {id:'water',icon:'ti-droplet',name:'Irrigation',key:'water',unit:'mm/yr',desc:'320 mm/yr deficit irrigation is at the DWS licence limit. Regulated deficit irrigation (RDI) can reduce water use by 25% while improving berry quality through controlled stress.',stats:[{l:'Current use',v:null},{l:'DWS licence limit',v:'320 mm/yr'}],alert:{t:'warn',m:'DWS is reviewing irrigation allocations across the Western Cape — proactive reduction now protects licence continuity under future water cuts.'}},
+  {id:'myco',icon:'ti-atom',name:'Mycorrhizae',key:'myco',unit:'% root colonisation',desc:'Arbuscular mycorrhizal fungi (AMF) colonisation is the most important indicator for Cape granite viticulture. AMF extend the effective root radius 10–100×, accessing phosphorus and water unavailable to roots alone.',stats:[{l:'AMF colonisation',v:null},{l:'Premium estate target',v:'>80% colonisation'}],alert:null},
+];
+const outputs=[
+  {id:'quality',icon:'ti-wine',name:'Wine quality',key:'quality',unit:'pts (100-pt scale)',desc:'Robert Parker / Wine Spectator 100-pt score correlates directly with soil health in granitic terroir. AMF density, SOC, and low N are the three primary predictors of premium score.',stats:[{l:'Current score',v:null},{l:'EU premium threshold',v:'94+ points'}],alert:{t:'ok',m:'At 91 points, the estate is 3 points below the EU Green Deal premium import tier. Mycorrhizal enhancement is the most direct path to closing this gap.'}},
+  {id:'soc',icon:'ti-leaf',name:'Soil carbon',key:'soc',unit:'% SOC',desc:'SOC at 2.9% is good for granitic soil but has significant upside. Each 0.1% SOC increase on 185 ha represents 88 tonnes of CO₂ equivalent sequestered.',stats:[{l:'Current SOC',v:null},{l:'Target SOC',v:'>4% by 2035'}],alert:null},
+  {id:'carbon',icon:'ti-cloud',name:'Carbon credits',key:'carbon',unit:'t CO₂/yr',desc:'Annual carbon sequestration eligible for Verra VCS or Gold Standard credits. NAITRO MRV provides the IoT-verified measurement data required for registration without external auditing.',stats:[{l:'Credits/yr',v:null},{l:'Market price',v:'$18–22/t CO₂'}],alert:{t:'ok',m:'At 28 t CO₂/yr and $20/t average, carbon credit income is R9,000–11,000/yr. Full biodynamic scenario delivers 52 t CO₂/yr = R17,000–21,000/yr.'}},
+  {id:'water2',icon:'ti-ripple',name:'Water efficiency',key:'infilt',unit:'mm/hr infiltration',desc:'Healthy granitic soil with high AMF and SOC absorbs and holds rainfall far more efficiently, reducing irrigation demand by reducing drainage losses and improving soil water retention.',stats:[{l:'Infiltration rate',v:null},{l:'Water held/ha',v:'680 t/ha per 1% SOC'}],alert:null},
+  {id:'myco2',icon:'ti-test-pipe',name:'AMF network',key:'myco',unit:'% root colonisation',desc:'Mycorrhizal colonisation drives wine quality through phosphorus uptake efficiency, drought resilience, and flavour compound precursor biosynthesis in the berry.',stats:[{l:'AMF colonisation',v:null},{l:'Premium threshold',v:'>80%'}],alert:null},
+];
+const layers=[
+  {name:'SOC',key:'soc',max:6,color:'#6B2D8B'},
+  {name:'Mycorrhizae',key:'myco',max:100,color:'#185FA5'},
+  {name:'Macropores',key:'macro',max:100,color:'#1A7A5A'},
+  {name:'Compaction',key:'comp',max:100,color:'#D85A30'},
+];
+function gv(key){const s=scens[tScen],m=mods[tScen][key];if(!m)return s[key];const f=tTime/10;return Math.max(0,tTime<0?s[key]+m[0]*(-f):s[key]+m[2]*f);}
+function health(){const soc=gv('soc'),myco=gv('myco'),comp=gv('comp'),n=gv('n');return Math.round(Math.min(soc/5,1)*25+myco/100*30+(1-comp/100)*25+Math.min((80-n)/80,1)*20);}
+function priming(){const soc=gv('soc'),n=gv('n'),comp=gv('comp');let s=0;s+=soc<2?3:soc<3.5?2:1;s+=n>80?3:n>50?2:1;s+=comp>50?3:comp>25?2:1;return s;}
+function renderLayers(){document.getElementById('lbars').innerHTML=layers.map(l=>{const raw=gv(l.key),pct=Math.min(100,l.key==='soc'?raw/l.max*100:raw);return `<div class="lbar-row"><span class="lb-name">${l.name}</span><div class="lb-track"><div class="lb-fill" style="width:${Math.round(pct)}%;background:${l.color}70;border-right:2px solid ${l.color}"></div></div><span class="lb-pct">${l.key==='soc'?raw.toFixed(1)+'%':Math.round(raw)+'%'}</span></div>`;}).join('');}
+function renderScore(){const sc=health(),pr=priming();document.getElementById('tw-score').textContent=sc;const cls=pr>=7?'rp-h':pr>=5?'rp-m':'rp-l';const lbl=pr>=7?'High priming risk':pr>=5?'Medium priming risk':'Low priming risk';document.getElementById('tw-risk').className=`risk-pill ${cls}`;document.getElementById('tw-risk').innerHTML=`<i class="ti ti-${pr>=5?'alert-triangle':'circle-check'}"></i> ${lbl} (${pr}/9)`;}
+function buildPanels(){
+  const ip=document.getElementById('inp-panel');ip.innerHTML='<div class="io-label" style="color:#6B2D8B"><i class="ti ti-arrow-right"></i> inputs</div>';
+  inputs.forEach(inp=>{const raw=inp.key?gv(inp.key):null;const v=raw!==null?(inp.key==='myco'?Math.round(raw)+'% AMF':inp.key==='water'?Math.round(raw)+' mm/yr':Math.round(raw)+' kg N/ha'):inp.unit;const d=document.createElement('div');d.className='io-card'+(tSel===inp.id?' sel':'');d.innerHTML=`<div class="io-top"><i class="ti ${inp.icon}"></i><span class="io-name">${inp.name}</span></div><div class="io-val">${v}</div>`;d.onclick=()=>{tSel=tSel===inp.id?null:inp.id;buildPanels();renderDetail();};ip.appendChild(d);});
+  const op=document.getElementById('out-panel');op.innerHTML='<div class="io-label" style="color:#185FA5"><i class="ti ti-arrow-right"></i> outputs</div>';
+  outputs.forEach(out=>{const raw=out.key?gv(out.key):null;const v=raw!==null?(out.key==='quality'?Math.round(raw)+' pts':out.key==='soc'?raw.toFixed(1)+'%':out.key==='infilt'?raw.toFixed(1)+' mm/hr':out.key==='myco'?Math.round(raw)+'% AMF':Math.round(raw)+' t CO₂/yr'):out.unit;const d=document.createElement('div');d.className='io-card'+(tSel===out.id?' sel':'');d.innerHTML=`<div class="io-top"><i class="ti ${out.icon}"></i><span class="io-name">${out.name}</span></div><div class="io-val">${v}</div>`;d.onclick=()=>{tSel=tSel===out.id?null:out.id;buildPanels();renderDetail();};op.appendChild(d);});
+}
+function renderDetail(){if(!tSel){document.getElementById('td-name').textContent='Select an input or output above';document.getElementById('td-body').textContent='Click any card to explore how that variable connects to the Cape granitic soil system and wine quality outcomes.';document.getElementById('td-grid').innerHTML='';document.getElementById('td-alert').innerHTML='';return;}const all=[...inputs,...outputs],item=all.find(x=>x.id===tSel);if(!item)return;document.getElementById('td-name').innerHTML=`<i class="ti ${item.icon}"></i> ${item.name}`;document.getElementById('td-body').textContent=item.desc;document.getElementById('td-grid').innerHTML=item.stats.map(s=>{let val=s.v;if(!val&&item.key){const r=gv(item.key);val=item.key==='soc'?r.toFixed(1)+'%':item.key==='myco'?Math.round(r)+'% AMF':item.key==='quality'?Math.round(r)+' pts':item.key==='infilt'?r.toFixed(1)+' mm/hr':item.key==='n'?Math.round(r)+' kg/ha':item.key==='water'?Math.round(r)+' mm/yr':Math.round(r)+' t CO₂/yr';}return `<div class="td-stat"><div class="td-stat-l">${s.l}</div><div class="td-stat-v">${val||'—'}</div></div>`;}).join('');document.getElementById('td-alert').innerHTML='';if(item.alert){const cls=item.alert.t==='warn'?'ta-warn':'ta-ok';document.getElementById('td-alert').innerHTML=`<div class="td-alert ${cls}"><i class="ti ti-${item.alert.t==='warn'?'alert-triangle':'circle-check'}"></i><span>${item.alert.m}</span></div>`;}}
+function renderAll(){renderScore();renderLayers();buildPanels();renderDetail();}
+function onTime(v){tTime=parseInt(v);document.getElementById('yr-lbl').textContent=BASE+tTime;document.querySelectorAll('.pb').forEach(b=>{b.classList.remove('active');if(tTime<-1&&b.dataset.ph==='past')b.classList.add('active');else if(tTime>1&&b.dataset.ph==='future')b.classList.add('active');else if(Math.abs(tTime)<=1&&b.dataset.ph==='present')b.classList.add('active');});renderAll();}
+function setPhase(p,btn){document.querySelectorAll('.pb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const sl=document.getElementById('tSlider');tTime=p==='past'?-5:p==='present'?0:5;sl.value=tTime;document.getElementById('yr-lbl').textContent=BASE+tTime;renderAll();}
+function setScen(sc,btn){tScen=sc;document.querySelectorAll('.s-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderAll();}
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));document.getElementById('view-'+id).classList.add('on');document.querySelectorAll('.p-tab').forEach(t=>t.classList.remove('active'));const map={ov:'tab-ov',tw:'tab-tw',st:'tab-st'};if(map[id])document.getElementById(map[id]).classList.add('active');}
+const layerDetails=['OBI-adapted · Cape granitic soils · AMF as primary indicator · wine quality correlation','Digital twin · mycorrhizal network · RDI water balance · Cape Climate 2035 projection','NAITRO AI · AMF priority · deficit irrigation · Verra VCS carbon credit MRV','HUIGE · Woolworths/M&S Scope 3 · Investec green loan · DWS water licence · EU Green Deal'];
+function showLayer(n){document.getElementById('layer-detail').textContent=layerDetails[n-1];showView('st');}
+function toggleRec(card){const was=card.classList.contains('open');document.querySelectorAll('.rec-card').forEach(c=>c.classList.remove('open'));if(!was)card.classList.add('open');}
+renderAll();
+</script>
+</body>
+</html>

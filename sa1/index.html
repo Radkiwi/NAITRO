@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAITRO · SA1 — Bergvlei Grains, Free State</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    :root {
+      --font-sans:'Inter',system-ui,sans-serif;
+      --color-background-primary:#ffffff;
+      --color-background-secondary:#f5f5f4;
+      --color-background-tertiary:#f0efee;
+      --color-background-success:#e8f5f0;
+      --color-background-warning:#fef3c7;
+      --color-background-info:#eff6ff;
+      --color-text-primary:#1c1917;
+      --color-text-secondary:#57534e;
+      --color-text-tertiary:#a8a29e;
+      --color-text-success:#065f46;
+      --color-text-warning:#92400e;
+      --color-text-danger:#991b1b;
+      --color-text-info:#1e40af;
+      --color-border-primary:#1c1917;
+      --color-border-secondary:#d6d3d1;
+      --color-border-tertiary:#e7e5e4;
+      --color-border-success:#6ee7b7;
+      --color-border-warning:#fcd34d;
+      --color-border-info:#93c5fd;
+      --border-radius-sm:4px;
+      --border-radius-md:6px;
+      --border-radius-lg:10px;
+      --brand:#B5711A;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--font-sans);background:var(--color-background-tertiary);min-height:100vh}
+    .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+    .shell{background:var(--color-background-tertiary);padding-bottom:2rem;max-width:1200px;margin:0 auto}
+    .topnav{background:#3D2A0F;padding:.75rem 1.25rem;display:flex;align-items:center;justify-content:space-between;border-radius:var(--border-radius-lg) var(--border-radius-lg) 0 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand-logo{width:32px;height:32px;background:#B5711A;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:#fff;letter-spacing:.05em}
+    .brand-name{font-size:15px;font-weight:500;color:#fff}
+    .brand-sub{font-size:11px;color:#E8B97A;margin-top:1px}
+    .nav-right{display:flex;align-items:center;gap:8px}
+    .farm-badge{font-size:11px;color:#E8B97A;background:rgba(255,255,255,.08);padding:4px 10px;border-radius:99px;border:0.5px solid rgba(255,255,255,.15)}
+    .nav-icon-btn{width:30px;height:30px;border-radius:6px;border:0.5px solid rgba(255,255,255,.2);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#E8B97A;font-size:16px}
+    .home-link{font-size:11px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:5px;text-decoration:none;padding:4px 10px;border-radius:99px;border:0.5px solid rgba(255,255,255,.15)}
+    .home-link:hover{color:#fff}
+    .layer-strip{background:#2A1E08;padding:.5rem 1.25rem;display:flex;align-items:center;gap:0;overflow-x:auto}
+    .layer-step{display:flex;align-items:center;gap:0;flex-shrink:0}
+    .ls-pill{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:99px;font-size:11px;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap}
+    .ls-pill.s1{background:#B5711A;color:#fff}.ls-pill.s2{background:#185FA5;color:#fff}.ls-pill.s3{background:#6B3FA0;color:#fff}.ls-pill.s4{background:#2E7D5B;color:#fff}
+    .ls-arrow{font-size:12px;color:rgba(255,255,255,.2);margin:0 4px}
+    .ls-detail{font-size:10px;color:rgba(255,255,255,.45);margin-left:auto;padding-left:1rem;white-space:nowrap;flex-shrink:0}
+    .page-tabs{display:flex;gap:0;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:0 1.25rem}
+    .p-tab{font-size:13px;padding:.75rem 1rem;border-bottom:2px solid transparent;cursor:pointer;color:var(--color-text-secondary);display:flex;align-items:center;gap:6px;transition:all .15s;margin-bottom:-0.5px}
+    .p-tab.active{color:#3D2A0F;border-bottom-color:#B5711A;font-weight:500}
+    .p-tab:hover:not(.active){color:var(--color-text-primary)}
+    .tab-count{font-size:10px;background:var(--color-background-secondary);color:var(--color-text-secondary);padding:1px 6px;border-radius:99px}
+    .drill-btn{font-size:12px;padding:5px 14px;border-radius:var(--border-radius-md);border:0.5px solid #B5711A;background:#FAEEDA;color:#7A4A08;cursor:pointer;align-self:center;display:flex;align-items:center;gap:6px;margin-left:auto}
+    .content{padding:1rem 1.25rem}
+    .ov-grid{display:grid;grid-template-columns:240px 1fr;gap:1rem;margin-bottom:1rem}
+    .gauge-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.125rem;display:flex;flex-direction:column;align-items:center}
+    .gc-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);margin-bottom:.625rem}
+    .gauge-wrap{position:relative;width:180px;height:100px}
+    .gauge-score-box{position:absolute;bottom:0;left:50%;transform:translateX(-50%);text-align:center}
+    .g-num{font-size:32px;font-weight:500;color:var(--color-text-primary);line-height:1}
+    .g-den{font-size:12px;color:var(--color-text-secondary)}
+    .g-zone{font-size:12px;font-weight:500;margin-top:.375rem;color:#7A4A08;display:flex;align-items:center;gap:5px}
+    .gc-bars{width:100%;margin-top:.875rem;display:flex;flex-direction:column;gap:5px}
+    .gcb-row{display:flex;align-items:center;gap:7px;font-size:11px}
+    .gcb-label{color:var(--color-text-secondary);width:72px;flex-shrink:0;text-align:right}
+    .gcb-track{flex:1;height:5px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden}
+    .gcb-fill{height:100%;border-radius:3px}
+    .gcb-val{color:var(--color-text-secondary);width:28px;flex-shrink:0}
+    .gc-drill{width:100%;margin-top:.875rem;font-size:12px;padding:6px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;color:var(--color-text-secondary)}
+    .gc-drill:hover{background:var(--color-background-secondary)}
+    .right-panel{display:flex;flex-direction:column;gap:.75rem}
+    .metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.625rem}
+    .mc{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.625rem .875rem}
+    .mc-label{font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.04em}
+    .mc-val{font-size:18px;font-weight:500;color:var(--color-text-primary);margin-top:2px}
+    .mc-unit{font-size:11px;color:var(--color-text-secondary)}
+    .mc-delta{font-size:11px;margin-top:2px;display:flex;align-items:center;gap:3px}
+    .d-up{color:var(--color-text-success)}.d-dn{color:var(--color-text-danger)}.d-neu{color:var(--color-text-secondary)}
+    .rec-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.875rem 1rem;cursor:pointer}
+    .rec-card:hover{border-color:var(--color-border-secondary)}.rec-card.open{border-color:var(--color-border-primary)}
+    .rec-hd{display:flex;align-items:flex-start;gap:10px}
+    .rec-num{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;margin-top:1px}
+    .rn1{background:#FCEBEB;color:#A32D2D}.rn2{background:#FAEEDA;color:#633806}.rn3{background:#E6F1FB;color:#0C447C}
+    .rec-info{flex:1}
+    .rec-title{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+    .rec-tag{font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+    .rec-chev{font-size:16px;color:var(--color-text-tertiary);transition:transform .2s}
+    .rec-card.open .rec-chev{transform:rotate(180deg)}
+    .rec-body{display:none;margin-top:.75rem;padding-top:.75rem;border-top:0.5px solid var(--color-border-tertiary)}
+    .rec-card.open .rec-body{display:block}
+    .rec-sci,.rec-act{font-size:12px;line-height:1.65;color:var(--color-text-secondary);margin-bottom:.5rem}
+    .rec-sci strong,.rec-act strong{font-weight:500;color:var(--color-text-primary)}
+    .impact-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:.625rem}
+    .imp{font-size:11px;padding:3px 9px;border-radius:99px;background:var(--color-background-secondary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary)}
+    .alert-banner{display:flex;align-items:flex-start;gap:10px;background:var(--color-background-warning);border:0.5px solid var(--color-border-warning);color:var(--color-text-warning);border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:12px;line-height:1.6}
+    .view{display:none}.view.on{display:block}
+    .twin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.875rem}
+    .back-btn{font-size:12px;padding:5px 12px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--color-text-secondary)}
+    .back-btn:hover{background:var(--color-background-secondary)}
+    .risk-pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:3px 9px;border-radius:99px}
+    .rp-h{background:#FCEBEB;color:#A32D2D}.rp-m{background:#FAEEDA;color:#633806}.rp-l{background:#E1F5EE;color:#085041}
+    .time-rail{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.875rem 1.125rem;margin-bottom:.875rem}
+    .tr-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.625rem}
+    .tr-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);display:flex;align-items:center;gap:6px}
+    .phase-btns{display:flex;gap:6px}
+    .pb{font-size:11px;padding:4px 11px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);cursor:pointer}
+    .pb.active{background:var(--color-background-success);color:var(--color-text-success);border-color:var(--color-border-success)}
+    .tr-slider{display:flex;align-items:center;gap:10px}
+    .tr-slider input[type=range]{flex:1;accent-color:#B5711A}
+    .tr-bands{display:flex;justify-content:space-between;font-size:10px;color:var(--color-text-tertiary);margin-top:3px}
+    .twin-grid{display:grid;grid-template-columns:172px 1fr 172px;gap:.75rem;align-items:start;margin-bottom:.875rem}
+    .io-panel{display:flex;flex-direction:column;gap:5px}
+    .io-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+    .io-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:6px 8px;cursor:pointer}
+    .io-card:hover{border-color:var(--color-border-secondary)}
+    .io-card.sel{border-color:var(--color-border-info);background:var(--color-background-info)}
+    .io-top{display:flex;align-items:center;gap:6px}
+    .io-top i{font-size:14px;color:var(--color-text-secondary)}
+    .io-card.sel .io-top i{color:var(--color-text-info)}
+    .io-name{font-size:11px;font-weight:500;color:var(--color-text-primary)}
+    .io-val{font-size:10px;color:var(--color-text-secondary);margin-top:1px}
+    .io-card.sel .io-val{color:var(--color-text-info)}
+    .lbars{width:100%;display:flex;flex-direction:column;gap:4px}
+    .lbar-row{display:flex;align-items:center;gap:6px}
+    .lb-name{font-size:10px;color:var(--color-text-secondary);width:68px;text-align:right;flex-shrink:0}
+    .lb-track{flex:1;height:8px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden}
+    .lb-fill{height:100%;border-radius:3px;transition:width .5s}
+    .lb-pct{font-size:10px;color:var(--color-text-secondary);width:26px}
+    .twin-detail{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.875rem 1.125rem}
+    .td-title{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:.375rem;display:flex;align-items:center;gap:7px}
+    .td-body{font-size:11px;color:var(--color-text-secondary);line-height:1.6}
+    .td-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:.5rem}
+    .td-stat{background:var(--color-background-primary);border-radius:var(--border-radius-md);padding:6px 9px;border:0.5px solid var(--color-border-tertiary)}
+    .td-stat-l{font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.03em}
+    .td-stat-v{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-top:1px}
+    .td-alert{border-radius:var(--border-radius-md);padding:6px 10px;font-size:11px;display:flex;align-items:flex-start;gap:7px;margin-top:.5rem;line-height:1.5}
+    .ta-warn{background:var(--color-background-warning);color:var(--color-text-warning);border:0.5px solid var(--color-border-warning)}
+    .ta-ok{background:var(--color-background-success);color:var(--color-text-success);border:0.5px solid var(--color-border-success)}
+    .scen-bar{display:flex;gap:6px;flex-wrap:wrap;margin-top:.875rem;align-items:center}
+    .s-btn{font-size:11px;padding:4px 11px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);cursor:pointer}
+    .s-btn.active{border-color:var(--color-border-primary);color:var(--color-text-primary);background:var(--color-background-secondary)}
+    .s-btn:hover{background:var(--color-background-secondary)}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <div class="topnav">
+    <div class="brand">
+      <div class="brand-logo">N</div>
+      <div>
+        <div class="brand-name">NAITRO · SA1</div>
+        <div class="brand-sub">Bergvlei Grains — Free State, South Africa</div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <span class="farm-badge">🇿🇦 Maize · Soya · Sunflower · 1,240 ha</span>
+      <a class="home-link" href="../"><i class="ti ti-arrow-left"></i> All farms</a>
+    </div>
+  </div>
+
+  <div class="layer-strip">
+    <div class="layer-step"><span class="ls-pill s1" onclick="showLayer(1)"><i class="ti ti-chart-bar"></i> Score</span></div>
+    <span class="ls-arrow">→</span>
+    <div class="layer-step"><span class="ls-pill s2" onclick="showLayer(2)"><i class="ti ti-cube"></i> Visualise</span></div>
+    <span class="ls-arrow">→</span>
+    <div class="layer-step"><span class="ls-pill s3" onclick="showLayer(3)"><i class="ti ti-cpu"></i> Decide</span></div>
+    <span class="ls-arrow">→</span>
+    <div class="layer-step"><span class="ls-pill s4" onclick="showLayer(4)"><i class="ti ti-report-analytics"></i> Report</span></div>
+    <span class="ls-detail" id="layer-detail">OBI-adapted SA soil index · 21 indicators · Free State maize belt context</span>
+  </div>
+
+  <div style="background:var(--color-background-primary)">
+    <div class="page-tabs">
+      <div class="p-tab active" id="tab-ov" onclick="showView('ov')"><i class="ti ti-home"></i> Overview</div>
+      <div class="p-tab" id="tab-tw" onclick="showView('tw')"><i class="ti ti-cube"></i> Digital twin</div>
+      <div class="p-tab" id="tab-st" onclick="showView('st')"><i class="ti ti-stack"></i> How NAITRO works</div>
+      <button class="drill-btn" onclick="showView('tw')"><i class="ti ti-microscope"></i> Drill into detail</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- OVERVIEW -->
+    <div class="view on" id="view-ov">
+      <div class="ov-grid">
+        <div class="gauge-card">
+          <div class="gc-label">Soil health score</div>
+          <div class="gauge-wrap">
+            <svg viewBox="0 0 180 100" width="180" height="100" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18,92 A72,72 0 0,1 162,92" fill="none" stroke="#FAEEDA" stroke-width="12" stroke-linecap="round"/>
+              <path d="M18,92 A72,72 0 0,1 162,92" fill="none" stroke="#B5711A" stroke-width="12" stroke-linecap="round" stroke-dasharray="226" stroke-dashoffset="86"/>
+              <text x="18" y="106" font-size="8" fill="#888780" font-family="sans-serif">Poor</text>
+              <text x="79" y="98" font-size="8" fill="#888780" font-family="sans-serif" text-anchor="middle">Fair</text>
+              <text x="162" y="106" font-size="8" fill="#888780" font-family="sans-serif" text-anchor="end">Optimal</text>
+            </svg>
+            <div class="gauge-score-box">
+              <div class="g-num">62</div>
+              <div class="g-den">/100</div>
+            </div>
+          </div>
+          <div class="g-zone"><i class="ti ti-trending-up"></i> Improving — action needed</div>
+          <div class="gc-bars">
+            <div class="gcb-row"><span class="gcb-label">SOC</span><div class="gcb-track"><div class="gcb-fill" style="width:38%;background:#B5711A"></div></div><span class="gcb-val">1.8%</span></div>
+            <div class="gcb-row"><span class="gcb-label">BNF</span><div class="gcb-track"><div class="gcb-fill" style="width:22%;background:#185FA5"></div></div><span class="gcb-val">22%</span></div>
+            <div class="gcb-row"><span class="gcb-label">Priming risk</span><div class="gcb-track"><div class="gcb-fill" style="width:75%;background:#E24B4A"></div></div><span class="gcb-val">High</span></div>
+            <div class="gcb-row"><span class="gcb-label">Compaction</span><div class="gcb-track"><div class="gcb-fill" style="width:62%;background:#E24B4A"></div></div><span class="gcb-val">62%</span></div>
+          </div>
+          <button class="gc-drill" onclick="showView('tw')"><i class="ti ti-zoom-in"></i> Open digital twin</button>
+        </div>
+
+        <div class="right-panel">
+          <div class="metric-row">
+            <div class="mc">
+              <div class="mc-label">LAN applied</div>
+              <div class="mc-val">145 <span class="mc-unit">kg N/ha</span></div>
+              <div class="mc-delta d-dn"><i class="ti ti-alert-triangle"></i> Above optimal</div>
+            </div>
+            <div class="mc">
+              <div class="mc-label">Soil pH</div>
+              <div class="mc-val">5.1</div>
+              <div class="mc-delta d-dn"><i class="ti ti-alert-triangle"></i> Acid — target 6.0–6.5</div>
+            </div>
+            <div class="mc">
+              <div class="mc-label">Maize yield</div>
+              <div class="mc-val">6.8 <span class="mc-unit">t/ha</span></div>
+              <div class="mc-delta d-neu"><i class="ti ti-minus"></i> Below 8 t/ha potential</div>
+            </div>
+            <div class="mc">
+              <div class="mc-label">Soil erosion risk</div>
+              <div class="mc-val">High</div>
+              <div class="mc-delta d-dn"><i class="ti ti-alert-triangle"></i> Wind + water loss</div>
+            </div>
+          </div>
+
+          <div class="alert-banner">
+            <i class="ti ti-alert-triangle" style="flex-shrink:0;margin-top:1px;font-size:16px"></i>
+            <span><strong>Critical: Soil acidification detected.</strong> pH 5.1 severely limits nutrient availability and microbial activity. Free State ferralsols require targeted lime application (2–4 t/ha dolomitic lime) before any other intervention will be effective. Acid soils also lock up phosphorus — R480/ha wasted annually on P fertiliser that cannot be absorbed.</span>
+          </div>
+
+          <div class="rec-card" onclick="toggleRec(this)">
+            <div class="rec-hd">
+              <div class="rec-num rn1">1</div>
+              <div class="rec-info">
+                <div class="rec-title">Address soil acidification — lime immediately</div>
+                <div class="rec-tag">Highest impact · pH correction · Free State ferralsols</div>
+              </div>
+              <i class="ti ti-chevron-down rec-chev"></i>
+            </div>
+            <div class="rec-body">
+              <div class="rec-sci"><strong>The science:</strong> At pH 5.1, aluminium and manganese toxicity is active in the root zone, directly stunting root development in maize. Microbial activity drops 60% below pH 5.5. Every nutrient input applied at this pH is operating at 40–60% efficiency. Dolomitic lime also adds magnesium — critical for chlorophyll production and often deficient in Free State soils.</div>
+              <div class="rec-act"><strong>The action:</strong> Apply 2.5 t/ha dolomitic lime in autumn (March–April) ahead of the planting season. Soil pH correction takes 6–8 months — plan for next season. Repeat soil test after 12 months and reapply if pH has not reached 6.0.</div>
+              <div class="impact-row">
+                <span class="imp"><i class="ti ti-trending-up"></i> Yield +1.5–2.0 t/ha est.</span>
+                <span class="imp"><i class="ti ti-coin"></i> P efficiency +40%</span>
+                <span class="imp"><i class="ti ti-leaf"></i> Microbial activity ↑60%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="rec-card" onclick="toggleRec(this)">
+            <div class="rec-hd">
+              <div class="rec-num rn2">2</div>
+              <div class="rec-info">
+                <div class="rec-title">Introduce cover crops to rebuild SOC</div>
+                <div class="rec-tag">Soil carbon · Erosion control · No-till transition</div>
+              </div>
+              <i class="ti ti-chevron-down rec-chev"></i>
+            </div>
+            <div class="rec-body">
+              <div class="rec-sci"><strong>The science:</strong> SOC of 1.8% is critically low for the Free State — the region historically supported 3–4% SOC under natural Highveld grassland. Bare-fallowed monoculture maize has depleted carbon at approximately 0.15%/yr over 20 years. Below 2% SOC, the soil lacks the water-holding capacity to buffer the summer rainfall variability that is intensifying with climate change.</div>
+              <div class="rec-act"><strong>The action:</strong> Plant a summer cover crop mix (cowpea, sunhemp, finger millet) after maize harvest. Target 60% soil cover over winter. Transition 20% of hectares to no-till in Year 1, expanding to full no-till by Year 3. Introduce soya beans on rotation to fix atmospheric nitrogen and add root carbon.</div>
+              <div class="impact-row">
+                <span class="imp"><i class="ti ti-trending-up"></i> SOC +0.2%/yr</span>
+                <span class="imp"><i class="ti ti-ripple"></i> Erosion risk reduced</span>
+                <span class="imp"><i class="ti ti-droplet"></i> Water holding +18%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="rec-card" onclick="toggleRec(this)">
+            <div class="rec-hd">
+              <div class="rec-num rn3">3</div>
+              <div class="rec-info">
+                <div class="rec-title">Reduce LAN, replace with split liquid urea</div>
+                <div class="rec-tag">N efficiency · Cost reduction · Priming risk</div>
+              </div>
+              <i class="ti ti-chevron-down rec-chev"></i>
+            </div>
+            <div class="rec-body">
+              <div class="rec-sci"><strong>The science:</strong> Limestone ammonium nitrate (LAN) at 145 kg N/ha is causing active soil carbon priming in already-depleted soil. The high application rate, combined with low SOC, creates a C:N imbalance that forces microbial burndown of what little soil carbon remains. Priming risk score is currently 7/9.</div>
+              <div class="rec-act"><strong>The action:</strong> Reduce total N to 100–110 kg N/ha over two seasons. Switch to split liquid urea application (fertigation or side-dress at V5 and V8 growth stages) to align nitrogen availability with maize demand curve, reducing leaching and priming. Use NAITRO's variable-rate maps to target higher rates only on zones with confirmed N deficiency.</div>
+              <div class="impact-row">
+                <span class="imp"><i class="ti ti-coin"></i> Input cost −R3,200/ha</span>
+                <span class="imp"><i class="ti ti-trending-down"></i> Priming risk 7→4</span>
+                <span class="imp"><i class="ti ti-droplet-off"></i> N leaching −35%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TWIN -->
+    <div class="view" id="view-tw">
+      <div class="twin-header">
+        <div>
+          <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">1 m³ soil block · Bergvlei Grains, Free State</div>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Ferralsol · Maize-soya rotation · Semi-arid summer rainfall</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span id="tw-risk" class="risk-pill rp-h"><i class="ti ti-alert-triangle"></i> High priming risk</span>
+          <button class="back-btn" onclick="showView('ov')"><i class="ti ti-arrow-left"></i> Back to overview</button>
+        </div>
+      </div>
+
+      <div class="time-rail">
+        <div class="tr-top">
+          <span class="tr-label"><i class="ti ti-clock"></i> time horizon</span>
+          <div class="phase-btns">
+            <button class="pb active" data-ph="past" onclick="setPhase('past',this)">Past</button>
+            <button class="pb" data-ph="present" onclick="setPhase('present',this)">Present</button>
+            <button class="pb" data-ph="future" onclick="setPhase('future',this)">Future</button>
+          </div>
+        </div>
+        <div class="tr-slider">
+          <span style="font-size:10px;color:var(--color-text-tertiary)">−10 yr</span>
+          <input type="range" id="tSlider" min="-10" max="10" value="-5" step="1" oninput="onTime(this.value)">
+          <span style="font-size:10px;color:var(--color-text-tertiary)">+10 yr</span>
+        </div>
+        <div class="tr-bands">
+          <span>2015 — monoculture + heavy LAN</span>
+          <span id="yr-lbl" style="font-weight:500;color:var(--color-text-primary)">2020</span>
+          <span>2035 — cover crop + no-till recovery</span>
+        </div>
+      </div>
+
+      <div class="twin-grid">
+        <div class="io-panel" id="inp-panel"><div class="io-label" style="color:#B5711A"><i class="ti ti-arrow-right"></i> inputs</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem">
+          <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="100,8 192,58 192,142 100,192 8,142 8,58" fill="#8B6340" opacity=".85"/>
+            <polygon points="100,8 192,58 100,108 8,58" fill="#A07550" opacity=".95"/>
+            <polygon points="8,58 100,108 100,192 8,142" fill="#6B4C2E" opacity=".9"/>
+            <polygon points="192,58 100,108 100,192 192,142" fill="#7A5638" opacity=".9"/>
+            <polygon points="100,8 192,58 100,108 8,58" fill="none" stroke="#4A2E12" stroke-width="1.5"/>
+            <polygon points="8,58 100,108 100,192 8,142" fill="none" stroke="#4A2E12" stroke-width="1.5"/>
+            <polygon points="192,58 100,108 100,192 192,142" fill="none" stroke="#4A2E12" stroke-width="1.5"/>
+            <line x1="8" y1="142" x2="192" y2="142" stroke="#4A2E12" stroke-width="1.5"/>
+            <polyline points="92,108 90,125 88,145 86,165" fill="none" stroke="#8B6340" stroke-width="2" opacity=".6"/>
+            <polyline points="92,108 80,118 75,132 72,150" fill="none" stroke="#8B6340" stroke-width="1.5" opacity=".4"/>
+            <ellipse cx="92" cy="106" rx="8" ry="4" fill="#7A8B40" opacity=".7"/>
+            <ellipse cx="85" cy="100" rx="6" ry="3" fill="#8B9A50" opacity=".6"/>
+            <text id="tw-score" x="100" y="138" text-anchor="middle" font-size="20" font-weight="500" fill="#FFF" opacity=".9">--</text>
+            <text x="100" y="151" text-anchor="middle" font-size="8" fill="#FFF" opacity=".6">health score</text>
+          </svg>
+          <div class="lbars" id="lbars"></div>
+        </div>
+        <div class="io-panel" id="out-panel"><div class="io-label" style="color:#185FA5"><i class="ti ti-arrow-right"></i> outputs</div></div>
+      </div>
+
+      <div class="twin-detail" id="tw-detail">
+        <div class="td-title"><i class="ti ti-info-circle"></i><span id="td-name">Select an input or output above</span></div>
+        <div class="td-body" id="td-body">Click any card on the left or right to explore how that variable connects to the soil biology and what decisions can change it.</div>
+        <div class="td-grid" id="td-grid"></div>
+        <div id="td-alert"></div>
+      </div>
+
+      <div class="scen-bar">
+        <span style="font-size:11px;color:var(--color-text-tertiary);align-self:center">Scenario:</span>
+        <button class="s-btn active" onclick="setScen('baseline',this)">Current (monoculture)</button>
+        <button class="s-btn" onclick="setScen('lime',this)">Lime + pH correction</button>
+        <button class="s-btn" onclick="setScen('cover',this)">Cover crops + no-till</button>
+        <button class="s-btn" onclick="setScen('full',this)">Full regenerative</button>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="view" id="view-st">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);margin-bottom:.875rem">NAITRO platform — SA1 Bergvlei Grains context</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.875rem">
+        <div style="background:#FAEEDA;border:0.5px solid #EF9F27;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
+          <div style="font-size:11px;font-weight:500;color:#7A4A08;margin-bottom:.375rem"><i class="ti ti-chart-bar"></i> Score — OBI adapted for SA</div>
+          <div style="font-size:12px;color:#7A4A08;line-height:1.65">21 indicators recalibrated for Free State ferralsols and Highveld climate. pH correction weighted as priority indicator for SA maize belt context. Benchmarked against SA Grain Research Institute soil health norms.</div>
+        </div>
+        <div style="background:#E6F1FB;border:0.5px solid #85B7EB;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
+          <div style="font-size:11px;font-weight:500;color:#0C447C;margin-bottom:.375rem"><i class="ti ti-cube"></i> Visualise — digital twin</div>
+          <div style="font-size:12px;color:#0C447C;line-height:1.65">1m³ soil block models the Fe-Al chemistry of ferralsol soils. Inputs track rainfall variability (400–600 mm summer), LAN application, and lime. Output layer includes wind erosion risk — critical for Free State open-paddock context.</div>
+        </div>
+        <div style="background:#EEEDFE;border:0.5px solid #AFA9EC;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
+          <div style="font-size:11px;font-weight:500;color:#3C3489;margin-bottom:.375rem"><i class="ti ti-cpu"></i> Decide — AI recommendations</div>
+          <div style="font-size:12px;color:#3C3489;line-height:1.65">AI engine prioritises pH correction before N management — unlike NZ context where N is the primary lever. Covers SA-specific trace mineral deficiencies (Zn and S common in Highveld). Variable-rate lime and LAN maps by paddock block.</div>
+        </div>
+        <div style="background:#E1F5EE;border:0.5px solid #5DCAA5;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
+          <div style="font-size:11px;font-weight:500;color:#085041;margin-bottom:.375rem"><i class="ti ti-report-analytics"></i> Report — HUIGE for SA</div>
+          <div style="font-size:12px;color:#085041;line-height:1.65">Farmer + Tiger Brands / Pioneer Foods supply chain + Absa agri loan risk score + Department of Agriculture compliance + SA NUE tracking aligned to AfCFTA export requirements. One data source, five SA stakeholders.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const BASE=2025;
+let tTime=-5,tScen='baseline',tSel=null;
+const scens={
+  baseline:{lan:145,lime:0,soc:1.8,ph:5.1,zn:0.6,bnf:22,comp:62,macro:28,infilt:4,erosion:75},
+  lime:    {lan:130,lime:2.5,soc:2.0,ph:5.8,zn:0.8,bnf:28,comp:55,macro:34,infilt:7,erosion:55},
+  cover:   {lan:100,lime:2.5,soc:2.6,ph:6.1,zn:1.0,bnf:38,comp:40,macro:48,infilt:14,erosion:30},
+  full:    {lan:60, lime:2.0,soc:3.5,ph:6.3,zn:1.2,bnf:55,comp:18,macro:65,infilt:24,erosion:12},
+};
+const mods={
+  baseline:{soc:[-.4,0,.6],bnf:[-5,0,3],comp:[8,0,-5],lan:[20,0,-10]},
+  lime:    {soc:[-.3,0,.9],bnf:[-4,0,10],comp:[6,0,-12],lan:[15,0,-30]},
+  cover:   {soc:[-.2,0,1.4],bnf:[-3,0,18],comp:[4,0,-20],lan:[10,0,-40]},
+  full:    {soc:[-.1,0,2.0],bnf:[-2,0,25],comp:[3,0,-28],lan:[8,0,-50]},
+};
+const inputs=[
+  {id:'sun',icon:'ti-sun',name:'Sunlight',key:null,unit:'kJ/m²/day',desc:'Free State receives 2,900–3,100 sunshine hours/year — among the highest globally. Ideal for maize photosynthesis when soil biology can support it.',stats:[{l:'Annual sunshine',v:'3,050 hrs'},{l:'Summer peak',v:'Oct–Feb'}],alert:null},
+  {id:'rain',icon:'ti-cloud-rain',name:'Rainfall',key:null,unit:'mm/season',desc:'Summer rainfall (450–550 mm) comes in high-intensity events that overwhelm compacted soil. Low SOC means water runs off rather than infiltrating.',stats:[{l:'Annual rainfall',v:'510 mm'},{l:'Intensity risk',v:'High — compaction'}],alert:{t:'warn',m:'Current infiltration rate of 4 mm/hr means over 60% of summer rainfall is lost as runoff, carrying topsoil and nutrients.'}},
+  {id:'lan',icon:'ti-flask',name:'LAN applied',key:'lan',unit:'kg N/ha/yr',desc:'Limestone ammonium nitrate at 145 kg N/ha on pH 5.1 soil is significantly less efficient than target. Acid soils acidify further with repeated LAN applications, creating a downward spiral.',stats:[{l:'Current rate',v:null},{l:'Optimal rate',v:'100–110 kg N/ha'}],alert:{t:'warn',m:'LAN is acidifying the soil further with each application. Switching to urea or liquid N reduces acidification rate by 60%.'}},
+  {id:'lime',icon:'ti-droplet',name:'Lime applied',key:'lime',unit:'t/ha',desc:'Dolomitic lime corrects pH and adds calcium and magnesium — both critical for maize root development and chlorophyll synthesis.',stats:[{l:'Last lime app',v:'4 years ago'},{l:'Current pH',v:'5.1 — critical'}],alert:{t:'warn',m:'pH has dropped 0.3 units since last lime application. Immediate re-liming required.'}},
+  {id:'min',icon:'ti-atom',name:'Trace minerals',key:'zn',unit:'Zn / S / B',desc:'Zinc deficiency is widespread in SA Highveld soils. Critical for maize pollen viability and grain fill. Sulphur deficiency limits protein synthesis.',stats:[{l:'Zinc level',v:null},{l:'Sufficiency',v:'>1.0 mg/kg'}],alert:{t:'warn',m:'Zinc at 0.6 mg/kg is below sufficiency. Maize yield loss from Zn deficiency estimated at 0.8–1.2 t/ha.'}},
+];
+const outputs=[
+  {id:'yield',icon:'ti-bread',name:'Maize yield',key:null,unit:'t/ha',desc:'Current yield of 6.8 t/ha vs a biological potential of 9–11 t/ha on this soil type with correct pH and soil biology.',stats:[{l:'Current yield',v:'6.8 t/ha'},{l:'Soil potential',v:'9–11 t/ha'}],alert:{t:'warn',m:'Yield gap of 2–4 t/ha is directly attributable to pH, compaction, and low SOC. No additional inputs needed — only soil correction.'}},
+  {id:'bnf',icon:'ti-test-pipe',name:'N fixation',key:'bnf',unit:'% of N',desc:'Soya bean rotation with rhizobia inoculation is the most cost-effective N source available. Currently contributing only 22% of N due to low pH inhibiting rhizobia activity.',stats:[{l:'BNF contribution',v:null},{l:'Potential at pH 6.2',v:'55–65% of N'}],alert:null},
+  {id:'erosion',icon:'ti-wind',name:'Erosion risk',key:'erosion',unit:'% risk',desc:'Low SOC + compaction + bare winter fallow = active wind and water erosion. The Free State loses an estimated 8–12 t/ha/yr of topsoil under conventional bare-till maize.',stats:[{l:'Erosion risk',v:null},{l:'Acceptable',v:'<20%'}],alert:{t:'warn',m:'At current erosion rate, the farm is losing approximately R650/ha/yr in topsoil fertility value that cannot be replaced with fertiliser.'}},
+  {id:'infilt',icon:'ti-ripple',name:'Water use',key:'infilt',unit:'mm/hr infiltration',desc:'Water infiltration determines how much of summer rainfall is captured vs lost as runoff. Target for clay-loam ferralsol is >15 mm/hr.',stats:[{l:'Infiltration rate',v:null},{l:'Target',v:'>15 mm/hr'}],alert:{t:'warn',m:'At 4 mm/hr, the soil is shedding water in every rain event. No-till and cover crops can restore infiltration to >15 mm/hr within 2 seasons.'}},
+  {id:'nue',icon:'ti-bolt',name:'NUE',key:null,unit:'N use efficiency',desc:'Nutrient use efficiency — N in grain divided by N applied. Currently at 38% due to low pH, leaching, and poor timing. Target is 55–65%.',stats:[{l:'Current NUE',v:'38%'},{l:'Target NUE',v:'55–65%'}],alert:null},
+];
+const layers=[
+  {name:'SOC',key:'soc',max:6,color:'#8B6340'},
+  {name:'Macropores',key:'macro',max:100,color:'#6B8B40'},
+  {name:'BNF',key:'bnf',max:100,color:'#185FA5'},
+  {name:'Compaction',key:'comp',max:100,color:'#D85A30'},
+];
+function gv(key){const s=scens[tScen],m=mods[tScen][key];if(!m)return s[key];const f=tTime/10;return Math.max(0,tTime<0?s[key]+m[0]*(-f):s[key]+m[2]*f);}
+function health(){const soc=gv('soc'),bnf=gv('bnf'),comp=gv('comp'),ph=scens[tScen].ph;return Math.round(Math.min(soc/5,1)*25+bnf/100*25+(1-comp/100)*25+Math.min((ph-4.5)/2,1)*25);}
+function priming(){const soc=gv('soc'),lan=gv('lan'),ph=scens[tScen].ph;let s=0;s+=soc<2?3:soc<3?2:1;s+=lan>130?3:lan>90?2:1;s+=ph<5.5?3:ph<6.0?2:1;return s;}
+function renderLayers(){document.getElementById('lbars').innerHTML=layers.map(l=>{const raw=gv(l.key),pct=Math.min(100,l.key==='soc'?raw/l.max*100:raw);return `<div class="lbar-row"><span class="lb-name">${l.name}</span><div class="lb-track"><div class="lb-fill" style="width:${Math.round(pct)}%;background:${l.color}70;border-right:2px solid ${l.color}"></div></div><span class="lb-pct">${l.key==='soc'?raw.toFixed(1)+'%':Math.round(raw)+'%'}</span></div>`;}).join('');}
+function renderScore(){const sc=health(),pr=priming();document.getElementById('tw-score').textContent=sc;const cls=pr>=7?'rp-h':pr>=5?'rp-m':'rp-l';const lbl=pr>=7?'High priming risk':pr>=5?'Medium priming risk':'Low priming risk';document.getElementById('tw-risk').className=`risk-pill ${cls}`;document.getElementById('tw-risk').innerHTML=`<i class="ti ti-alert-triangle"></i> ${lbl} (${pr}/9)`;}
+function buildPanels(){
+  const ip=document.getElementById('inp-panel');ip.innerHTML='<div class="io-label" style="color:#B5711A"><i class="ti ti-arrow-right"></i> inputs</div>';
+  inputs.forEach(inp=>{const raw=inp.key?gv(inp.key):null;const v=raw!==null?(inp.key==='lime'?raw.toFixed(1)+' t/ha':inp.key==='zn'?raw.toFixed(1)+' mg/kg':inp.key==='soc'?raw.toFixed(1)+'%':Math.round(raw)+''):inp.unit;const d=document.createElement('div');d.className='io-card'+(tSel===inp.id?' sel':'');d.innerHTML=`<div class="io-top"><i class="ti ${inp.icon}"></i><span class="io-name">${inp.name}</span></div><div class="io-val">${v}</div>`;d.onclick=()=>{tSel=tSel===inp.id?null:inp.id;buildPanels();renderDetail();};ip.appendChild(d);});
+  const op=document.getElementById('out-panel');op.innerHTML='<div class="io-label" style="color:#185FA5"><i class="ti ti-arrow-right"></i> outputs</div>';
+  outputs.forEach(out=>{const raw=out.key?gv(out.key):null;const v=raw!==null?(out.key==='infilt'?raw.toFixed(1)+' mm/hr':out.key==='bnf'?Math.round(raw)+'% of N':out.key==='erosion'?Math.round(raw)+'%':Math.round(raw)):out.unit;const d=document.createElement('div');d.className='io-card'+(tSel===out.id?' sel':'');d.innerHTML=`<div class="io-top"><i class="ti ${out.icon}"></i><span class="io-name">${out.name}</span></div><div class="io-val">${v}</div>`;d.onclick=()=>{tSel=tSel===out.id?null:out.id;buildPanels();renderDetail();};op.appendChild(d);});
+}
+function renderDetail(){if(!tSel){document.getElementById('td-name').textContent='Select an input or output above';document.getElementById('td-body').textContent='Click any card on the left or right to explore how that variable connects to the soil biology.';document.getElementById('td-grid').innerHTML='';document.getElementById('td-alert').innerHTML='';return;}const all=[...inputs,...outputs],item=all.find(x=>x.id===tSel);if(!item)return;document.getElementById('td-name').innerHTML=`<i class="ti ${item.icon}"></i> ${item.name}`;document.getElementById('td-body').textContent=item.desc;document.getElementById('td-grid').innerHTML=item.stats.map(s=>{let val=s.v;if(!val&&item.key){const r=gv(item.key);val=item.key==='lime'?r.toFixed(1)+' t/ha':item.key==='zn'?r.toFixed(1)+' mg/kg':item.key==='soc'?r.toFixed(1)+'%':item.key==='infilt'?r.toFixed(1)+' mm/hr':item.key==='bnf'?Math.round(r)+'% of N':item.key==='erosion'?Math.round(r)+'%':item.key==='lan'?Math.round(r)+' kg/ha':Math.round(r)+'';}return `<div class="td-stat"><div class="td-stat-l">${s.l}</div><div class="td-stat-v">${val||'—'}</div></div>`;}).join('');document.getElementById('td-alert').innerHTML='';if(item.alert){const cls=item.alert.t==='warn'?'ta-warn':'ta-ok';document.getElementById('td-alert').innerHTML=`<div class="td-alert ${cls}"><i class="ti ti-${item.alert.t==='warn'?'alert-triangle':'circle-check'}"></i><span>${item.alert.m}</span></div>`;}}
+function renderAll(){renderScore();renderLayers();buildPanels();renderDetail();}
+function onTime(v){tTime=parseInt(v);document.getElementById('yr-lbl').textContent=BASE+tTime;document.querySelectorAll('.pb').forEach(b=>{b.classList.remove('active');if(tTime<-1&&b.dataset.ph==='past')b.classList.add('active');else if(tTime>1&&b.dataset.ph==='future')b.classList.add('active');else if(Math.abs(tTime)<=1&&b.dataset.ph==='present')b.classList.add('active');});renderAll();}
+function setPhase(p,btn){document.querySelectorAll('.pb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const sl=document.getElementById('tSlider');tTime=p==='past'?-5:p==='present'?0:5;sl.value=tTime;document.getElementById('yr-lbl').textContent=BASE+tTime;renderAll();}
+function setScen(sc,btn){tScen=sc;document.querySelectorAll('.s-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderAll();}
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));document.getElementById('view-'+id).classList.add('on');document.querySelectorAll('.p-tab').forEach(t=>t.classList.remove('active'));const map={ov:'tab-ov',tw:'tab-tw',st:'tab-st'};if(map[id])document.getElementById(map[id]).classList.add('active');}
+const layerDetails=['OBI-adapted SA soil index · Free State ferralsol context · pH priority indicator','1m³ digital twin · LAN + lime inputs · erosion output · semi-arid rainfall','NAITRO AI · pH-first priority · Zn deficiency model · cover crop planner','HUIGE MRV · Tiger Brands / Pioneer Foods · Absa agri loan · DoA compliance'];
+function showLayer(n){document.getElementById('layer-detail').textContent=layerDetails[n-1];showView('st');}
+function toggleRec(card){const was=card.classList.contains('open');document.querySelectorAll('.rec-card').forEach(c=>c.classList.remove('open'));if(!was)card.classList.add('open');}
+renderAll();
+</script>
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAITRO · SA2 — Umfolozi Cane, KwaZulu-Natal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    :root {
+      --font-sans:'Inter',system-ui,sans-serif;
+      --color-background-primary:#ffffff;
+      --color-background-secondary:#f5f5f4;
+      --color-background-tertiary:#f0efee;
+      --color-background-success:#e8f5f0;
+      --color-background-warning:#fef3c7;
+      --color-background-info:#eff6ff;
+      --color-text-primary:#1c1917;
+      --color-text-secondary:#57534e;
+      --color-text-tertiary:#a8a29e;
+      --color-text-success:#065f46;
+      --color-text-warning:#92400e;
+      --color-text-danger:#991b1b;
+      --color-text-info:#1e40af;
+      --color-border-primary:#1c1917;
+      --color-border-secondary:#d6d3d1;
+      --color-border-tertiary:#e7e5e4;
+      --color-border-success:#6ee7b7;
+      --color-border-warning:#fcd34d;
+      --color-border-info:#93c5fd;
+      --border-radius-sm:4px;
+      --border-radius-md:6px;
+      --border-radius-lg:10px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--font-sans);background:var(--color-background-tertiary);min-height:100vh}
+    .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+    .shell{background:var(--color-background-tertiary);padding-bottom:2rem;max-width:1200px;margin:0 auto}
+    .topnav{background:#1A3D0F;padding:.75rem 1.25rem;display:flex;align-items:center;justify-content:space-between;border-radius:var(--border-radius-lg) var(--border-radius-lg) 0 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand-logo{width:32px;height:32px;background:#2E8B1A;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:#fff}
+    .brand-name{font-size:15px;font-weight:500;color:#fff}
+    .brand-sub{font-size:11px;color:#7EC86A;margin-top:1px}
+    .nav-right{display:flex;align-items:center;gap:8px}
+    .farm-badge{font-size:11px;color:#7EC86A;background:rgba(255,255,255,.08);padding:4px 10px;border-radius:99px;border:0.5px solid rgba(255,255,255,.15)}
+    .home-link{font-size:11px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:5px;text-decoration:none;padding:4px 10px;border-radius:99px;border:0.5px solid rgba(255,255,255,.15)}
+    .home-link:hover{color:#fff}
+    .layer-strip{background:#112A08;padding:.5rem 1.25rem;display:flex;align-items:center;gap:0;overflow-x:auto}
+    .layer-step{display:flex;align-items:center;flex-shrink:0}
+    .ls-pill{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:99px;font-size:11px;font-weight:500;cursor:pointer;white-space:nowrap}
+    .ls-pill.s1{background:#2E8B1A;color:#fff}.ls-pill.s2{background:#185FA5;color:#fff}.ls-pill.s3{background:#8B3A1A;color:#fff}.ls-pill.s4{background:#6B4AB7;color:#fff}
+    .ls-arrow{font-size:12px;color:rgba(255,255,255,.2);margin:0 4px}
+    .ls-detail{font-size:10px;color:rgba(255,255,255,.45);margin-left:auto;padding-left:1rem;white-space:nowrap;flex-shrink:0}
+    .page-tabs{display:flex;gap:0;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:0 1.25rem}
+    .p-tab{font-size:13px;padding:.75rem 1rem;border-bottom:2px solid transparent;cursor:pointer;color:var(--color-text-secondary);display:flex;align-items:center;gap:6px;transition:all .15s;margin-bottom:-0.5px}
+    .p-tab.active{color:#1A3D0F;border-bottom-color:#2E8B1A;font-weight:500}
+    .p-tab:hover:not(.active){color:var(--color-text-primary)}
+    .drill-btn{font-size:12px;padding:5px 14px;border-radius:var(--border-radius-md);border:0.5px solid #2E8B1A;background:#E1F5D8;color:#1A3D0F;cursor:pointer;align-self:center;display:flex;align-items:center;gap:6px;margin-left:auto}
+    .content{padding:1rem 1.25rem}
+    .ov-grid{display:grid;grid-template-columns:240px 1fr;gap:1rem;margin-bottom:1rem}
+    .gauge-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.125rem;display:flex;flex-direction:column;align-items:center}
+    .gc-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);margin-bottom:.625rem}
+    .gauge-wrap{position:relative;width:180px;height:100px}
+    .gauge-score-box{position:absolute;bottom:0;left:50%;transform:translateX(-50%);text-align:center}
+    .g-num{font-size:32px;font-weight:500;color:var(--color-text-primary);line-height:1}
+    .g-den{font-size:12px;color:var(--color-text-secondary)}
+    .g-zone{font-size:12px;font-weight:500;margin-top:.375rem;color:#A32D2D;display:flex;align-items:center;gap:5px}
+    .gc-bars{width:100%;margin-top:.875rem;display:flex;flex-direction:column;gap:5px}
+    .gcb-row{display:flex;align-items:center;gap:7px;font-size:11px}
+    .gcb-label{color:var(--color-text-secondary);width:72px;flex-shrink:0;text-align:right}
+    .gcb-track{flex:1;height:5px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden}
+    .gcb-fill{height:100%;border-radius:3px}
+    .gcb-val{color:var(--color-text-secondary);width:32px;flex-shrink:0}
+    .gc-drill{width:100%;margin-top:.875rem;font-size:12px;padding:6px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;color:var(--color-text-secondary)}
+    .gc-drill:hover{background:var(--color-background-secondary)}
+    .right-panel{display:flex;flex-direction:column;gap:.75rem}
+    .metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.625rem}
+    .mc{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.625rem .875rem}
+    .mc-label{font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.04em}
+    .mc-val{font-size:18px;font-weight:500;color:var(--color-text-primary);margin-top:2px}
+    .mc-unit{font-size:11px;color:var(--color-text-secondary)}
+    .mc-delta{font-size:11px;margin-top:2px;display:flex;align-items:center;gap:3px}
+    .d-up{color:var(--color-text-success)}.d-dn{color:var(--color-text-danger)}.d-neu{color:var(--color-text-secondary)}
+    .rec-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.875rem 1rem;cursor:pointer}
+    .rec-card:hover{border-color:var(--color-border-secondary)}.rec-card.open{border-color:var(--color-border-primary)}
+    .rec-hd{display:flex;align-items:flex-start;gap:10px}
+    .rec-num{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;margin-top:1px}
+    .rn1{background:#FCEBEB;color:#A32D2D}.rn2{background:#FAEEDA;color:#633806}.rn3{background:#E6F1FB;color:#0C447C}
+    .rec-info{flex:1}
+    .rec-title{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+    .rec-tag{font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+    .rec-chev{font-size:16px;color:var(--color-text-tertiary);transition:transform .2s}
+    .rec-card.open .rec-chev{transform:rotate(180deg)}
+    .rec-body{display:none;margin-top:.75rem;padding-top:.75rem;border-top:0.5px solid var(--color-border-tertiary)}
+    .rec-card.open .rec-body{display:block}
+    .rec-sci,.rec-act{font-size:12px;line-height:1.65;color:var(--color-text-secondary);margin-bottom:.5rem}
+    .rec-sci strong,.rec-act strong{font-weight:500;color:var(--color-text-primary)}
+    .impact-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:.625rem}
+    .imp{font-size:11px;padding:3px 9px;border-radius:99px;background:var(--color-background-secondary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary)}
+    .alert-banner{display:flex;align-items:flex-start;gap:10px;background:#FCEBEB;border:0.5px solid #FCA5A5;color:#991b1b;border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:12px;line-height:1.6}
+    .view{display:none}.view.on{display:block}
+    .twin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.875rem}
+    .back-btn{font-size:12px;padding:5px 12px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--color-text-secondary)}
+    .back-btn:hover{background:var(--color-background-secondary)}
+    .risk-pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:3px 9px;border-radius:99px}
+    .rp-h{background:#FCEBEB;color:#A32D2D}.rp-m{background:#FAEEDA;color:#633806}.rp-l{background:#E1F5EE;color:#085041}
+    .time-rail{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.875rem 1.125rem;margin-bottom:.875rem}
+    .tr-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.625rem}
+    .tr-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);display:flex;align-items:center;gap:6px}
+    .phase-btns{display:flex;gap:6px}
+    .pb{font-size:11px;padding:4px 11px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);cursor:pointer}
+    .pb.active{background:var(--color-background-success);color:var(--color-text-success);border-color:var(--color-border-success)}
+    .tr-slider{display:flex;align-items:center;gap:10px}
+    .tr-slider input[type=range]{flex:1;accent-color:#2E8B1A}
+    .tr-bands{display:flex;justify-content:space-between;font-size:10px;color:var(--color-text-tertiary);margin-top:3px}
+    .twin-grid{display:grid;grid-template-columns:172px 1fr 172px;gap:.75rem;align-items:start;margin-bottom:.875rem}
+    .io-panel{display:flex;flex-direction:column;gap:5px}
+    .io-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+    .io-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:6px 8px;cursor:pointer}
+    .io-card:hover{border-color:var(--color-border-secondary)}
+    .io-card.sel{border-color:var(--color-border-info);background:var(--color-background-info)}
+    .io-top{display:flex;align-items:center;gap:6px}
+    .io-top i{font-size:14px;color:var(--color-text-secondary)}
+    .io-card.sel .io-top i{color:var(--color-text-info)}
+    .io-name{font-size:11px;font-weight:500;color:var(--color-text-primary)}
+    .io-val{font-size:10px;color:var(--color-text-secondary);margin-top:1px}
+    .io-card.sel .io-val{color:var(--color-text-info)}
+    .lbars{width:100%;display:flex;flex-direction:column;gap:4px}
+    .lbar-row{display:flex;align-items:center;gap:6px}
+    .lb-name{font-size:10px;color:var(--color-text-secondary);width:68px;text-align:right;flex-shrink:0}
+    .lb-track{flex:1;height:8px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden}
+    .lb-fill{height:100%;border-radius:3px;transition:width .5s}
+    .lb-pct{font-size:10px;color:var(--color-text-secondary);width:26px}
+    .twin-detail{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.875rem 1.125rem}
+    .td-title{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:.375rem;display:flex;align-items:center;gap:7px}
+    .td-body{font-size:11px;color:var(--color-text-secondary);line-height:1.6}
+    .td-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:.5rem}
+    .td-stat{background:var(--color-background-primary);border-radius:var(--border-radius-md);padding:6px 9px;border:0.5px solid var(--color-border-tertiary)}
+    .td-stat-l{font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.03em}
+    .td-stat-v{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-top:1px}
+    .td-alert{border-radius:var(--border-radius-md);padding:6px 10px;font-size:11px;display:flex;align-items:flex-start;gap:7px;margin-top:.5rem;line-height:1.5}
+    .ta-warn{background:var(--color-background-warning);color:var(--color-text-warning);border:0.5px solid var(--color-border-warning)}
+    .ta-ok{background:var(--color-background-success);color:var(--color-text-success);border:0.5px solid var(--color-border-success)}
+    .scen-bar{display:flex;gap:6px;flex-wrap:wrap;margin-top:.875rem;align-items:center}
+    .s-btn{font-size:11px;padding:4px 11px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);cursor:pointer}
+    .s-btn.active{border-color:var(--color-border-primary);color:var(--color-text-primary);background:var(--color-background-secondary)}
+    .s-btn:hover{background:var(--color-background-secondary)}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <div class="topnav">
+    <div class="brand">
+      <div class="brand-logo">N</div>
+      <div>
+        <div class="brand-name">NAITRO · SA2</div>
+        <div class="brand-sub">Umfolozi Cane — KwaZulu-Natal, South Africa</div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <span class="farm-badge">🇿🇦 Sugarcane · 680 ha · Rainfed + irrigation</span>
+      <a class="home-link" href="../"><i class="ti ti-arrow-left"></i> All farms</a>
+    </div>
+  </div>
+
+  <div class="layer-strip">
+    <div class="layer-step"><span class="ls-pill s1" onclick="showLayer(1)"><i class="ti ti-chart-bar"></i> Score</span></div>
+    <span class="ls-arrow">→</span>
+    <div class="layer-step"><span class="ls-pill s2" onclick="showLayer(2)"><i class="ti ti-cube"></i> Visualise</span></div>
+    <span class="ls-arrow">→</span>
+    <div class="layer-step"><span class="ls-pill s3" onclick="showLayer(3)"><i class="ti ti-cpu"></i> Decide</span></div>
+    <span class="ls-arrow">→</span>
+    <div class="layer-step"><span class="ls-pill s4" onclick="showLayer(4)"><i class="ti ti-report-analytics"></i> Report</span></div>
+    <span class="ls-detail" id="layer-detail">OBI-adapted SA soil index · KZN coastal clay soils · sugarcane ratoon context</span>
+  </div>
+
+  <div style="background:var(--color-background-primary)">
+    <div class="page-tabs">
+      <div class="p-tab active" id="tab-ov" onclick="showView('ov')"><i class="ti ti-home"></i> Overview</div>
+      <div class="p-tab" id="tab-tw" onclick="showView('tw')"><i class="ti ti-cube"></i> Digital twin</div>
+      <div class="p-tab" id="tab-st" onclick="showView('st')"><i class="ti ti-stack"></i> How NAITRO works</div>
+      <button class="drill-btn" onclick="showView('tw')"><i class="ti ti-microscope"></i> Drill into detail</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="view on" id="view-ov">
+      <div class="ov-grid">
+        <div class="gauge-card">
+          <div class="gc-label">Soil health score</div>
+          <div class="gauge-wrap">
+            <svg viewBox="0 0 180 100" width="180" height="100" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18,92 A72,72 0 0,1 162,92" fill="none" stroke="#FCEBEB" stroke-width="12" stroke-linecap="round"/>
+              <path d="M18,92 A72,72 0 0,1 162,92" fill="none" stroke="#E24B4A" stroke-width="12" stroke-linecap="round" stroke-dasharray="226" stroke-dashoffset="104"/>
+              <text x="18" y="106" font-size="8" fill="#888780" font-family="sans-serif">Poor</text>
+              <text x="79" y="98" font-size="8" fill="#888780" font-family="sans-serif" text-anchor="middle">Fair</text>
+              <text x="162" y="106" font-size="8" fill="#888780" font-family="sans-serif" text-anchor="end">Optimal</text>
+            </svg>
+            <div class="gauge-score-box">
+              <div class="g-num">54</div>
+              <div class="g-den">/100</div>
+            </div>
+          </div>
+          <div class="g-zone"><i class="ti ti-alert-triangle"></i> Critical — urgent action</div>
+          <div class="gc-bars">
+            <div class="gcb-row"><span class="gcb-label">SOC</span><div class="gcb-track"><div class="gcb-fill" style="width:28%;background:#E24B4A"></div></div><span class="gcb-val">1.4%</span></div>
+            <div class="gcb-row"><span class="gcb-label">BNF</span><div class="gcb-track"><div class="gcb-fill" style="width:12%;background:#185FA5"></div></div><span class="gcb-val">12%</span></div>
+            <div class="gcb-row"><span class="gcb-label">Priming risk</span><div class="gcb-track"><div class="gcb-fill" style="width:88%;background:#E24B4A"></div></div><span class="gcb-val">8/9</span></div>
+            <div class="gcb-row"><span class="gcb-label">Compaction</span><div class="gcb-track"><div class="gcb-fill" style="width:78%;background:#E24B4A"></div></div><span class="gcb-val">78%</span></div>
+          </div>
+          <button class="gc-drill" onclick="showView('tw')"><i class="ti ti-zoom-in"></i> Open digital twin</button>
+        </div>
+
+        <div class="right-panel">
+          <div class="metric-row">
+            <div class="mc">
+              <div class="mc-label">N applied (total)</div>
+              <div class="mc-val">220 <span class="mc-unit">kg N/ha</span></div>
+              <div class="mc-delta d-dn"><i class="ti ti-alert-triangle"></i> Highest on platform</div>
+            </div>
+            <div class="mc">
+              <div class="mc-label">Ratoon yield</div>
+              <div class="mc-val">68 <span class="mc-unit">t/ha</span></div>
+              <div class="mc-delta d-dn"><i class="ti ti-trending-down"></i> −18% vs 2015</div>
+            </div>
+            <div class="mc">
+              <div class="mc-label">N leaching</div>
+              <div class="mc-val">72 <span class="mc-unit">kg/ha/yr</span></div>
+              <div class="mc-delta d-dn"><i class="ti ti-alert-triangle"></i> Umdloti R. at risk</div>
+            </div>
+            <div class="mc">
+              <div class="mc-label">Trash burning</div>
+              <div class="mc-val">100<span class="mc-unit">%</span></div>
+              <div class="mc-delta d-dn"><i class="ti ti-flame"></i> SOC destruction</div>
+            </div>
+          </div>
+
+          <div class="alert-banner">
+            <i class="ti ti-alert-triangle" style="flex-shrink:0;margin-top:1px;font-size:16px"></i>
+            <span><strong>Critical priming risk score: 8/9.</strong> Heavy machinery compaction (78%) combined with cane trash burning and 220 kg N/ha is actively destroying soil carbon at approximately 0.25%/yr. At current trajectory, SOC will fall below 1% within 3 years — the threshold below which soil structure collapses and irrigation water is no longer held. Ratoon decline will accelerate sharply.</span>
+          </div>
+
+          <div class="rec-card" onclick="toggleRec(this)">
+            <div class="rec-hd">
+              <div class="rec-num rn1">1</div>
+              <div class="rec-info">
+                <div class="rec-title">Stop burning cane trash — retain as mulch</div>
+                <div class="rec-tag">Highest impact · SOC recovery · Priming risk</div>
+              </div>
+              <i class="ti ti-chevron-down rec-chev"></i>
+            </div>
+            <div class="rec-body">
+              <div class="rec-sci"><strong>The science:</strong> Cane trash burning destroys the primary SOC input mechanism for sugarcane soils. 8–12 t/ha of cane trash is incinerated annually, releasing an estimated 4–6 t CO₂/ha and eliminating the soil's only significant organic matter source. Trash retention builds SOC at 0.15–0.25%/yr and reduces weed pressure through mulch suppression.</div>
+              <div class="rec-act"><strong>The action:</strong> Transition from whole-stalk to green cane harvesting over 2 seasons. Retain all cane trash in-field as surface mulch. Use NAITRO's paddock-level SOC recovery model to prioritise which blocks to convert first — blocks with &lt;1.5% SOC are most urgent.</div>
+              <div class="impact-row">
+                <span class="imp"><i class="ti ti-trending-up"></i> SOC +0.2%/yr</span>
+                <span class="imp"><i class="ti ti-cloud"></i> CO₂ avoided 5 t/ha/yr</span>
+                <span class="imp"><i class="ti ti-droplet"></i> Water retention +22%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="rec-card" onclick="toggleRec(this)">
+            <div class="rec-hd">
+              <div class="rec-num rn2">2</div>
+              <div class="rec-info">
+                <div class="rec-title">Reduce N by 40% — target 130 kg N/ha via fertigation</div>
+                <div class="rec-tag">N management · Priming Effect · Umdloti compliance</div>
+              </div>
+              <i class="ti ti-chevron-down rec-chev"></i>
+            </div>
+            <div class="rec-body">
+              <div class="rec-sci"><strong>The science:</strong> Sugarcane has a well-characterised N demand curve — peak demand is at tillering (3–4 months after planting) and again at grand growth phase. Applying 220 kg N/ha as a single pre-season broadcast application results in 60–70% loss via leaching and volatilisation before the crop can use it. The KwaZulu-Natal Department of Agriculture recommends 130–150 kg N/ha split across 3–4 applications.</div>
+              <div class="rec-act"><strong>The action:</strong> Install drip fertigation on the 240 ha of irrigated blocks (priority action). Split N into 4 applications aligned to crop growth stages. Reduce total N to 130 kg N/ha in Year 1, aiming for 110 kg N/ha by Year 3 as SOC recovers and biological N fixation increases with associated nitrogen-fixing bacteria (Gluconacetobacter diazotrophicus endemic to sugarcane).</div>
+              <div class="impact-row">
+                <span class="imp"><i class="ti ti-droplet-off"></i> N leaching −45 kg/ha/yr</span>
+                <span class="imp"><i class="ti ti-coin"></i> Fertiliser cost −R4,800/ha</span>
+                <span class="imp"><i class="ti ti-trending-down"></i> Priming risk 8→5</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="rec-card" onclick="toggleRec(this)">
+            <div class="rec-hd">
+              <div class="rec-num rn3">3</div>
+              <div class="rec-info">
+                <div class="rec-title">Controlled traffic farming to break compaction</div>
+                <div class="rec-tag">Compaction · Infiltration · Ratoon longevity</div>
+              </div>
+              <i class="ti ti-chevron-down rec-chev"></i>
+            </div>
+            <div class="rec-body">
+              <div class="rec-sci"><strong>The science:</strong> At 78% compaction index, heavy harvest machinery has created a hard pan at 20–30 cm depth that is blocking root development and forcing ratoon stunting. Compaction also prevents water infiltration — a double problem in KZN where irrigation efficiency is critical during the dry season. Each additional ratoon cycle on compacted soil yields 8–12% less than the previous.</div>
+              <div class="rec-act"><strong>The action:</strong> Implement controlled traffic farming (CTF) — confine all machinery to permanent wheel tracks covering &lt;15% of soil surface. Deep rip (45 cm) inter-row spaces once to break existing hard pan. Plant leguminous inter-row cover crops (lablab, velvet bean) during replant phase to restore biological soil structure between ratoon cycles.</div>
+              <div class="impact-row">
+                <span class="imp"><i class="ti ti-trending-up"></i> Ratoon yield +12–18%</span>
+                <span class="imp"><i class="ti ti-ripple"></i> Infiltration +300%</span>
+                <span class="imp"><i class="ti ti-calendar"></i> Ratoon cycle +1 extra</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="view" id="view-tw">
+      <div class="twin-header">
+        <div>
+          <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">1 m³ soil block · Umfolozi Cane, KwaZulu-Natal</div>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Vertic clay soil · Sugarcane ratoon system · High rainfall coastal</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span id="tw-risk" class="risk-pill rp-h"><i class="ti ti-alert-triangle"></i> Critical priming risk</span>
+          <button class="back-btn" onclick="showView('ov')"><i class="ti ti-arrow-left"></i> Back to overview</button>
+        </div>
+      </div>
+
+      <div class="time-rail">
+        <div class="tr-top">
+          <span class="tr-label"><i class="ti ti-clock"></i> time horizon</span>
+          <div class="phase-btns">
+            <button class="pb active" data-ph="past" onclick="setPhase('past',this)">Past</button>
+            <button class="pb" data-ph="present" onclick="setPhase('present',this)">Present</button>
+            <button class="pb" data-ph="future" onclick="setPhase('future',this)">Future</button>
+          </div>
+        </div>
+        <div class="tr-slider">
+          <span style="font-size:10px;color:var(--color-text-tertiary)">−10 yr</span>
+          <input type="range" id="tSlider" min="-10" max="10" value="-5" step="1" oninput="onTime(this.value)">
+          <span style="font-size:10px;color:var(--color-text-tertiary)">+10 yr</span>
+        </div>
+        <div class="tr-bands">
+          <span>2015 — burn + broadcast N</span>
+          <span id="yr-lbl" style="font-weight:500;color:var(--color-text-primary)">2020</span>
+          <span>2035 — green cane + fertigation</span>
+        </div>
+      </div>
+
+      <div class="twin-grid">
+        <div class="io-panel" id="inp-panel"><div class="io-label" style="color:#2E8B1A"><i class="ti ti-arrow-right"></i> inputs</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem">
+          <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="100,8 192,58 192,142 100,192 8,142 8,58" fill="#5A3A1A" opacity=".85"/>
+            <polygon points="100,8 192,58 100,108 8,58" fill="#6B4A28" opacity=".95"/>
+            <polygon points="8,58 100,108 100,192 8,142" fill="#3D2810" opacity=".9"/>
+            <polygon points="192,58 100,108 100,192 192,142" fill="#4A3018" opacity=".9"/>
+            <polygon points="100,8 192,58 100,108 8,58" fill="none" stroke="#2A1808" stroke-width="1.5"/>
+            <polygon points="8,58 100,108 100,192 8,142" fill="none" stroke="#2A1808" stroke-width="1.5"/>
+            <polygon points="192,58 100,108 100,192 192,142" fill="none" stroke="#2A1808" stroke-width="1.5"/>
+            <line x1="8" y1="142" x2="192" y2="142" stroke="#2A1808" stroke-width="1.5"/>
+            <line x1="92" y1="108" x2="90" y2="180" stroke="#3A6E28" stroke-width="3" opacity=".5"/>
+            <line x1="92" y1="108" x2="75" y2="155" stroke="#3A6E28" stroke-width="2" opacity=".35"/>
+            <line x1="92" y1="108" x2="110" y2="160" stroke="#3A6E28" stroke-width="2" opacity=".35"/>
+            <ellipse cx="92" cy="104" rx="14" ry="5" fill="#2E8B1A" opacity=".75"/>
+            <text id="tw-score" x="100" y="138" text-anchor="middle" font-size="20" font-weight="500" fill="#FFF" opacity=".9">--</text>
+            <text x="100" y="151" text-anchor="middle" font-size="8" fill="#FFF" opacity=".6">health score</text>
+          </svg>
+          <div class="lbars" id="lbars"></div>
+        </div>
+        <div class="io-panel" id="out-panel"><div class="io-label" style="color:#185FA5"><i class="ti ti-arrow-right"></i> outputs</div></div>
+      </div>
+
+      <div class="twin-detail">
+        <div class="td-title"><i class="ti ti-info-circle"></i><span id="td-name">Select an input or output above</span></div>
+        <div class="td-body" id="td-body">Click any card to explore how that variable connects to the sugarcane soil system.</div>
+        <div class="td-grid" id="td-grid"></div>
+        <div id="td-alert"></div>
+      </div>
+
+      <div class="scen-bar">
+        <span style="font-size:11px;color:var(--color-text-tertiary);align-self:center">Scenario:</span>
+        <button class="s-btn active" onclick="setScen('baseline',this)">Current (burn + broadcast)</button>
+        <button class="s-btn" onclick="setScen('noburn',this)">Green cane harvest</button>
+        <button class="s-btn" onclick="setScen('fertig',this)">Green cane + fertigation</button>
+        <button class="s-btn" onclick="setScen('full',this)">Full CTF + biological</button>
+      </div>
+    </div>
+
+    <div class="view" id="view-st">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);margin-bottom:.875rem">NAITRO platform — SA2 Umfolozi Cane context</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.875rem">
+        <div style="background:#E1F5D8;border:0.5px solid #7EC86A;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
+          <div style="font-size:11px;font-weight:500;color:#1A3D0F;margin-bottom:.375rem"><i class="ti ti-chart-bar"></i> Score — sugarcane calibration</div>
+          <div style="font-size:12px;color:#1A3D0F;line-height:1.65">OBI indicators recalibrated for vertic clay soils and KZN coastal climate. Trash burning and compaction are weighted as primary score drivers. Benchmarked against SASRI (SA Sugarcane Research Institute) soil health norms for ratoon systems.</div>
+        </div>
+        <div style="background:#E6F1FB;border:0.5px solid #85B7EB;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
+          <div style="font-size:11px;font-weight:500;color:#0C447C;margin-bottom:.375rem"><i class="ti ti-cube"></i> Visualise — digital twin</div>
+          <div style="font-size:12px;color:#0C447C;line-height:1.65">1m³ soil block models the organic matter dynamics of continuously cropped sugarcane soil. Tracks cane trash input/burning, ratoon compaction cycles, and the Gluconacetobacter N-fixation pathway unique to sugarcane biology.</div>
+        </div>
+        <div style="background:#FAEEDA;border:0.5px solid #EF9F27;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
+          <div style="font-size:11px;font-weight:500;color:#7A4A08;margin-bottom:.375rem"><i class="ti ti-cpu"></i> Decide — AI recommendations</div>
+          <div style="font-size:12px;color:#7A4A08;line-height:1.65">Prioritises trash management over N reduction — burning is the #1 SOC destroyer in this system. CTF machinery planning integrated. Fertigation scheduling aligned to sugarcane growth stage model. Silicon (Si) deficiency analysis specific to KZN soils.</div>
+        </div>
+        <div style="background:#EEEDFE;border:0.5px solid #AFA9EC;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
+          <div style="font-size:11px;font-weight:500;color:#3C3489;margin-bottom:.375rem"><i class="ti ti-report-analytics"></i> Report — HUIGE for KZN sugar</div>
+          <div style="font-size:12px;color:#3C3489;line-height:1.65">Farmer + Illovo Sugar / Tongaat Hulett Scope 3 + Nedbank green loan score + eThekwini Municipality water quality + DAFF NUE reporting. Specific module for SA Sugar Industry Transformation requirements and Bonsucro certification pathway.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const BASE=2025;
+let tTime=-5,tScen='baseline',tSel=null;
+const scens={
+  baseline:{n:220,burn:100,soc:1.4,si:18,comp:78,macro:18,infilt:3,ratoon:68,bnf:12},
+  noburn:  {n:200,burn:0,  soc:1.8,si:20,comp:70,macro:25,infilt:6,ratoon:72,bnf:15},
+  fertig:  {n:130,burn:0,  soc:2.4,si:24,comp:55,macro:40,infilt:12,ratoon:82,bnf:22},
+  full:    {n:80, burn:0,  soc:3.2,si:30,comp:22,macro:62,infilt:22,ratoon:96,bnf:38},
+};
+const mods={
+  baseline:{soc:[-.5,0,.3],bnf:[-4,0,2],comp:[8,0,-3],n:[30,0,-10]},
+  noburn:  {soc:[-.3,0,.8],bnf:[-3,0,6],comp:[6,0,-10],n:[20,0,-20]},
+  fertig:  {soc:[-.2,0,1.2],bnf:[-2,0,12],comp:[4,0,-20],n:[15,0,-40]},
+  full:    {soc:[-.1,0,1.8],bnf:[-1,0,20],comp:[2,0,-30],n:[10,0,-55]},
+};
+const inputs=[
+  {id:'sun',icon:'ti-sun',name:'Sunlight',key:null,unit:'kJ/m²/day',desc:'KZN coastal receives 2,600–2,800 sunshine hours/year. Sugarcane is one of the most efficient C4 photosynthesisers — the biology is not the constraint. Soil health is.',stats:[{l:'Growing season',v:'Oct–Jun'},{l:'Sunshine hours',v:'2,700/yr'}],alert:null},
+  {id:'rain',icon:'ti-cloud-rain',name:'Rainfall',key:null,unit:'mm/yr',desc:'900–1,100 mm annual rainfall, concentrated Nov–Mar. High-intensity rainfall on compacted soil creates massive runoff and leaches N applied as broadcast urea before the crop can access it.',stats:[{l:'Annual rainfall',v:'980 mm'},{l:'Leaching risk',v:'Very high'}],alert:{t:'warn',m:'At 78% compaction, >70% of rainfall events create surface runoff rather than infiltration — carrying 15–20 kg N/ha per major event.'}},
+  {id:'n',icon:'ti-flask',name:'N applied',key:'n',unit:'kg N/ha/yr',desc:'220 kg N/ha broadcast applied is the highest rate on the NAITRO platform. Combined with trash burning and compaction, NUE is estimated at only 28% — meaning 158 kg of every 220 kg is wasted.',stats:[{l:'Current rate',v:null},{l:'SASRI recommended',v:'130–150 kg N/ha'}],alert:{t:'warn',m:'At 28% NUE, R5,200/ha in fertiliser is wasted annually. Splitting via fertigation would immediately recover R3,500–4,800/ha.'}},
+  {id:'burn',icon:'ti-flame',name:'Trash burning',key:'burn',unit:'% area burned',desc:'100% trash burning is the single biggest driver of SOC decline in this system. Each burn destroys 8–12 t/ha of potential soil organic matter, releasing CO₂ and killing the soil biology that makes nutrients available.',stats:[{l:'Trash burned',v:'100%'},{l:'SOC loss from burning',v:'0.25%/yr'}],alert:{t:'warn',m:'Trash burning is destroying the equivalent of R1,800/ha/yr in soil fertility that cannot be replaced with fertiliser.'}},
+  {id:'si',icon:'ti-atom',name:'Silicon (Si)',key:'si',unit:'mg/kg',desc:'Silicon is the most important trace element for sugarcane, strengthening cell walls against pests and drought stress. KZN soils are naturally Si-deficient and continuous cropping depletes Si faster than weathering replenishes it.',stats:[{l:'Si level',v:null},{l:'Sufficiency',v:'>30 mg/kg'}],alert:{t:'warn',m:'Si below 20 mg/kg significantly increases susceptibility to eldana borer and leaf scald disease — two of the major profitability threats in KZN.'}},
+];
+const outputs=[
+  {id:'ratoon',icon:'ti-bread',name:'Cane yield',key:'ratoon',unit:'t/ha',desc:'Current 68 t/ha ratoon yield vs a biological potential of 100–110 t/ha on these soil types with healthy soil biology.',stats:[{l:'Current yield',v:null},{l:'Soil potential',v:'100–110 t/ha'}],alert:{t:'warn',m:'The 40 t/ha yield gap is worth approximately R24,000/ha/yr at current cane prices — entirely recoverable through soil management.'}},
+  {id:'bnf',icon:'ti-test-pipe',name:'Bio N fixation',key:'bnf',unit:'% of N',desc:'Gluconacetobacter diazotrophicus is an endophytic N-fixer naturally present in healthy sugarcane. It thrives when soil biology is intact and synthetic N is not excessive.',stats:[{l:'BNF contribution',v:null},{l:'Potential at low N',v:'25–40% of N'}],alert:{t:'ok',m:'Reducing N application to &lt;130 kg/ha will allow Gluconacetobacter populations to increase, delivering 25–40 kg N/ha from biological fixation.'}},
+  {id:'nleach',icon:'ti-droplet',name:'N leaching',key:null,unit:'kg N/ha/yr',desc:'N leaching into the Umdloti and Mhlali river systems is causing algal blooms and breaching DWS freshwater quality standards.',stats:[{l:'Est. N leaching',v:'72 kg/ha/yr'},{l:'DWS threshold',v:'<20 kg/ha/yr'}],alert:{t:'warn',m:'N leaching is 3.6× above the Department of Water and Sanitation threshold. This represents regulatory risk as well as a large financial loss.'}},
+  {id:'infilt',icon:'ti-ripple',name:'Water infiltration',key:'infilt',unit:'mm/hr',desc:'Current infiltration rate of 3 mm/hr on compacted vertic clay means irrigation water also runs off before infiltrating. Irrigation efficiency is estimated at 35%.',stats:[{l:'Infiltration',v:null},{l:'Target',v:'>18 mm/hr'}],alert:{t:'warn',m:'At 3 mm/hr infiltration, 65% of irrigation water is wasted. CTF and biological treatment of compaction could save R2,400/ha/yr in irrigation costs.'}},
+  {id:'co2',icon:'ti-bolt',name:'Carbon balance',key:'soc',unit:'SOC / CO₂',desc:'The farm is currently a net carbon emitter due to trash burning (5 t CO₂/ha) and SOC depletion. Green cane + SOC recovery converts it to a net carbon sink within 4–6 years.',stats:[{l:'SOC level',v:null},{l:'Target',v:'>2.5% SOC'}],alert:null},
+];
+const layers=[
+  {name:'SOC',key:'soc',max:5,color:'#5A3A1A'},
+  {name:'Macropores',key:'macro',max:100,color:'#2E8B1A'},
+  {name:'BNF',key:'bnf',max:100,color:'#185FA5'},
+  {name:'Compaction',key:'comp',max:100,color:'#D85A30'},
+];
+function gv(key){const s=scens[tScen],m=mods[tScen][key];if(!m)return s[key];const f=tTime/10;return Math.max(0,tTime<0?s[key]+m[0]*(-f):s[key]+m[2]*f);}
+function health(){const soc=gv('soc'),bnf=gv('bnf'),comp=gv('comp'),burn=scens[tScen].burn;return Math.round(Math.min(soc/4,1)*25+bnf/100*25+(1-comp/100)*25+(1-burn/100)*25);}
+function priming(){const soc=gv('soc'),n=gv('n'),burn=scens[tScen].burn;let s=0;s+=soc<1.5?3:soc<2.5?2:1;s+=n>180?3:n>120?2:1;s+=burn>50?3:burn>0?2:1;return s;}
+function renderLayers(){document.getElementById('lbars').innerHTML=layers.map(l=>{const raw=gv(l.key),pct=Math.min(100,l.key==='soc'?raw/l.max*100:raw);return `<div class="lbar-row"><span class="lb-name">${l.name}</span><div class="lb-track"><div class="lb-fill" style="width:${Math.round(pct)}%;background:${l.color}70;border-right:2px solid ${l.color}"></div></div><span class="lb-pct">${l.key==='soc'?raw.toFixed(1)+'%':Math.round(raw)+'%'}</span></div>`;}).join('');}
+function renderScore(){const sc=health(),pr=priming();document.getElementById('tw-score').textContent=sc;const cls=pr>=7?'rp-h':pr>=5?'rp-m':'rp-l';const lbl=pr>=7?'Critical priming risk':pr>=5?'Medium priming risk':'Low priming risk';document.getElementById('tw-risk').className=`risk-pill ${cls}`;document.getElementById('tw-risk').innerHTML=`<i class="ti ti-alert-triangle"></i> ${lbl} (${pr}/9)`;}
+function buildPanels(){
+  const ip=document.getElementById('inp-panel');ip.innerHTML='<div class="io-label" style="color:#2E8B1A"><i class="ti ti-arrow-right"></i> inputs</div>';
+  inputs.forEach(inp=>{const raw=inp.key?gv(inp.key):null;const v=raw!==null?(inp.key==='si'?raw.toFixed(0)+' mg/kg':inp.key==='burn'?Math.round(raw)+'%':Math.round(raw)+' kg/ha/yr'):inp.unit;const d=document.createElement('div');d.className='io-card'+(tSel===inp.id?' sel':'');d.innerHTML=`<div class="io-top"><i class="ti ${inp.icon}"></i><span class="io-name">${inp.name}</span></div><div class="io-val">${v}</div>`;d.onclick=()=>{tSel=tSel===inp.id?null:inp.id;buildPanels();renderDetail();};ip.appendChild(d);});
+  const op=document.getElementById('out-panel');op.innerHTML='<div class="io-label" style="color:#185FA5"><i class="ti ti-arrow-right"></i> outputs</div>';
+  outputs.forEach(out=>{const raw=out.key?gv(out.key):null;const v=raw!==null?(out.key==='infilt'?raw.toFixed(1)+' mm/hr':out.key==='bnf'?Math.round(raw)+'% of N':out.key==='soc'?raw.toFixed(1)+'%':Math.round(raw)+' t/ha'):out.unit;const d=document.createElement('div');d.className='io-card'+(tSel===out.id?' sel':'');d.innerHTML=`<div class="io-top"><i class="ti ${out.icon}"></i><span class="io-name">${out.name}</span></div><div class="io-val">${v}</div>`;d.onclick=()=>{tSel=tSel===out.id?null:out.id;buildPanels();renderDetail();};op.appendChild(d);});
+}
+function renderDetail(){if(!tSel){document.getElementById('td-name').textContent='Select an input or output above';document.getElementById('td-body').textContent='Click any card to explore how that variable connects to the sugarcane soil system.';document.getElementById('td-grid').innerHTML='';document.getElementById('td-alert').innerHTML='';return;}const all=[...inputs,...outputs],item=all.find(x=>x.id===tSel);if(!item)return;document.getElementById('td-name').innerHTML=`<i class="ti ${item.icon}"></i> ${item.name}`;document.getElementById('td-body').textContent=item.desc;document.getElementById('td-grid').innerHTML=item.stats.map(s=>{let val=s.v;if(!val&&item.key){const r=gv(item.key);val=item.key==='soc'?r.toFixed(1)+'%':item.key==='infilt'?r.toFixed(1)+' mm/hr':item.key==='bnf'?Math.round(r)+'% of N':item.key==='si'?Math.round(r)+' mg/kg':item.key==='burn'?Math.round(r)+'%':item.key==='n'?Math.round(r)+' kg/ha/yr':Math.round(r)+' t/ha';}return `<div class="td-stat"><div class="td-stat-l">${s.l}</div><div class="td-stat-v">${val||'—'}</div></div>`;}).join('');document.getElementById('td-alert').innerHTML='';if(item.alert){const cls=item.alert.t==='warn'?'ta-warn':'ta-ok';document.getElementById('td-alert').innerHTML=`<div class="td-alert ${cls}"><i class="ti ti-${item.alert.t==='warn'?'alert-triangle':'circle-check'}"></i><span>${item.alert.m}</span></div>`;}}
+function renderAll(){renderScore();renderLayers();buildPanels();renderDetail();}
+function onTime(v){tTime=parseInt(v);document.getElementById('yr-lbl').textContent=BASE+tTime;document.querySelectorAll('.pb').forEach(b=>{b.classList.remove('active');if(tTime<-1&&b.dataset.ph==='past')b.classList.add('active');else if(tTime>1&&b.dataset.ph==='future')b.classList.add('active');else if(Math.abs(tTime)<=1&&b.dataset.ph==='present')b.classList.add('active');});renderAll();}
+function setPhase(p,btn){document.querySelectorAll('.pb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const sl=document.getElementById('tSlider');tTime=p==='past'?-5:p==='present'?0:5;sl.value=tTime;document.getElementById('yr-lbl').textContent=BASE+tTime;renderAll();}
+function setScen(sc,btn){tScen=sc;document.querySelectorAll('.s-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderAll();}
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));document.getElementById('view-'+id).classList.add('on');document.querySelectorAll('.p-tab').forEach(t=>t.classList.remove('active'));const map={ov:'tab-ov',tw:'tab-tw',st:'tab-st'};if(map[id])document.getElementById(map[id]).classList.add('active');}
+const layerDetails=['OBI-adapted · KZN vertic clay · sugarcane ratoon · SASRI norms','Digital twin · cane trash · Gluconacetobacter BNF · CTF compaction model','NAITRO AI · burn-first priority · Si deficiency · fertigation scheduling','HUIGE · Illovo/Tongaat Scope 3 · Nedbank green loan · DWS freshwater · Bonsucro'];
+function showLayer(n){document.getElementById('layer-detail').textContent=layerDetails[n-1];showView('st');}
+function toggleRec(card){const was=card.classList.contains('open');document.querySelectorAll('.rec-card').forEach(c=>c.classList.remove('open'));if(!was)card.classList.add('open');}
+renderAll();
+</script>
+</body>
+</html>

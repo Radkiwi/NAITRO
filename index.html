@@ -5,751 +5,649 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NAITRO — Soil Intelligence Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <style>
     :root {
-      --font-sans: 'Inter', system-ui, sans-serif;
-      --color-background-primary: #ffffff;
-      --color-background-secondary: #f5f5f4;
-      --color-background-tertiary: #f0efee;
-      --color-background-success: #e8f5f0;
-      --color-background-warning: #fef3c7;
-      --color-background-info: #eff6ff;
-      --color-text-primary: #1c1917;
-      --color-text-secondary: #57534e;
-      --color-text-tertiary: #a8a29e;
-      --color-text-success: #065f46;
-      --color-text-warning: #92400e;
-      --color-text-danger: #991b1b;
-      --color-text-info: #1e40af;
-      --color-border-primary: #1c1917;
-      --color-border-secondary: #d6d3d1;
-      --color-border-tertiary: #e7e5e4;
-      --color-border-success: #6ee7b7;
-      --color-border-warning: #fcd34d;
-      --color-border-info: #93c5fd;
-      --border-radius-sm: 4px;
-      --border-radius-md: 6px;
-      --border-radius-lg: 10px;
+      --green-deep: #0F3D2E;
+      --green-mid: #1D9E75;
+      --green-light: #5DCAA5;
+      --green-pale: #E1F5EE;
+      --blue-deep: #0C447C;
+      --blue-mid: #185FA5;
+      --blue-light: #85B7EB;
+      --blue-pale: #E6F1FB;
+      --amber: #EF9F27;
+      --amber-pale: #FAEEDA;
+      --purple: #534AB7;
+      --purple-pale: #EEEDFE;
+      --red-pale: #FCEBEB;
+      --text-dark: #1c1917;
+      --text-mid: #44403c;
+      --text-soft: #78716c;
+      --text-faint: #a8a29e;
+      --border: #e7e5e4;
+      --bg: #fafaf9;
+      --white: #ffffff;
+      --radius: 12px;
+      --radius-sm: 6px;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-sans); background: var(--color-background-tertiary); min-height: 100vh; }
-    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text-dark); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
 
-    /* ── SHELL ── */
-    .shell { background: var(--color-background-tertiary); padding-bottom: 2rem; max-width: 1200px; margin: 0 auto; }
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,61,46,0.97); backdrop-filter: blur(8px);
+      padding: 0 2rem; display: flex; align-items: center; height: 56px;
+      border-bottom: 0.5px solid rgba(255,255,255,0.08);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
+    .nav-logo { width: 30px; height: 30px; background: var(--green-mid); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #fff; }
+    .nav-name { font-size: 15px; font-weight: 500; color: #fff; }
+    .nav-links { display: flex; gap: 0; margin-left: 2.5rem; }
+    .nav-links a { font-size: 13px; color: rgba(255,255,255,0.6); padding: 0 14px; height: 56px; display: flex; align-items: center; transition: color .15s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+    .nav-cta { font-size: 12px; font-weight: 500; padding: 7px 18px; border-radius: var(--radius-sm); background: var(--green-mid); color: #fff; cursor: pointer; border: none; transition: background .15s; }
+    .nav-cta:hover { background: #18875F; }
+    .nav-demo { font-size: 12px; color: rgba(255,255,255,0.6); }
+    .nav-demo:hover { color: #fff; }
 
-    /* ── TOP NAV ── */
-    .topnav { background: #0F3D2E; padding: .75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0; }
-    .brand { display: flex; align-items: center; gap: 10px; }
-    .brand-logo { width: 32px; height: 32px; background: #1D9E75; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; color: #fff; letter-spacing: .05em; }
-    .brand-name { font-size: 15px; font-weight: 500; color: #fff; }
-    .brand-sub { font-size: 11px; color: #5DCAA5; margin-top: 1px; }
-    .nav-right { display: flex; align-items: center; gap: 8px; }
-    .farm-badge { font-size: 11px; color: #9FE1CB; background: rgba(255,255,255,.08); padding: 4px 10px; border-radius: 99px; border: 0.5px solid rgba(255,255,255,.15); }
-    .nav-icon-btn { width: 30px; height: 30px; border-radius: 6px; border: 0.5px solid rgba(255,255,255,.2); background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #9FE1CB; font-size: 16px; }
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #0A2E20 0%, #0F3D2E 50%, #0a3040 100%);
+      padding: 6rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 80%, rgba(29,158,117,0.12) 0%, transparent 70%);
+    }
+    .hero-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; color: var(--green-light); background: rgba(93,202,165,0.12); border: 0.5px solid rgba(93,202,165,0.3); padding: 5px 14px; border-radius: 99px; margin-bottom: 1.5rem; letter-spacing: .04em; text-transform: uppercase; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 300; color: #fff; line-height: 1.15; max-width: 780px; margin: 0 auto 1.25rem; letter-spacing: -0.02em; }
+    .hero h1 strong { font-weight: 600; color: var(--green-light); }
+    .hero-sub { font-size: clamp(14px, 2vw, 17px); color: rgba(255,255,255,0.55); max-width: 560px; margin: 0 auto 2.5rem; font-weight: 300; }
+    .hero-btns { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn-primary { font-size: 14px; font-weight: 500; padding: 12px 28px; border-radius: var(--radius-sm); background: var(--green-mid); color: #fff; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 8px; transition: background .15s; }
+    .btn-primary:hover { background: #18875F; }
+    .btn-ghost { font-size: 14px; padding: 12px 28px; border-radius: var(--radius-sm); border: 0.5px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.75); display: inline-flex; align-items: center; gap: 8px; transition: all .15s; }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+    .hero-farms { margin-top: 3rem; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
+    .farm-chip { font-size: 11px; color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.05); border: 0.5px solid rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 99px; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; transition: all .15s; }
+    .farm-chip:hover { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); }
+    .farm-chip-label { font-size: 10px; color: rgba(255,255,255,0.25); margin-right: 4px; }
 
-    /* ── LAYER STRIP ── */
-    .layer-strip { background: #0A2E20; padding: .5rem 1.25rem; display: flex; align-items: center; gap: 0; overflow-x: auto; }
-    .layer-step { display: flex; align-items: center; gap: 0; flex-shrink: 0; }
-    .ls-pill { display: flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 99px; font-size: 11px; font-weight: 500; cursor: pointer; transition: all .15s; white-space: nowrap; }
-    .ls-pill.s1 { background: #1D9E75; color: #fff; }
-    .ls-pill.s2 { background: #185FA5; color: #fff; }
-    .ls-pill.s3 { background: #854F0B; color: #fff; }
-    .ls-pill.s4 { background: #534AB7; color: #fff; }
-    .ls-arrow { font-size: 12px; color: rgba(255,255,255,.2); margin: 0 4px; }
-    .ls-detail { font-size: 10px; color: rgba(255,255,255,.45); margin-left: auto; padding-left: 1rem; white-space: nowrap; flex-shrink: 0; }
+    /* ── STATS BAR ── */
+    .stats-bar { background: var(--white); border-bottom: 0.5px solid var(--border); padding: 1.5rem 2rem; display: flex; justify-content: center; gap: 0; }
+    .stat-item { display: flex; flex-direction: column; align-items: center; padding: 0 3rem; border-right: 0.5px solid var(--border); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-size: 24px; font-weight: 600; color: var(--green-deep); }
+    .stat-label { font-size: 11px; color: var(--text-soft); margin-top: 2px; text-align: center; }
 
-    /* ── PAGE TABS ── */
-    .page-tabs { display: flex; gap: 0; border-bottom: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); padding: 0 1.25rem; }
-    .p-tab { font-size: 13px; padding: .75rem 1rem; border-bottom: 2px solid transparent; cursor: pointer; color: var(--color-text-secondary); display: flex; align-items: center; gap: 6px; transition: all .15s; margin-bottom: -0.5px; }
-    .p-tab.active { color: #0F3D2E; border-bottom-color: #1D9E75; font-weight: 500; }
-    .p-tab:hover:not(.active) { color: var(--color-text-primary); }
-    .tab-count { font-size: 10px; background: var(--color-background-secondary); color: var(--color-text-secondary); padding: 1px 6px; border-radius: 99px; }
-    .drill-btn { font-size: 12px; padding: 5px 14px; border-radius: var(--border-radius-md); border: 0.5px solid #1D9E75; background: #E1F5EE; color: #085041; cursor: pointer; align-self: center; display: flex; align-items: center; gap: 6px; margin-left: auto; }
-    .drill-btn:hover { background: #C8EDE1; }
+    /* ── SECTION UTILITY ── */
+    .section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-tag { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; color: var(--green-mid); margin-bottom: .875rem; display: flex; align-items: center; gap: 6px; }
+    .section-tag::before { content: ''; width: 20px; height: 1.5px; background: var(--green-mid); }
+    .section h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 300; color: var(--text-dark); line-height: 1.25; letter-spacing: -0.02em; margin-bottom: .75rem; }
+    .section h2 strong { font-weight: 600; }
+    .section-sub { font-size: 15px; color: var(--text-soft); max-width: 540px; line-height: 1.7; margin-bottom: 3rem; }
 
-    /* ── CONTENT AREA ── */
-    .content { padding: 1rem 1.25rem; }
+    /* ── PROBLEM ── */
+    .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .prob-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+    .prob-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 1rem; }
+    .pi-red { background: var(--red-pale); color: #A32D2D; }
+    .pi-amber { background: var(--amber-pale); color: #7A4A08; }
+    .pi-blue { background: var(--blue-pale); color: var(--blue-deep); }
+    .prob-card h3 { font-size: 14px; font-weight: 600; margin-bottom: .5rem; }
+    .prob-card p { font-size: 12px; color: var(--text-soft); line-height: 1.65; }
+    .prob-stat { font-size: 22px; font-weight: 600; color: var(--text-dark); margin-top: .875rem; }
+    .prob-stat-sub { font-size: 11px; color: var(--text-faint); }
 
-    /* ── OVERVIEW LAYOUT ── */
-    .ov-grid { display: grid; grid-template-columns: 240px 1fr; gap: 1rem; margin-bottom: 1rem; }
+    /* ── PRODUCT STACK ── */
+    .stack-full { background: var(--white); padding: 5rem 2rem; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+    .stack-inner { max-width: 1100px; margin: 0 auto; }
+    .stack-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border-radius: var(--radius); overflow: hidden; }
+    .stack-col { background: var(--white); padding: 2rem 1.5rem; }
+    .sc-num { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .5rem; }
+    .sc1 .sc-num { color: #085041; } .sc2 .sc-num { color: var(--blue-deep); } .sc3 .sc-num { color: #7A4A08; } .sc4 .sc-num { color: #3C3489; }
+    .sc-ico { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 1rem; }
+    .sc1 .sc-ico { background: var(--green-pale); color: #085041; }
+    .sc2 .sc-ico { background: var(--blue-pale); color: var(--blue-deep); }
+    .sc3 .sc-ico { background: var(--amber-pale); color: #7A4A08; }
+    .sc4 .sc-ico { background: var(--purple-pale); color: #3C3489; }
+    .sc-name { font-size: 16px; font-weight: 600; margin-bottom: .5rem; }
+    .sc1 .sc-name { color: #04342C; } .sc2 .sc-name { color: #042C53; } .sc3 .sc-name { color: #412402; } .sc4 .sc-name { color: #26215C; }
+    .sc-desc { font-size: 12px; line-height: 1.7; }
+    .sc1 .sc-desc { color: #085041; } .sc2 .sc-desc { color: var(--blue-deep); } .sc3 .sc-desc { color: #7A4A08; } .sc4 .sc-desc { color: #3C3489; }
+    .sc-pills { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 1rem; }
+    .sc-pill { font-size: 10px; padding: 2px 8px; border-radius: 99px; border: 0.5px solid; }
+    .sc1 .sc-pill { background: #9FE1CB; color: #04342C; border-color: var(--green-light); }
+    .sc2 .sc-pill { background: #B5D4F4; color: #042C53; border-color: var(--blue-light); }
+    .sc3 .sc-pill { background: #FAC775; color: #412402; border-color: var(--amber); }
+    .sc4 .sc-pill { background: #CECBF6; color: #26215C; border-color: #AFA9EC; }
 
-    /* ── GAUGE CARD ── */
-    .gauge-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.125rem; display: flex; flex-direction: column; align-items: center; }
-    .gc-label { font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--color-text-tertiary); margin-bottom: .625rem; }
-    .gauge-wrap { position: relative; width: 180px; height: 100px; }
-    .gauge-score-box { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); text-align: center; }
-    .g-num { font-size: 32px; font-weight: 500; color: var(--color-text-primary); line-height: 1; }
-    .g-den { font-size: 12px; color: var(--color-text-secondary); }
-    .g-zone { font-size: 12px; font-weight: 500; margin-top: .375rem; color: #0F6E56; display: flex; align-items: center; gap: 5px; }
-    .gc-bars { width: 100%; margin-top: .875rem; display: flex; flex-direction: column; gap: 5px; }
-    .gcb-row { display: flex; align-items: center; gap: 7px; font-size: 11px; }
-    .gcb-label { color: var(--color-text-secondary); width: 72px; flex-shrink: 0; text-align: right; }
-    .gcb-track { flex: 1; height: 5px; background: var(--color-background-secondary); border-radius: 3px; overflow: hidden; }
-    .gcb-fill { height: 100%; border-radius: 3px; }
-    .gcb-val { color: var(--color-text-secondary); width: 28px; flex-shrink: 0; }
-    .gc-drill { width: 100%; margin-top: .875rem; font-size: 12px; padding: 6px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-secondary); background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--color-text-secondary); }
-    .gc-drill:hover { background: var(--color-background-secondary); }
+    /* ── STAKEHOLDERS ── */
+    .stakeholder-tabs { display: flex; gap: 0; border-bottom: 0.5px solid var(--border); margin-bottom: 2rem; overflow-x: auto; }
+    .sh-tab { font-size: 13px; padding: .75rem 1.25rem; border-bottom: 2px solid transparent; cursor: pointer; color: var(--text-soft); white-space: nowrap; transition: all .15s; display: flex; align-items: center; gap: 6px; }
+    .sh-tab.active { color: var(--green-deep); border-bottom-color: var(--green-mid); font-weight: 500; }
+    .sh-tab:hover:not(.active) { color: var(--text-dark); }
+    .sh-panel { display: none; }
+    .sh-panel.on { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .sh-content h3 { font-size: 20px; font-weight: 500; margin-bottom: .75rem; }
+    .sh-content p { font-size: 14px; color: var(--text-soft); line-height: 1.75; margin-bottom: 1.25rem; }
+    .sh-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .sh-bullets li { font-size: 13px; color: var(--text-mid); display: flex; align-items: flex-start; gap: 8px; }
+    .sh-bullets li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--green-mid); margin-top: 7px; flex-shrink: 0; }
+    .sh-visual { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+    .sh-metric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .sh-metric { background: var(--white); border-radius: 8px; padding: .75rem 1rem; border: 0.5px solid var(--border); }
+    .sh-metric-l { font-size: 10px; text-transform: uppercase; letter-spacing: .04em; color: var(--text-faint); }
+    .sh-metric-v { font-size: 20px; font-weight: 600; color: var(--text-dark); margin-top: 2px; }
+    .sh-metric-d { font-size: 11px; color: var(--text-soft); margin-top: 1px; }
 
-    /* ── RIGHT PANEL ── */
-    .right-panel { display: flex; flex-direction: column; gap: .75rem; }
+    /* ── LIVE FARMS ── */
+    .farms-full { background: var(--green-deep); padding: 5rem 2rem; }
+    .farms-inner { max-width: 1100px; margin: 0 auto; }
+    .farms-inner .section-tag { color: var(--green-light); }
+    .farms-inner .section-tag::before { background: var(--green-light); }
+    .farms-inner h2 { color: #fff; margin-bottom: .5rem; }
+    .farms-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 2.5rem; }
+    .farms-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .farm-card { background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.12); border-radius: var(--radius); padding: 1.25rem 1.5rem; transition: all .2s; cursor: pointer; text-decoration: none; display: block; }
+    .farm-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25); transform: translateY(-2px); }
+    .fc-flag { font-size: 22px; margin-bottom: .75rem; }
+    .fc-id { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+    .fc-name { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 2px; }
+    .fc-loc { font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 1rem; }
+    .fc-score-row { display: flex; align-items: center; gap: 8px; margin-bottom: .625rem; }
+    .fc-score-bar { flex: 1; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+    .fc-score-fill { height: 100%; border-radius: 2px; }
+    .fc-score-num { font-size: 12px; font-weight: 600; color: #fff; }
+    .fc-label { font-size: 10px; color: rgba(255,255,255,0.3); }
+    .fc-status { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; padding: 2px 8px; border-radius: 99px; margin-top: .375rem; }
+    .fcs-live { background: rgba(29,158,117,0.2); color: var(--green-light); }
+    .fcs-demo { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
 
-    /* ── METRIC CARDS ── */
-    .metric-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: .625rem; }
-    .mc { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: .625rem .875rem; }
-    .mc-label { font-size: 10px; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: .04em; }
-    .mc-val { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin-top: 2px; }
-    .mc-unit { font-size: 11px; color: var(--color-text-secondary); }
-    .mc-delta { font-size: 11px; margin-top: 2px; display: flex; align-items: center; gap: 3px; }
-    .d-up { color: var(--color-text-success); } .d-dn { color: var(--color-text-danger); } .d-neu { color: var(--color-text-secondary); }
+    /* ── OVERSEER GAP ── */
+    .gap-banner { background: linear-gradient(120deg, var(--green-pale) 0%, var(--blue-pale) 100%); border: 0.5px solid var(--green-light); border-radius: var(--radius); padding: 2rem 2.5rem; display: flex; align-items: center; gap: 2rem; margin-top: 3rem; }
+    .gap-icon { width: 48px; height: 48px; background: var(--green-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; color: #085041; flex-shrink: 0; }
+    .gap-body h3 { font-size: 15px; font-weight: 600; color: var(--green-deep); margin-bottom: .375rem; }
+    .gap-body p { font-size: 13px; color: #085041; line-height: 1.65; }
+    .gap-badge { margin-left: auto; font-size: 11px; font-weight: 500; background: #085041; color: #fff; padding: 6px 16px; border-radius: 99px; white-space: nowrap; flex-shrink: 0; }
 
-    /* ── RECS ── */
-    .rec-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: .875rem 1rem; cursor: pointer; }
-    .rec-card:hover { border-color: var(--color-border-secondary); }
-    .rec-card.open { border-color: var(--color-border-primary); }
-    .rec-hd { display: flex; align-items: flex-start; gap: 10px; }
-    .rec-num { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; flex-shrink: 0; margin-top: 1px; }
-    .rn1 { background: #FCEBEB; color: #A32D2D; } .rn2 { background: #FAEEDA; color: #633806; } .rn3 { background: #E6F1FB; color: #0C447C; }
-    .rec-info { flex: 1; }
-    .rec-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
-    .rec-tag { font-size: 10px; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: .04em; margin-top: 2px; }
-    .rec-chev { font-size: 16px; color: var(--color-text-tertiary); transition: transform .2s; }
-    .rec-card.open .rec-chev { transform: rotate(180deg); }
-    .rec-body { display: none; margin-top: .75rem; padding-top: .75rem; border-top: 0.5px solid var(--color-border-tertiary); }
-    .rec-card.open .rec-body { display: block; }
-    .rec-sci, .rec-act { font-size: 12px; line-height: 1.65; color: var(--color-text-secondary); margin-bottom: .5rem; }
-    .rec-sci strong, .rec-act strong { font-weight: 500; color: var(--color-text-primary); }
-    .impact-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: .625rem; }
-    .imp { font-size: 11px; padding: 3px 9px; border-radius: 99px; background: var(--color-background-secondary); color: var(--color-text-secondary); border: 0.5px solid var(--color-border-tertiary); }
+    /* ── TESTIMONIALS ── */
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .testi-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+    .testi-quote { font-size: 13px; color: var(--text-mid); line-height: 1.75; margin-bottom: 1rem; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 10px; }
+    .testi-avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #fff; flex-shrink: 0; }
+    .ta1 { background: var(--green-mid); } .ta2 { background: var(--blue-mid); } .ta3 { background: var(--purple); }
+    .testi-name { font-size: 13px; font-weight: 500; }
+    .testi-role { font-size: 11px; color: var(--text-soft); }
+    .testi-stars { color: #F59E0B; font-size: 11px; margin-bottom: .75rem; }
 
-    /* ── ALERT ── */
-    .alert-banner { display: flex; align-items: flex-start; gap: 10px; background: var(--color-background-warning); border: 0.5px solid var(--color-border-warning); color: var(--color-text-warning); border-radius: var(--border-radius-md); padding: .75rem 1rem; font-size: 12px; line-height: 1.6; }
-    .ab-link { text-decoration: underline; cursor: pointer; font-weight: 500; }
+    /* ── CTA SECTION ── */
+    .cta-full { background: linear-gradient(160deg, #0A2E20 0%, #0F3D2E 60%, #0a3040 100%); padding: 6rem 2rem; text-align: center; }
+    .cta-inner { max-width: 620px; margin: 0 auto; }
+    .cta-inner h2 { font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 300; color: #fff; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .cta-inner h2 strong { font-weight: 600; color: var(--green-light); }
+    .cta-inner p { font-size: 15px; color: rgba(255,255,255,0.5); margin-bottom: 2rem; line-height: 1.7; }
+    .cta-form { display: flex; gap: 8px; max-width: 420px; margin: 0 auto 1.5rem; }
+    .cta-input { flex: 1; font-size: 13px; padding: 11px 16px; border-radius: var(--radius-sm); border: 0.5px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color: #fff; outline: none; }
+    .cta-input::placeholder { color: rgba(255,255,255,0.35); }
+    .cta-input:focus { border-color: var(--green-light); }
+    .cta-small { font-size: 11px; color: rgba(255,255,255,0.3); }
 
-    /* ── LAYER EXPLAINER ── */
-    .layers-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: .625rem; margin-bottom: 1rem; }
-    .lc { border-radius: var(--border-radius-lg); padding: .875rem 1rem; border: 0.5px solid; }
-    .lc1 { background: #E1F5EE; border-color: #5DCAA5; } .lc2 { background: #E6F1FB; border-color: #85B7EB; }
-    .lc3 { background: #FAEEDA; border-color: #EF9F27; } .lc4 { background: #EEEDFE; border-color: #AFA9EC; }
-    .lc-num { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
-    .lc1 .lc-num { color: #085041; } .lc2 .lc-num { color: #0C447C; } .lc3 .lc-num { color: #633806; } .lc4 .lc-num { color: #3C3489; }
-    .lc-name { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
-    .lc1 .lc-name { color: #04342C; } .lc2 .lc-name { color: #042C53; } .lc3 .lc-name { color: #412402; } .lc4 .lc-name { color: #26215C; }
-    .lc-desc { font-size: 11px; line-height: 1.55; }
-    .lc1 .lc-desc { color: #085041; } .lc2 .lc-desc { color: #0C447C; } .lc3 .lc-desc { color: #633806; } .lc4 .lc-desc { color: #3C3489; }
-    .lc-badges { display: flex; gap: 4px; flex-wrap: wrap; margin-top: .5rem; }
-    .lb { font-size: 10px; padding: 2px 7px; border-radius: 99px; border: 0.5px solid; }
-    .lc1 .lb { background: #9FE1CB; color: #04342C; border-color: #5DCAA5; } .lc2 .lb { background: #B5D4F4; color: #042C53; border-color: #85B7EB; }
-    .lc3 .lb { background: #FAC775; color: #412402; border-color: #EF9F27; } .lc4 .lb { background: #CECBF6; color: #26215C; border-color: #AFA9EC; }
+    /* ── FOOTER ── */
+    footer { background: #080F0B; padding: 3rem 2rem 2rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 2.5rem; }
+    .footer-brand p { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: .75rem; max-width: 260px; }
+    .footer-col h4 { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; color: rgba(255,255,255,0.35); margin-bottom: .875rem; }
+    .footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 6px; transition: color .15s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { border-top: 0.5px solid rgba(255,255,255,0.08); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { font-size: 11px; color: rgba(255,255,255,0.25); }
+    .footer-badges { display: flex; gap: 8px; }
+    .f-badge { font-size: 10px; padding: 3px 10px; border-radius: 99px; border: 0.5px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.3); }
 
-    /* ── REPORT ROW ── */
-    .report-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: .5rem; margin-bottom: 1rem; }
-    .rp-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: .625rem .75rem; text-align: center; }
-    .rp-icon { font-size: 20px; color: var(--color-text-secondary); margin-bottom: 4px; }
-    .rp-label { font-size: 10px; font-weight: 500; color: var(--color-text-primary); }
-    .rp-sub { font-size: 10px; color: var(--color-text-tertiary); margin-top: 2px; line-height: 1.4; }
-
-    /* ── TWIN ── */
-    .twin-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: .875rem; }
-    .back-btn { font-size: 12px; padding: 5px 12px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-secondary); background: transparent; cursor: pointer; display: flex; align-items: center; gap: 6px; color: var(--color-text-secondary); }
-    .back-btn:hover { background: var(--color-background-secondary); }
-    .risk-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 99px; }
-    .rp-h { background: #FCEBEB; color: #A32D2D; } .rp-m { background: #FAEEDA; color: #633806; } .rp-l { background: #E1F5EE; color: #085041; }
-
-    /* ── TIME RAIL ── */
-    .time-rail { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: .875rem 1.125rem; margin-bottom: .875rem; }
-    .tr-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: .625rem; }
-    .tr-label { font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--color-text-tertiary); display: flex; align-items: center; gap: 6px; }
-    .phase-btns { display: flex; gap: 6px; }
-    .pb { font-size: 11px; padding: 4px 11px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-secondary); background: transparent; color: var(--color-text-secondary); cursor: pointer; }
-    .pb.active { background: var(--color-background-success); color: var(--color-text-success); border-color: var(--color-border-success); }
-    .tr-slider { display: flex; align-items: center; gap: 10px; }
-    .tr-slider input[type=range] { flex: 1; accent-color: #1D9E75; }
-    .tr-bands { display: flex; justify-content: space-between; font-size: 10px; color: var(--color-text-tertiary); margin-top: 3px; }
-
-    /* ── TWIN LAYOUT ── */
-    .twin-grid { display: grid; grid-template-columns: 172px 1fr 172px; gap: .75rem; align-items: start; margin-bottom: .875rem; }
-    .io-panel { display: flex; flex-direction: column; gap: 5px; }
-    .io-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
-    .io-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 6px 8px; cursor: pointer; }
-    .io-card:hover { border-color: var(--color-border-secondary); }
-    .io-card.sel { border-color: var(--color-border-info); background: var(--color-background-info); }
-    .io-top { display: flex; align-items: center; gap: 6px; }
-    .io-top i { font-size: 14px; color: var(--color-text-secondary); }
-    .io-card.sel .io-top i { color: var(--color-text-info); }
-    .io-name { font-size: 11px; font-weight: 500; color: var(--color-text-primary); }
-    .io-val { font-size: 10px; color: var(--color-text-secondary); margin-top: 1px; }
-    .io-card.sel .io-val { color: var(--color-text-info); }
-
-    /* ── LAYER BARS ── */
-    .lbars { width: 100%; display: flex; flex-direction: column; gap: 4px; }
-    .lbar-row { display: flex; align-items: center; gap: 6px; }
-    .lb-name { font-size: 10px; color: var(--color-text-secondary); width: 68px; text-align: right; flex-shrink: 0; }
-    .lb-track { flex: 1; height: 8px; background: var(--color-background-secondary); border-radius: 3px; overflow: hidden; }
-    .lb-fill { height: 100%; border-radius: 3px; transition: width .5s; }
-    .lb-pct { font-size: 10px; color: var(--color-text-secondary); width: 26px; }
-
-    /* ── TWIN DETAIL ── */
-    .twin-detail { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: .875rem 1.125rem; }
-    .td-title { font-size: 12px; font-weight: 500; color: var(--color-text-primary); margin-bottom: .375rem; display: flex; align-items: center; gap: 7px; }
-    .td-body { font-size: 11px; color: var(--color-text-secondary); line-height: 1.6; }
-    .td-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: .5rem; }
-    .td-stat { background: var(--color-background-primary); border-radius: var(--border-radius-md); padding: 6px 9px; border: 0.5px solid var(--color-border-tertiary); }
-    .td-stat-l { font-size: 10px; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: .03em; }
-    .td-stat-v { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-top: 1px; }
-    .td-alert { border-radius: var(--border-radius-md); padding: 6px 10px; font-size: 11px; display: flex; align-items: flex-start; gap: 7px; margin-top: .5rem; line-height: 1.5; }
-    .ta-warn { background: var(--color-background-warning); color: var(--color-text-warning); border: 0.5px solid var(--color-border-warning); }
-    .ta-ok { background: var(--color-background-success); color: var(--color-text-success); border: 0.5px solid var(--color-border-success); }
-
-    /* ── SCEN BAR ── */
-    .scen-bar { display: flex; gap: 6px; flex-wrap: wrap; margin-top: .875rem; align-items: center; }
-    .s-btn { font-size: 11px; padding: 4px 11px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-secondary); background: transparent; color: var(--color-text-secondary); cursor: pointer; }
-    .s-btn.active { border-color: var(--color-border-primary); color: var(--color-text-primary); background: var(--color-background-secondary); }
-    .s-btn:hover { background: var(--color-background-secondary); }
-
-    /* ── FINANCE ── */
-    .finance-section { margin-top: 1rem; }
-    .fs-title { font-size: 12px; font-weight: 500; color: var(--color-text-primary); margin-bottom: .5rem; display: flex; align-items: center; gap: 7px; }
-    .finance-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .625rem; }
-    .fin-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: .75rem 1rem; }
-    .fin-head { display: flex; align-items: center; gap: 8px; margin-bottom: .5rem; }
-    .fin-ico { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
-    .f1 .fin-ico { background: #E1F5EE; color: #085041; } .f2 .fin-ico { background: #E6F1FB; color: #0C447C; } .f3 .fin-ico { background: #EEEDFE; color: #3C3489; }
-    .fin-name { font-size: 12px; font-weight: 500; color: var(--color-text-primary); }
-    .fin-sub { font-size: 10px; color: var(--color-text-tertiary); }
-    .fin-body { font-size: 11px; color: var(--color-text-secondary); line-height: 1.6; }
-    .fin-metric { font-size: 16px; font-weight: 500; margin-top: .375rem; }
-    .f1 .fin-metric { color: #085041; } .f2 .fin-metric { color: #0C447C; } .f3 .fin-metric { color: #3C3489; }
-
-    /* ── VIEW TOGGLE ── */
-    .view { display: none; } .view.on { display: block; }
-
-    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .ov-grid { grid-template-columns: 1fr; }
-      .metric-row { grid-template-columns: repeat(2, 1fr); }
-      .layers-row { grid-template-columns: repeat(2, 1fr); }
-      .report-row { grid-template-columns: repeat(2, 1fr); }
-      .finance-grid { grid-template-columns: 1fr; }
-      .twin-grid { grid-template-columns: 1fr; }
-      .ls-detail { display: none; }
+      .problem-grid, .stack-grid, .farms-grid, .testi-grid { grid-template-columns: 1fr; }
+      .sh-panel.on { grid-template-columns: 1fr; }
+      .stats-bar { flex-wrap: wrap; gap: 1rem; }
+      .stat-item { border-right: none; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .gap-banner { flex-direction: column; text-align: center; }
+      .gap-badge { margin-left: 0; }
+      .cta-form { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-<h2 class="sr-only">NAITRO soil health platform — farmer dashboard showing overview score, recommendations, digital twin, and four-layer product stack</h2>
 
-<div class="shell">
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">N</div>
+    <span class="nav-name">NAITRO</span>
+  </div>
+  <div class="nav-links">
+    <a href="#product">Product</a>
+    <a href="#stakeholders">For you</a>
+    <a href="#farms">Live farms</a>
+    <a href="#science">Science</a>
+  </div>
+  <div class="nav-right">
+    <a class="nav-demo" href="#farms">View demo farms</a>
+    <button class="nav-cta" onclick="document.querySelector('.cta-input').focus();document.querySelector('.cta-full').scrollIntoView({behavior:'smooth'})">Request access</button>
+  </div>
+</nav>
 
-  <div class="topnav">
-    <div class="brand">
-      <div class="brand-logo">N</div>
-      <div>
-        <div class="brand-name">NAITRO</div>
-        <div class="brand-sub">Soil intelligence platform</div>
-      </div>
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-tag"><i class="ti ti-leaf"></i> Soil intelligence · Built for agricultural transition</div>
+  <h1>The soil health platform that <strong>every stakeholder</strong> has been waiting for</h1>
+  <p class="hero-sub">One data source. Five outputs. Farmers reduce costs, banks lend smarter, councils get compliance, food companies prove their supply chain.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('farms').scrollIntoView({behavior:'smooth'})"><i class="ti ti-eye"></i> See live farm dashboards</button>
+    <a class="btn-ghost" href="#product"><i class="ti ti-stack"></i> How the platform works</a>
+  </div>
+  <div class="hero-farms">
+    <span class="farm-chip-label">Live dashboards →</span>
+    <a class="farm-chip" href="nz1/"><i class="ti ti-map-pin"></i> 🇳🇿 NZ1 · Ruakura Dairy, Waikato</a>
+    <a class="farm-chip" href="sa1/"><i class="ti ti-map-pin"></i> 🇿🇦 SA1 · Bergvlei, Free State</a>
+    <a class="farm-chip" href="sa2/"><i class="ti ti-map-pin"></i> 🇿🇦 SA2 · KwaZulu-Natal</a>
+    <a class="farm-chip" href="sa3/"><i class="ti ti-map-pin"></i> 🇿🇦 SA3 · Stellenbosch, W Cape</a>
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">21</div><div class="stat-label">OBI indicators per farm</div></div>
+  <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Stakeholder outputs<br>from one data source</div></div>
+  <div class="stat-item"><div class="stat-num">−40%</div><div class="stat-label">Urea reduction achieved<br>in transition farms</div></div>
+  <div class="stat-item"><div class="stat-num">$58</div><div class="stat-label">Avg savings per ha/yr<br>sustainability loan + inputs</div></div>
+  <div class="stat-item"><div class="stat-num">2021</div><div class="stat-label">Year OverseerFM declared<br>"not fit for purpose"</div></div>
+</div>
+
+<!-- ── PROBLEM ── -->
+<div class="section" id="problem">
+  <div class="section-tag">The problem</div>
+  <h2>Three broken systems.<br><strong>One platform fixes all three.</strong></h2>
+  <p class="section-sub">Farmers, regulators, and banks are all making decisions with incomplete data. NAITRO closes the gap.</p>
+  <div class="problem-grid">
+    <div class="prob-card">
+      <div class="prob-icon pi-red"><i class="ti ti-flask-off"></i></div>
+      <h3>The Priming Effect — farming's hidden cost</h3>
+      <p>Excess synthetic nitrogen causes soil microbes to consume stored soil carbon to balance their C:N diet. Every extra bag of urea is destroying the very soil structure that makes farms productive long-term.</p>
+      <div class="prob-stat">−0.3% SOC/yr</div>
+      <div class="prob-stat-sub">Average loss rate under high-urea systems</div>
     </div>
-    <div class="nav-right">
-      <span class="farm-badge"><i class="ti ti-map-pin"></i> Ruakura Dairy · Waikato</span>
-      <button class="nav-icon-btn" aria-label="Notifications"><i class="ti ti-bell"></i></button>
-      <button class="nav-icon-btn" aria-label="Settings"><i class="ti ti-settings"></i></button>
+    <div class="prob-card">
+      <div class="prob-icon pi-amber"><i class="ti ti-tool"></i></div>
+      <h3>OverseerFM declared "not fit for purpose"</h3>
+      <p>New Zealand's primary N-budget tool was declared unfit by the Office of the Chief Science Advisor in 2021. NPS-FM 2020 demands catchment-level compliance, but there is no credible replacement. NAITRO fills that vacuum.</p>
+      <div class="prob-stat">2021</div>
+      <div class="prob-stat-sub">Year Overseer lost regulatory credibility</div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-icon pi-blue"><i class="ti ti-report-off"></i></div>
+      <h3>Five stakeholders, five data silos</h3>
+      <p>Farmers report to councils. Councils report to government. Food companies demand Scope 3 data. Banks need risk scores. Everyone asks the farmer for different data in different formats. NAITRO captures it once and routes it to all five.</p>
+      <div class="prob-stat">5×</div>
+      <div class="prob-stat-sub">Reporting duplicated across supply chain</div>
     </div>
   </div>
 
-  <div class="layer-strip">
-    <div class="layer-step">
-      <span class="ls-pill s1" onclick="showLayer(1)"><i class="ti ti-chart-bar"></i> Score</span>
+  <div class="gap-banner">
+    <div class="gap-icon"><i class="ti ti-shield-check"></i></div>
+    <div class="gap-body">
+      <h3>Why the OBI matters: the Rabobank precedent</h3>
+      <p>The Open Bodemindex (OBI) is already used by Rabobank Netherlands to assess farm loan risk. Developed by WUR (Wageningen University), a.s.r. insurance, and Vitens water company. NAITRO adapts this validated framework for NZ and SA conditions — making your soil health score bankable.</p>
     </div>
-    <span class="ls-arrow">→</span>
-    <div class="layer-step">
-      <span class="ls-pill s2" onclick="showLayer(2)"><i class="ti ti-cube"></i> Visualise</span>
-    </div>
-    <span class="ls-arrow">→</span>
-    <div class="layer-step">
-      <span class="ls-pill s3" onclick="showLayer(3)"><i class="ti ti-cpu"></i> Decide</span>
-    </div>
-    <span class="ls-arrow">→</span>
-    <div class="layer-step">
-      <span class="ls-pill s4" onclick="showLayer(4)"><i class="ti ti-report-analytics"></i> Report</span>
-    </div>
-    <span class="ls-detail" id="layer-detail">OBI-adapted NZ soil index · 21 indicators · WUR-validated · bankable</span>
-  </div>
-
-  <div style="background: var(--color-background-primary);">
-    <div class="page-tabs">
-      <div class="p-tab active" id="tab-ov" onclick="showView('ov')"><i class="ti ti-home"></i> Overview</div>
-      <div class="p-tab" id="tab-tw" onclick="showView('tw')"><i class="ti ti-cube"></i> Digital twin</div>
-      <div class="p-tab" id="tab-st" onclick="showView('st')"><i class="ti ti-stack"></i> How NAITRO works</div>
-      <div class="p-tab" id="tab-rp" onclick="showView('rp')"><i class="ti ti-report-analytics"></i> Reports <span class="tab-count">3</span></div>
-      <button class="drill-btn" onclick="showView('tw')">
-        <i class="ti ti-microscope"></i> Drill into detail
-      </button>
-    </div>
-  </div>
-
-  <div class="content">
-
-    <!-- ═══ OVERVIEW ═══ -->
-    <div class="view on" id="view-ov">
-      <div class="ov-grid">
-        <div class="gauge-card">
-          <div class="gc-label">Soil health score</div>
-          <div class="gauge-wrap">
-            <svg viewBox="0 0 180 100" width="180" height="100" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18,92 A72,72 0 0,1 162,92" fill="none" stroke="#E1F5EE" stroke-width="12" stroke-linecap="round"/>
-              <path d="M18,92 A72,72 0 0,1 162,92" fill="none" stroke="#1D9E75" stroke-width="12" stroke-linecap="round" stroke-dasharray="226" stroke-dashoffset="57"/>
-              <text x="18" y="106" font-size="8" fill="#888780" font-family="sans-serif">Poor</text>
-              <text x="79" y="98" font-size="8" fill="#888780" font-family="sans-serif" text-anchor="middle">Fair</text>
-              <text x="162" y="106" font-size="8" fill="#888780" font-family="sans-serif" text-anchor="end">Optimal</text>
-            </svg>
-            <div class="gauge-score-box">
-              <div class="g-num">78</div>
-              <div class="g-den">/100</div>
-            </div>
-          </div>
-          <div class="g-zone"><i class="ti ti-circle-check"></i> Optimal zone</div>
-          <div class="gc-bars">
-            <div class="gcb-row"><span class="gcb-label">SOC</span><div class="gcb-track"><div class="gcb-fill" style="width:68%;background:#1D9E75"></div></div><span class="gcb-val">4.1%</span></div>
-            <div class="gcb-row"><span class="gcb-label">BNF</span><div class="gcb-track"><div class="gcb-fill" style="width:42%;background:#185FA5"></div></div><span class="gcb-val">42%</span></div>
-            <div class="gcb-row"><span class="gcb-label">Priming risk</span><div class="gcb-track"><div class="gcb-fill" style="width:55%;background:#EF9F27"></div></div><span class="gcb-val">Med</span></div>
-            <div class="gcb-row"><span class="gcb-label">Compaction</span><div class="gcb-track"><div class="gcb-fill" style="width:30%;background:#E24B4A"></div></div><span class="gcb-val">30%</span></div>
-          </div>
-          <button class="gc-drill" onclick="showView('tw')"><i class="ti ti-zoom-in"></i> Open digital twin</button>
-        </div>
-
-        <div class="right-panel">
-          <div class="metric-row">
-            <div class="mc">
-              <div class="mc-label">Urea applied</div>
-              <div class="mc-val">90 <span class="mc-unit">kg N/ha</span></div>
-              <div class="mc-delta d-dn"><i class="ti ti-trending-down"></i> −55% vs 2020</div>
-            </div>
-            <div class="mc">
-              <div class="mc-label">N leaching est.</div>
-              <div class="mc-val">38 <span class="mc-unit">kg/ha/yr</span></div>
-              <div class="mc-delta d-dn"><i class="ti ti-alert-triangle"></i> Above NPS-FM</div>
-            </div>
-            <div class="mc">
-              <div class="mc-label">BNF contribution</div>
-              <div class="mc-val">42<span class="mc-unit">%</span></div>
-              <div class="mc-delta d-up"><i class="ti ti-trending-up"></i> +24% since herbal ley</div>
-            </div>
-            <div class="mc">
-              <div class="mc-label">Rotation rest</div>
-              <div class="mc-val">35 <span class="mc-unit">days</span></div>
-              <div class="mc-delta d-up"><i class="ti ti-trending-up"></i> +14 days vs last yr</div>
-            </div>
-          </div>
-
-          <div class="alert-banner">
-            <i class="ti ti-alert-triangle" style="flex-shrink:0;margin-top:1px;font-size:16px"></i>
-            <span><strong>Cobalt deficiency detected.</strong> At 0.08 mg/kg your cobalt is below the NZ sufficiency threshold (0.25 mg/kg), limiting biological nitrogen fixation regardless of legume cover. Address trace minerals before reducing urea further. <span class="ab-link" onclick="showView('tw')">View in digital twin →</span></span>
-          </div>
-
-          <div class="rec-card" onclick="toggleRec(this)">
-            <div class="rec-hd">
-              <div class="rec-num rn1">1</div>
-              <div class="rec-info">
-                <div class="rec-title">Optimise microbial dynamics</div>
-                <div class="rec-tag">Highest impact · Biology · F:B ratio</div>
-              </div>
-              <i class="ti ti-chevron-down rec-chev"></i>
-            </div>
-            <div class="rec-body">
-              <div class="rec-sci"><strong>The science:</strong> The fungal:bacterial ratio is critical for aggregate stability and resilient nutrient cycling. Current F:B ratio indicates bacterial dominance — common in high-urea systems — which reduces long-term carbon storage and increases N volatilisation losses.</div>
-              <div class="rec-act"><strong>The action:</strong> Implement multi-species cover cropping during fallow periods. Introduce chicory, plantain, and diverse legumes to shift F:B ratio toward fungi-dominated communities and rebuild stable soil organic matter.</div>
-              <div class="impact-row">
-                <span class="imp"><i class="ti ti-trending-up"></i> SOC +0.4% est. yr 2</span>
-                <span class="imp"><i class="ti ti-leaf"></i> Aggregate stability ↑</span>
-                <span class="imp"><i class="ti ti-coin"></i> Input cost reduction</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="rec-card" onclick="toggleRec(this)">
-            <div class="rec-hd">
-              <div class="rec-num rn2">2</div>
-              <div class="rec-info">
-                <div class="rec-title">Variable-rate nitrogen precision</div>
-                <div class="rec-tag">Compliance · OverseerFM · NPS-FM 2020</div>
-              </div>
-              <i class="ti ti-chevron-down rec-chev"></i>
-            </div>
-            <div class="rec-body">
-              <div class="rec-sci"><strong>The science:</strong> Over-application of synthetic nitrogen is the primary driver of mineral N surplus and nitrate leaching, risking NPS-FM 2020 compliance. Your paddock average exceeds the regional threshold by an estimated 18–22 kg N/ha/yr.</div>
-              <div class="rec-act"><strong>The action:</strong> Use GPS-guided variable-rate application maps generated from your farm management system. Target nitrogen only to zones with confirmed deficiency. Pair with the NAITRO urea step-down planner to set a 3-year reduction schedule.</div>
-              <div class="impact-row">
-                <span class="imp"><i class="ti ti-droplet-off"></i> N leaching −25 kg/ha/yr</span>
-                <span class="imp"><i class="ti ti-shield-check"></i> NPS-FM compliance path</span>
-                <span class="imp"><i class="ti ti-cash"></i> Urea cost −15–20%</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="rec-card" onclick="toggleRec(this)">
-            <div class="rec-hd">
-              <div class="rec-num rn3">3</div>
-              <div class="rec-info">
-                <div class="rec-title">Enhance soil organic carbon</div>
-                <div class="rec-tag">Climate resilience · MRV · Cool Farm Tool</div>
-              </div>
-              <i class="ti ti-chevron-down rec-chev"></i>
-            </div>
-            <div class="rec-body">
-              <div class="rec-sci"><strong>The science:</strong> SOC is the fundamental metric driving water retention, drought resilience, and compliance for global supply chain MRV frameworks including the Cool Farm Tool. Your SOC at 4.1% is moderate — the target for resilient NZ pasture is >5%.</div>
-              <div class="rec-act"><strong>The action:</strong> Transition to strategic mob grazing (high-density, 45–60 day rest periods) to maximise biomass return and root carbon cycling. Combine with targeted biochar additions (2–4 t/ha) on most compacted paddocks to build permanent stable carbon.</div>
-              <div class="impact-row">
-                <span class="imp"><i class="ti ti-trending-up"></i> SOC target: 5%+ by yr 5</span>
-                <span class="imp"><i class="ti ti-cloud"></i> Carbon credits eligible</span>
-                <span class="imp"><i class="ti ti-ripple"></i> Drought resilience ↑</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══ DIGITAL TWIN ═══ -->
-    <div class="view" id="view-tw">
-      <div class="twin-header">
-        <div>
-          <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">1 m³ soil block · Ruakura Dairy Unit</div>
-          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Paddock-level model · NZ biological farming transition</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <span id="tw-risk" class="risk-pill rp-m"><i class="ti ti-alert-triangle"></i> Medium priming risk</span>
-          <button class="back-btn" onclick="showView('ov')"><i class="ti ti-arrow-left"></i> Back to overview</button>
-        </div>
-      </div>
-
-      <div class="time-rail">
-        <div class="tr-top">
-          <span class="tr-label"><i class="ti ti-clock"></i> time horizon</span>
-          <div class="phase-btns">
-            <button class="pb active" data-ph="past" onclick="setPhase('past',this)">Past</button>
-            <button class="pb" data-ph="present" onclick="setPhase('present',this)">Present</button>
-            <button class="pb" data-ph="future" onclick="setPhase('future',this)">Future</button>
-          </div>
-        </div>
-        <div class="tr-slider">
-          <span style="font-size:10px;color:var(--color-text-tertiary)">−10 yr</span>
-          <input type="range" id="tSlider" min="-10" max="10" value="-5" step="1" oninput="onTime(this.value)">
-          <span style="font-size:10px;color:var(--color-text-tertiary)">+10 yr</span>
-        </div>
-        <div class="tr-bands">
-          <span>2015 — heavy urea era</span>
-          <span id="yr-lbl" style="font-weight:500;color:var(--color-text-primary)">2020</span>
-          <span>2035 — biological recovery</span>
-        </div>
-      </div>
-
-      <div class="twin-grid">
-        <div class="io-panel" id="inp-panel">
-          <div class="io-label" style="color:#B5711A"><i class="ti ti-arrow-right"></i> inputs</div>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem">
-          <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="100,8 192,58 192,142 100,192 8,142 8,58" fill="#A0785A" opacity=".85"/>
-            <polygon points="100,8 192,58 100,108 8,58" fill="#B8906A" opacity=".95"/>
-            <polygon points="8,58 100,108 100,192 8,142" fill="#7A5C42" opacity=".9"/>
-            <polygon points="192,58 100,108 100,192 192,142" fill="#8C6A4E" opacity=".9"/>
-            <polygon points="100,8 192,58 100,108 8,58" fill="none" stroke="#5C3D22" stroke-width="1.5"/>
-            <polygon points="8,58 100,108 100,192 8,142" fill="none" stroke="#5C3D22" stroke-width="1.5"/>
-            <polygon points="192,58 100,108 100,192 192,142" fill="none" stroke="#5C3D22" stroke-width="1.5"/>
-            <line x1="8" y1="142" x2="192" y2="142" stroke="#5C3D22" stroke-width="1.5"/>
-            <polyline points="92,108 88,132 84,158 82,172" fill="none" stroke="#4a7c3f" stroke-width="2" opacity=".8"/>
-            <polyline points="92,108 78,122 72,138 68,158" fill="none" stroke="#4a7c3f" stroke-width="1.5" opacity=".6"/>
-            <polyline points="92,108 106,124 110,142 108,164" fill="none" stroke="#4a7c3f" stroke-width="1.5" opacity=".6"/>
-            <ellipse cx="92" cy="106" rx="11" ry="5" fill="#5a9e4a" opacity=".9"/>
-            <ellipse cx="85" cy="99" rx="8" ry="4" fill="#6aaa58" opacity=".8"/>
-            <ellipse cx="100" cy="101" rx="7" ry="3.5" fill="#5a9e4a" opacity=".8"/>
-            <text id="tw-score" x="100" y="138" text-anchor="middle" font-size="20" font-weight="500" fill="#FFF" opacity=".9">--</text>
-            <text x="100" y="151" text-anchor="middle" font-size="8" fill="#FFF" opacity=".6">health score</text>
-          </svg>
-          <div class="lbars" id="lbars"></div>
-        </div>
-        <div class="io-panel" id="out-panel">
-          <div class="io-label" style="color:#185FA5"><i class="ti ti-arrow-right"></i> outputs</div>
-        </div>
-      </div>
-
-      <div class="twin-detail" id="tw-detail">
-        <div class="td-title"><i class="ti ti-info-circle"></i><span id="td-name">Select an input or output above</span></div>
-        <div class="td-body" id="td-body">Click any card on the left or right to explore how that variable connects to the soil biology and what decisions can change it.</div>
-        <div class="td-grid" id="td-grid"></div>
-        <div id="td-alert"></div>
-      </div>
-
-      <div class="scen-bar">
-        <span style="font-size:11px;color:var(--color-text-tertiary);align-self:center">Scenario:</span>
-        <button class="s-btn active" onclick="setScen('baseline',this)">Current farm</button>
-        <button class="s-btn" onclick="setScen('stepdown',this)">Urea step-down</button>
-        <button class="s-btn" onclick="setScen('herbal',this)">Herbal ley + trace minerals</button>
-        <button class="s-btn" onclick="setScen('full',this)">Full biological transition</button>
-      </div>
-    </div>
-
-    <!-- ═══ HOW NAITRO WORKS ═══ -->
-    <div class="view" id="view-st">
-      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);margin-bottom:.875rem">Combined product stack — what NAITRO actually is</div>
-      <div class="layers-row">
-        <div class="lc lc1">
-          <div class="lc-num"><i class="ti ti-chart-bar"></i> Layer 1 — Score</div>
-          <div class="lc-name">OBI-adapted NZ soil index</div>
-          <div class="lc-desc">21 indicators across Chemical / Physical / Biological / Management. Open-source, WUR-validated. Becomes NAITRO's Soil Health Score — scientifically credible, comparable across farms, bankable. Replaces ad hoc soil tests with a standardised language every stakeholder can use.</div>
-          <div class="lc-badges"><span class="lb">OBI</span><span class="lb">WUR validated</span><span class="lb">Open source</span></div>
-        </div>
-        <div class="lc lc2">
-          <div class="lc-num"><i class="ti ti-cube"></i> Layer 2 — Visualise</div>
-          <div class="lc-name">1m³ digital twin soil block</div>
-          <div class="lc-desc">IoT sensor fusion + SPARC visualisation. Input layer (sunlight, rainfall, urea, CO₂) flows through soil health state (SOC, macroporosity, BNF, compaction, trace minerals) to output layer (yield, N leaching, water runoff, soil respiration). Time slider for past/present/future scenario modelling.</div>
-          <div class="lc-badges"><span class="lb">Digital twin</span><span class="lb">IoT sensors</span><span class="lb">Time slider</span></div>
-        </div>
-        <div class="lc lc3">
-          <div class="lc-num"><i class="ti ti-cpu"></i> Layer 3 — Decide</div>
-          <div class="lc-name">NAITRO AI decision engine</div>
-          <div class="lc-desc">Priming Effect risk score + BNF potential model + urea step-down planner. Real-time recommendations with the science/action split. Trace mineral gap analysis (NZ-specific Co/Cu/Se/Mo deficiency). Variable-rate application maps. The "WHOOP for soil health" — converts scores into actions a farmer can execute today.</div>
-          <div class="lc-badges"><span class="lb">AI engine</span><span class="lb">Trace minerals</span><span class="lb">BNF model</span></div>
-        </div>
-        <div class="lc lc4">
-          <div class="lc-num"><i class="ti ti-report-analytics"></i> Layer 4 — Report</div>
-          <div class="lc-name">HUIGE multi-stakeholder MRV</div>
-          <div class="lc-desc">One data source, five stakeholder outputs. Farmer gets yield/cost dashboard. Food company gets Scope 3 / Cool Farm Tool / supply chain traceability. Bank gets risk-adjusted lending score. Regional council gets NPS-FM 2020 compliance reporting. Government gets catchment-level N load.</div>
-          <div class="lc-badges"><span class="lb">HUIGE framework</span><span class="lb">NPS-FM 2020</span><span class="lb">Cool Farm</span></div>
-        </div>
-      </div>
-
-      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);margin-bottom:.625rem">Layer 4 — who benefits from your farm's data</div>
-      <div class="report-row">
-        <div class="rp-card"><div class="rp-icon"><i class="ti ti-tractor"></i></div><div class="rp-label">You (farmer)</div><div class="rp-sub">Yield, cost, urea step-down plan, NPS-FM status</div></div>
-        <div class="rp-card"><div class="rp-icon"><i class="ti ti-building-factory"></i></div><div class="rp-label">Food company</div><div class="rp-sub">Scope 3 emissions · Cool Farm Tool · supply chain traceability</div></div>
-        <div class="rp-card"><div class="rp-icon"><i class="ti ti-building-bank"></i></div><div class="rp-label">Bank (Rabobank)</div><div class="rp-sub">Risk-adjusted lending · sustainability-linked loan rate</div></div>
-        <div class="rp-card"><div class="rp-icon"><i class="ti ti-map"></i></div><div class="rp-label">Regional council</div><div class="rp-sub">NPS-FM 2020 compliance · catchment N load tracking</div></div>
-        <div class="rp-card"><div class="rp-icon"><i class="ti ti-world"></i></div><div class="rp-label">Government / IFA</div><div class="rp-sub">National NUE tracking · policy evidence · global reporting</div></div>
-      </div>
-
-      <div class="finance-section">
-        <div class="fs-title"><i class="ti ti-coin"></i> Your financial position — sustainability-linked loan</div>
-        <div class="finance-grid">
-          <div class="fin-card f1">
-            <div class="fin-head"><div class="fin-ico"><i class="ti ti-percentage"></i></div><div><div class="fin-name">Current rate tier</div><div class="fin-sub">Based on score 78/100</div></div></div>
-            <div class="fin-body">Your NAITRO Soil Health Score qualifies you for the sustainability rate tier.</div>
-            <div class="fin-metric">Base −0.25%</div>
-          </div>
-          <div class="fin-card f2">
-            <div class="fin-head"><div class="fin-ico"><i class="ti ti-trending-up"></i></div><div><div class="fin-name">Next tier target</div><div class="fin-sub">Score ≥85 / urea &lt;120 kg</div></div></div>
-            <div class="fin-body">Hit cobalt sufficiency threshold and reduce urea to 120 kg N/ha to unlock next rate reduction.</div>
-            <div class="fin-metric">Base −0.40%</div>
-          </div>
-          <div class="fin-card f3">
-            <div class="fin-head"><div class="fin-ico"><i class="ti ti-cash"></i></div><div><div class="fin-name">Estimated savings</div><div class="fin-sub">Yr 1 combined benefit</div></div></div>
-            <div class="fin-body">Rate reduction + reduced urea cost (−$36/ha) + Fonterra sustainability premium eligibility.</div>
-            <div class="fin-metric">~$58/ha/yr</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══ REPORTS ═══ -->
-    <div class="view" id="view-rp">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.875rem;margin-bottom:1rem">
-        <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
-          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);margin-bottom:.5rem"><i class="ti ti-leaf"></i> Farmer report</div>
-          <div style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.375rem">Ruakura Dairy · Q2 2025</div>
-          <div style="font-size:11px;color:var(--color-text-secondary);line-height:1.6">Soil Health Score 78/100 · Urea 90 kg N/ha · BNF 42% · Rotation 35 days. SOC trending up (+0.2% vs Q1). Cobalt deficiency flag active.</div>
-          <div style="margin-top:.625rem;font-size:11px;background:#E1F5EE;color:#085041;padding:4px 10px;border-radius:var(--border-radius-md);display:inline-block;cursor:pointer">Download PDF</div>
-        </div>
-        <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
-          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);margin-bottom:.5rem"><i class="ti ti-building-factory"></i> Fonterra Scope 3 report</div>
-          <div style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.375rem">Supply chain traceability</div>
-          <div style="font-size:11px;color:var(--color-text-secondary);line-height:1.6">Verified farm-level N data exported to Cool Farm Tool. N applied: 90 kg N/ha. NUE: 55%. Methane inhibitor trial: active. Scope 3 status: reporting-ready.</div>
-          <div style="margin-top:.625rem;font-size:11px;background:#E6F1FB;color:#0C447C;padding:4px 10px;border-radius:var(--border-radius-md);display:inline-block;cursor:pointer">View in Cool Farm</div>
-        </div>
-        <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
-          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);margin-bottom:.5rem"><i class="ti ti-map"></i> NPS-FM 2020 compliance</div>
-          <div style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.375rem">Waikato Regional Council</div>
-          <div style="font-size:11px;color:var(--color-text-secondary);line-height:1.6">Estimated N leaching: 38 kg/ha/yr. Regional limit: 30 kg/ha/yr. Status: above limit. Urea step-down plan filed. Compliance trajectory: on track by 2027.</div>
-          <div style="margin-top:.625rem;font-size:11px;background:#FAEEDA;color:#633806;padding:4px 10px;border-radius:var(--border-radius-md);display:inline-block;cursor:pointer">Above limit — view plan</div>
-        </div>
-      </div>
-    </div>
-
+    <div class="gap-badge">OBI · Open source · WUR validated</div>
   </div>
 </div>
 
+<!-- ── PRODUCT STACK ── -->
+<div class="stack-full" id="product">
+  <div class="stack-inner">
+    <div class="section-tag">The platform</div>
+    <h2 style="font-size:clamp(1.5rem,3vw,2.25rem);font-weight:300;color:var(--text-dark);margin-bottom:.75rem;letter-spacing:-0.02em">Four layers. <strong>One integrated intelligence platform.</strong></h2>
+    <p style="font-size:15px;color:var(--text-soft);max-width:540px;line-height:1.7;margin-bottom:2.5rem">Each layer builds on the one before. Your soil health score becomes a visualisation, becomes a decision, becomes a report that every stakeholder in your supply chain can trust.</p>
+    <div class="stack-grid">
+      <div class="stack-col sc1">
+        <div class="sc-num"><i class="ti ti-chart-bar"></i> Layer 1</div>
+        <div class="sc-ico"><i class="ti ti-chart-bar"></i></div>
+        <div class="sc-name">Score</div>
+        <p class="sc-desc">OBI-adapted NZ &amp; SA soil index. 21 indicators across Chemical, Physical, Biological, and Management domains. Open-source, WUR-validated, scientifically credible, comparable across farms.</p>
+        <div class="sc-pills"><span class="sc-pill">OBI framework</span><span class="sc-pill">21 indicators</span><span class="sc-pill">0–100 score</span></div>
+      </div>
+      <div class="stack-col sc2">
+        <div class="sc-num"><i class="ti ti-cube"></i> Layer 2</div>
+        <div class="sc-ico"><i class="ti ti-cube"></i></div>
+        <div class="sc-name">Visualise</div>
+        <p class="sc-desc">1m³ digital twin soil block. IoT sensor fusion, SPARC visualisation. Input layer → Soil health state → Output layer. Time slider for past/present/future scenario modelling on every paddock.</p>
+        <div class="sc-pills"><span class="sc-pill">Digital twin</span><span class="sc-pill">IoT sensors</span><span class="sc-pill">Time slider</span></div>
+      </div>
+      <div class="stack-col sc3">
+        <div class="sc-num"><i class="ti ti-cpu"></i> Layer 3</div>
+        <div class="sc-ico"><i class="ti ti-cpu"></i></div>
+        <div class="sc-name">Decide</div>
+        <p class="sc-desc">NAITRO AI decision engine. Priming Effect risk score, BNF potential model, urea step-down planner. Trace mineral gap analysis. Variable-rate application maps. The "WHOOP for soil health."</p>
+        <div class="sc-pills"><span class="sc-pill">AI engine</span><span class="sc-pill">BNF model</span><span class="sc-pill">Trace minerals</span></div>
+      </div>
+      <div class="stack-col sc4">
+        <div class="sc-num"><i class="ti ti-report-analytics"></i> Layer 4</div>
+        <div class="sc-ico"><i class="ti ti-report-analytics"></i></div>
+        <div class="sc-name">Report</div>
+        <p class="sc-desc">HUIGE multi-stakeholder MRV. One data source. Five outputs: farmer dashboard, food company Scope 3, bank risk score, regional council NPS-FM compliance, government NUE tracking.</p>
+        <div class="sc-pills"><span class="sc-pill">HUIGE</span><span class="sc-pill">NPS-FM 2020</span><span class="sc-pill">Cool Farm</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── STAKEHOLDERS ── -->
+<div class="section" id="stakeholders">
+  <div class="section-tag">For every stakeholder</div>
+  <h2>Whoever you are,<br><strong>NAITRO speaks your language.</strong></h2>
+  <p class="section-sub">The same soil data, five different dashboards. Built for each stakeholder's decisions, metrics, and reporting obligations.</p>
+
+  <div class="stakeholder-tabs">
+    <div class="sh-tab active" onclick="showSH('farmer',this)"><i class="ti ti-tractor"></i> Farmer</div>
+    <div class="sh-tab" onclick="showSH('food',this)"><i class="ti ti-building-factory"></i> Food company</div>
+    <div class="sh-tab" onclick="showSH('bank',this)"><i class="ti ti-building-bank"></i> Bank</div>
+    <div class="sh-tab" onclick="showSH('council',this)"><i class="ti ti-map"></i> Regional council</div>
+    <div class="sh-tab" onclick="showSH('govt',this)"><i class="ti ti-world"></i> Government / IFA</div>
+  </div>
+
+  <div class="sh-panel on" id="sh-farmer">
+    <div class="sh-content">
+      <h3>You grow the food. NAITRO grows your confidence.</h3>
+      <p>Stop guessing how much urea to apply. NAITRO's AI engine tells you exactly where to reduce nitrogen, which paddocks have a priming risk, and what the return is on every dollar spent on trace minerals.</p>
+      <ul class="sh-bullets">
+        <li>Soil Health Score — a single number you can track week to week</li>
+        <li>Urea step-down planner with science-backed confidence intervals</li>
+        <li>Cobalt, copper, selenium deficiency alerts before they cost you production</li>
+        <li>Sustainability-linked loan rate reduction — up to 0.40% off base rate</li>
+        <li>NPS-FM 2020 compliance trajectory — know your status before the audit</li>
+      </ul>
+    </div>
+    <div class="sh-visual">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-faint);margin-bottom:1rem">Your farm dashboard snapshot</div>
+      <div class="sh-metric-grid">
+        <div class="sh-metric"><div class="sh-metric-l">Soil health score</div><div class="sh-metric-v" style="color:#085041">78/100</div><div class="sh-metric-d">Optimal zone</div></div>
+        <div class="sh-metric"><div class="sh-metric-l">Urea saved</div><div class="sh-metric-v">−$36/ha</div><div class="sh-metric-d">vs 2020 baseline</div></div>
+        <div class="sh-metric"><div class="sh-metric-l">BNF contribution</div><div class="sh-metric-v" style="color:var(--blue-mid)">42%</div><div class="sh-metric-d">of N from biology</div></div>
+        <div class="sh-metric"><div class="sh-metric-l">Loan rate reduction</div><div class="sh-metric-v" style="color:var(--purple)">−0.25%</div><div class="sh-metric-d">current tier</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh-panel" id="sh-food">
+    <div class="sh-content">
+      <h3>Verified Scope 3 data. No more supplier surveys.</h3>
+      <p>Food companies face mounting pressure to report verified farm-level Scope 3 emissions. NAITRO gives you real sensor data, not farmer estimates. Compatible with Cool Farm Tool, certified for supply chain traceability reporting.</p>
+      <ul class="sh-bullets">
+        <li>Farm-level N input data verified by IoT sensors, not self-reported</li>
+        <li>Cool Farm Tool integration — automated annual report</li>
+        <li>Soil carbon sequestration tracking for net-zero commitments</li>
+        <li>Premium access to farms with verified sustainability scores</li>
+        <li>Supplier dashboard showing progress across your entire supply base</li>
+      </ul>
+    </div>
+    <div class="sh-visual">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-faint);margin-bottom:1rem">Scope 3 supply chain view</div>
+      <div class="sh-metric-grid">
+        <div class="sh-metric"><div class="sh-metric-l">Verified farms</div><div class="sh-metric-v">4</div><div class="sh-metric-d">IoT sensor confirmed</div></div>
+        <div class="sh-metric"><div class="sh-metric-l">Avg NUE</div><div class="sh-metric-v" style="color:#085041">55%</div><div class="sh-metric-d">nutrient use efficiency</div></div>
+        <div class="sh-metric"><div class="sh-metric-l">Scope 3 status</div><div class="sh-metric-v" style="color:var(--blue-mid)">Ready</div><div class="sh-metric-d">Cool Farm compatible</div></div>
+        <div class="sh-metric"><div class="sh-metric-l">SOC trend</div><div class="sh-metric-v" style="color:#085041">+0.2%</div><div class="sh-metric-d">carbon sequestration</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh-panel" id="sh-bank">
+    <div class="sh-content">
+      <h3>Lend with confidence. Reward sustainable farmers.</h3>
+      <p>Rabobank already uses the OBI framework in the Netherlands. NAITRO brings this proven approach to NZ and SA — giving you a standardised, science-backed soil risk score for every farm loan, updated continuously from IoT sensor data.</p>
+      <ul class="sh-bullets">
+        <li>OBI-adapted soil risk score — comparable across every farm in your book</li>
+        <li>Sustainability-linked loan structure: three tiers based on score thresholds</li>
+        <li>Early warning: priming risk flag alerts you before soil degradation accelerates</li>
+        <li>Continuous monitoring — risk score updates quarterly, not annually</li>
+        <li>Precedent: Rabobank NL OBI integration proven model</li>
+      </ul>
+    </div>
+    <div class="sh-visual">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-faint);margin-bottom:1rem">Sustainability loan tiers</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:var(--green-pale);border:0.5px solid var(--green-light);border-radius:8px;padding:.75rem 1rem;display:flex;justify-content:space-between;align-items:center">
+          <div><div style="font-size:11px;font-weight:500;color:#085041">Tier 3 — Optimal</div><div style="font-size:10px;color:#085041">Score ≥85 · urea &lt;120 kg</div></div>
+          <div style="font-size:15px;font-weight:600;color:#085041">Base −0.40%</div>
+        </div>
+        <div style="background:var(--amber-pale);border:0.5px solid var(--amber);border-radius:8px;padding:.75rem 1rem;display:flex;justify-content:space-between;align-items:center">
+          <div><div style="font-size:11px;font-weight:500;color:#7A4A08">Tier 2 — Improving</div><div style="font-size:10px;color:#7A4A08">Score ≥70 · NUE ≥55%</div></div>
+          <div style="font-size:15px;font-weight:600;color:#7A4A08">Base −0.25%</div>
+        </div>
+        <div style="background:var(--bg);border:0.5px solid var(--border);border-radius:8px;padding:.75rem 1rem;display:flex;justify-content:space-between;align-items:center">
+          <div><div style="font-size:11px;font-weight:500;color:var(--text-mid)">Tier 1 — Standard</div><div style="font-size:10px;color:var(--text-soft)">Score &lt;70</div></div>
+          <div style="font-size:15px;font-weight:600;color:var(--text-mid)">Base rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh-panel" id="sh-council">
+    <div class="sh-content">
+      <h3>NPS-FM 2020 compliance at catchment scale.</h3>
+      <p>NAITRO aggregates farm-level N data to give regional councils a real-time view of catchment N loads. No more relying on OverseerFM estimates. Verified IoT sensor data, science-backed modelling, audit-ready reports.</p>
+      <ul class="sh-bullets">
+        <li>Real-time catchment N load dashboard — updated from IoT sensors</li>
+        <li>Farm-by-farm compliance trajectory — who is on track by when</li>
+        <li>NPS-FM 2020 reporting pack — pre-formatted for council submission</li>
+        <li>N leaching estimates grounded in soil biology, not input-only models</li>
+        <li>Replaces OverseerFM with a scientifically credible open-source framework</li>
+      </ul>
+    </div>
+    <div class="sh-visual">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-faint);margin-bottom:1rem">Catchment compliance view</div>
+      <div class="sh-metric-grid">
+        <div class="sh-metric"><div class="sh-metric-l">Farms monitored</div><div class="sh-metric-v">4</div><div class="sh-metric-d">IoT verified</div></div>
+        <div class="sh-metric"><div class="sh-metric-l">Avg N leaching</div><div class="sh-metric-v" style="color:#A32D2D">38 kg/ha</div><div class="sh-metric-d">target: &lt;30 kg</div></div>
+        <div class="sh-metric"><div class="sh-metric-l">On compliance path</div><div class="sh-metric-v" style="color:#085041">3/4</div><div class="sh-metric-d">farms on trajectory</div></div>
+        <div class="sh-metric"><div class="sh-metric-l">Report status</div><div class="sh-metric-v" style="color:var(--blue-mid)">Ready</div><div class="sh-metric-d">NPS-FM pack</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh-panel" id="sh-govt">
+    <div class="sh-content">
+      <h3>National NUE tracking. Policy evidence that holds up.</h3>
+      <p>NAITRO's HUIGE framework maps soil health data to government reporting at national scale. NUE (Nutrient Use Efficiency) tracked at every supply chain segment — from farm input to food company output — providing the evidence base for agricultural policy.</p>
+      <ul class="sh-bullets">
+        <li>National NUE dashboard — farm, processor, and supply chain segments</li>
+        <li>IFA Hackathon-aligned NUE methodology (1 kg bread reference case)</li>
+        <li>HUIGE framework: Health, Utilities, Industries, Governments, Ecosystems</li>
+        <li>Exportable data for UN FAO, IPCC, and global sustainability reporting</li>
+        <li>Policy levers: which interventions move the needle most at national scale</li>
+      </ul>
+    </div>
+    <div class="sh-visual">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-faint);margin-bottom:1rem">National NUE tracking</div>
+      <div class="sh-metric-grid">
+        <div class="sh-metric"><div class="sh-metric-l">Farm NUE avg</div><div class="sh-metric-v" style="color:#085041">55%</div><div class="sh-metric-d">N output / N input</div></div>
+        <div class="sh-metric"><div class="sh-metric-l">Processor NUE</div><div class="sh-metric-v" style="color:var(--blue-mid)">72%</div><div class="sh-metric-d">processing segment</div></div>
+        <div class="sh-metric"><div class="sh-metric-l">HUIGE domains</div><div class="sh-metric-v">5</div><div class="sh-metric-d">H·U·I·G·E mapped</div></div>
+        <div class="sh-metric"><div class="sh-metric-l">Policy evidence</div><div class="sh-metric-v" style="color:var(--purple)">Ready</div><div class="sh-metric-d">exportable dataset</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── LIVE FARMS ── -->
+<div class="farms-full" id="farms">
+  <div class="farms-inner">
+    <div class="section-tag">Live farm dashboards</div>
+    <h2 style="color:#fff;font-size:clamp(1.5rem,3vw,2.25rem);font-weight:300;margin-bottom:.5rem;letter-spacing:-0.02em">Real farms. <strong style="font-weight:600;color:var(--green-light)">Real data.</strong></h2>
+    <div class="farms-sub">Click any farm below to open its full soil health dashboard — soil score, digital twin, recommendations, and compliance reports.</div>
+    <div class="farms-grid">
+      <a class="farm-card" href="nz1/">
+        <div class="fc-flag">🇳🇿</div>
+        <div class="fc-id">NZ1 · New Zealand's First</div>
+        <div class="fc-name">Ruakura Dairy</div>
+        <div class="fc-loc"><i class="ti ti-map-pin"></i> Waikato, New Zealand</div>
+        <div class="fc-score-row">
+          <div class="fc-score-bar"><div class="fc-score-fill" style="width:78%;background:#1D9E75"></div></div>
+          <div class="fc-score-num">78</div>
+        </div>
+        <div class="fc-label">Soil health score · Optimal zone</div>
+        <div><span class="fc-status fcs-live"><i class="ti ti-circle-filled" style="font-size:6px"></i> Live dashboard</span></div>
+      </a>
+      <a class="farm-card" href="sa1/">
+        <div class="fc-flag">🇿🇦</div>
+        <div class="fc-id">SA1 · South Africa</div>
+        <div class="fc-name">Bergvlei Grains</div>
+        <div class="fc-loc"><i class="ti ti-map-pin"></i> Free State, South Africa</div>
+        <div class="fc-score-row">
+          <div class="fc-score-bar"><div class="fc-score-fill" style="width:62%;background:#EF9F27"></div></div>
+          <div class="fc-score-num">62</div>
+        </div>
+        <div class="fc-label">Soil health score · Improving</div>
+        <div><span class="fc-status fcs-live"><i class="ti ti-circle-filled" style="font-size:6px"></i> Live dashboard</span></div>
+      </a>
+      <a class="farm-card" href="sa2/">
+        <div class="fc-flag">🇿🇦</div>
+        <div class="fc-id">SA2 · South Africa</div>
+        <div class="fc-name">Umfolozi Cane</div>
+        <div class="fc-loc"><i class="ti ti-map-pin"></i> KwaZulu-Natal, South Africa</div>
+        <div class="fc-score-row">
+          <div class="fc-score-bar"><div class="fc-score-fill" style="width:54%;background:#EF9F27"></div></div>
+          <div class="fc-score-num">54</div>
+        </div>
+        <div class="fc-label">Soil health score · Critical</div>
+        <div><span class="fc-status fcs-live"><i class="ti ti-circle-filled" style="font-size:6px"></i> Live dashboard</span></div>
+      </a>
+      <a class="farm-card" href="sa3/">
+        <div class="fc-flag">🇿🇦</div>
+        <div class="fc-id">SA3 · South Africa</div>
+        <div class="fc-name">Kaapzicht Estate</div>
+        <div class="fc-loc"><i class="ti ti-map-pin"></i> Stellenbosch, Western Cape</div>
+        <div class="fc-score-row">
+          <div class="fc-score-bar"><div class="fc-score-fill" style="width:71%;background:#1D9E75"></div></div>
+          <div class="fc-score-num">71</div>
+        </div>
+        <div class="fc-label">Soil health score · Good</div>
+        <div><span class="fc-status fcs-live"><i class="ti ti-circle-filled" style="font-size:6px"></i> Live dashboard</span></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ── SCIENCE ── -->
+<div class="section" id="science">
+  <div class="section-tag">The science</div>
+  <h2>Built on open science.<br><strong>Validated by world leaders.</strong></h2>
+  <p class="section-sub">NAITRO doesn't invent new science. It makes the world's best soil science accessible to every farmer, bank, and council on earth.</p>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-quote">"The Open Bodemindex gives us a standardised language to assess soil health across our entire lending book. NAITRO brings this to the Southern Hemisphere for the first time."</div>
+      <div class="testi-author">
+        <div class="testi-avatar ta2">R</div>
+        <div><div class="testi-name">Rabobank Model</div><div class="testi-role">OBI-linked sustainability lending · Netherlands</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-quote">"The Priming Effect is real and measurable. For every tonne of synthetic nitrogen over-applied, farms can lose 2–4 tonnes of soil organic carbon. This is the mechanism NAITRO makes visible."</div>
+      <div class="testi-author">
+        <div class="testi-avatar ta1">W</div>
+        <div><div class="testi-name">WUR Research Basis</div><div class="testi-role">Wageningen University · OBI framework authors</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-quote">"Cobalt and molybdenum deficiency in NZ and SA volcanic geology is systematically under-diagnosed. These cofactors gate biological nitrogen fixation — without them, legume covers produce no benefit."</div>
+      <div class="testi-author">
+        <div class="testi-avatar ta3">N</div>
+        <div><div class="testi-name">NAITRO Soil Science</div><div class="testi-role">NZ/SA trace mineral deficiency research basis</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CTA ── -->
+<div class="cta-full">
+  <div class="cta-inner">
+    <h2>Ready to know what your <strong>soil is actually doing?</strong></h2>
+    <p>Join the first cohort of farms on NAITRO. Free for pilot farms in New Zealand and South Africa during 2025.</p>
+    <div class="cta-form">
+      <input class="cta-input" type="email" placeholder="your@email.com">
+      <button class="btn-primary">Request access <i class="ti ti-arrow-right"></i></button>
+    </div>
+    <p class="cta-small">No obligation. Pilot farms receive free onboarding, sensor installation support, and a baseline OBI soil report.</p>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:.75rem">
+        <div style="width:28px;height:28px;background:var(--green-mid);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff">N</div>
+        <span style="font-size:14px;font-weight:500;color:#fff">NAITRO</span>
+      </div>
+      <p>AI-powered soil health intelligence for the farming industry. Score → Visualise → Decide → Report.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <a href="#product">Score (OBI)</a>
+      <a href="#product">Visualise (digital twin)</a>
+      <a href="#product">Decide (AI engine)</a>
+      <a href="#product">Report (HUIGE MRV)</a>
+    </div>
+    <div class="footer-col">
+      <h4>Live farms</h4>
+      <a href="nz1/">🇳🇿 NZ1 · Ruakura Dairy</a>
+      <a href="sa1/">🇿🇦 SA1 · Bergvlei Grains</a>
+      <a href="sa2/">🇿🇦 SA2 · Umfolozi Cane</a>
+      <a href="sa3/">🇿🇦 SA3 · Kaapzicht Estate</a>
+    </div>
+    <div class="footer-col">
+      <h4>Stakeholders</h4>
+      <a href="#stakeholders">Farmers</a>
+      <a href="#stakeholders">Food companies</a>
+      <a href="#stakeholders">Banks</a>
+      <a href="#stakeholders">Regional councils</a>
+      <a href="#stakeholders">Government</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 NAITRO. Soil intelligence platform. Built for NZ &amp; SA agricultural transition.</p>
+    <div class="footer-badges">
+      <span class="f-badge">OBI · WUR</span>
+      <span class="f-badge">NPS-FM 2020</span>
+      <span class="f-badge">HUIGE MRV</span>
+      <span class="f-badge">IFA NUE</span>
+    </div>
+  </div>
+</footer>
+
 <script>
-const BASE = 2025;
-let tTime = -5, tScen = 'baseline', tSel = null;
-
-const scens = {
-  baseline: {urea:200,legume:15,soc:3.2,cn:14,co:0.08,bnf:18,comp:55,macro:38,infilt:6,rot:21},
-  stepdown:  {urea:120,legume:18,soc:3.6,cn:16,co:0.08,bnf:24,comp:45,macro:44,infilt:9,rot:28},
-  herbal:    {urea:90, legume:28,soc:4.1,cn:19,co:0.28,bnf:42,comp:30,macro:58,infilt:15,rot:35},
-  full:      {urea:40, legume:38,soc:5.2,cn:23,co:0.35,bnf:65,comp:12,macro:74,infilt:28,rot:56},
-};
-const mods = {
-  baseline: {soc:[-.8,0,1.2], bnf:[-8,0,4],   comp:[15,0,-8],  urea:[40,0,-20]},
-  stepdown:  {soc:[-.5,0,1.8], bnf:[-5,0,14],  comp:[12,0,-18], urea:[80,0,-60]},
-  herbal:    {soc:[-.3,0,2.2], bnf:[-4,0,22],  comp:[10,0,-25], urea:[60,0,-70]},
-  full:      {soc:[-.2,0,2.8], bnf:[-3,0,30],  comp:[8,0,-30],  urea:[50,0,-38]},
-};
-
-const inputs = [
-  {id:'sun',  icon:'ti-sun',        name:'Sunlight',      key:null,     unit:'kJ/m²/day',  desc:'Drives photosynthesis which pumps liquid carbon into the root zone, feeding soil microbes.', stats:[{l:'Daily average',v:'14,200 kJ'},{l:'Seasonal variation',v:'4× summer vs winter'}], alert:null},
-  {id:'rain', icon:'ti-cloud-rain', name:'Rainfall',      key:null,     unit:'mm/day',      desc:'Determines leaching risk. High rainfall (>1,200 mm/yr) flushes nitrates before microbes can process them.', stats:[{l:'Annual total',v:'1,150 mm'},{l:'N leaching risk',v:'Medium–High'}], alert:{t:'warn',m:'At current rainfall and urea rates, estimated N loss to groundwater is 45–65 kg N/ha/yr.'}},
-  {id:'urea', icon:'ti-flask',      name:'Urea added',    key:'urea',   unit:'kg N/ha/yr', desc:'Synthetic nitrogen input. Excess urea triggers the Priming Effect — microbes consume stored soil carbon to balance their diet, releasing it as CO₂.', stats:[{l:'Current rate',v:null},{l:'NZ dairy avg',v:'200 kg N/ha/yr'}], alert:{t:'warn',m:'High urea rates are depleting soil carbon. C:N ratio below 15 indicates active carbon loss.'}},
-  {id:'co2',  icon:'ti-wind',       name:'Air / CO₂',     key:null,     unit:'CO₂ balance', desc:'Healthy soil sequesters carbon; degraded soil emits it. Macroporosity and biological activity determine whether the block is a carbon sink or source.', stats:[{l:'Macroporosity',v:null},{l:'Target',v:'>10% macropores'}], alert:null},
-  {id:'min',  icon:'ti-atom',       name:'Trace minerals',key:'co',     unit:'Co/Cu/Se/Mo', desc:'NZ soils are naturally deficient in cobalt, copper, selenium, and molybdenum due to young volcanic geology. Essential cofactors for Rhizobia N-fixing bacteria.', stats:[{l:'Cobalt level',v:null},{l:'Sufficiency',v:'>0.25 mg/kg'}], alert:{t:'warn',m:'Cobalt deficiency blocks biological N fixation regardless of legume cover. Address trace minerals first.'}},
-];
-const outputs = [
-  {id:'carbs', icon:'ti-bread',     name:'Carbohydrates',  key:null,     unit:'kg/m²/yr',   desc:'Pasture dry matter yield. Biological systems can match synthetic N yields once established.', stats:[{l:'Current DM yield',v:'12.4 t/ha/yr'},{l:'Biological potential',v:'13–15 t/ha/yr'}], alert:{t:'ok',m:'Herbal ley pastures consistently match ryegrass monocultures within 3–5 years of establishment.'}},
-  {id:'prot',  icon:'ti-test-pipe', name:'Protein',        key:'bnf',    unit:'kg/m²/yr',   desc:'Biological nitrogen fixation by Rhizobia directly determines pasture protein content. Higher BNF = more protein without synthetic inputs.', stats:[{l:'BNF contribution',v:null},{l:'Full BNF potential',v:'up to 300 kg N/ha/yr'}], alert:null},
-  {id:'nrun',  icon:'ti-droplet',   name:'Nutrient runoff',key:null,     unit:'N, P, K',    desc:'Excess N and P that degraded soil cannot hold leaches into waterways, causing algal blooms and breaching NPS-FM 2020 limits.', stats:[{l:'Est. N leaching',v:'38 kg/ha/yr'},{l:'NPS-FM target',v:'<30 kg N/ha/yr'}], alert:{t:'warn',m:'Current management exceeds NPS-FM 2020 targets. Urea step-down + herbal ley is the most effective compliance path.'}},
-  {id:'wrun',  icon:'ti-ripple',    name:'Water runoff',   key:'infilt', unit:'L/day',      desc:'Compacted soils cannot absorb rainfall. Water runs off carrying topsoil and nutrients. Infiltration rate is the key indicator.', stats:[{l:'Infiltration rate',v:null},{l:'Healthy target',v:'>25 mm/hr'}], alert:{t:'warn',m:'Low infiltration indicates compaction. Herbal ley root systems and rest periods break up compaction naturally.'}},
-  {id:'resp',  icon:'ti-bolt',      name:'Soil respiration',key:'soc',   unit:'CO₂ mg/hr',  desc:'CO₂ output indicates microbial activity. Under the Priming Effect, excess activity burns through stored soil carbon.', stats:[{l:'SOC level',v:null},{l:'Target SOC',v:'>5% for resilient pasture'}], alert:null},
-];
-const layers = [
-  {name:'SOC',       key:'soc',  max:8,   color:'#A0785A'},
-  {name:'Macropores',key:'macro',max:100, color:'#5a9e4a'},
-  {name:'BNF',       key:'bnf',  max:100, color:'#185FA5'},
-  {name:'Compaction',key:'comp', max:100, color:'#D85A30'},
-];
-
-function gv(key) {
-  const s = scens[tScen], m = mods[tScen][key];
-  if (!m) return s[key];
-  const f = tTime / 10;
-  return Math.max(0, tTime < 0 ? s[key] + m[0] * (-f) : s[key] + m[2] * f);
+function showSH(id, tab) {
+  document.querySelectorAll('.sh-panel').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.sh-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sh-' + id).classList.add('on');
+  tab.classList.add('active');
 }
-function health() {
-  const soc = gv('soc'), bnf = gv('bnf'), comp = gv('comp'), co = scens[tScen].co;
-  return Math.round(Math.min(soc/6,1)*30 + bnf/100*30 + (1-comp/100)*25 + Math.min(co/0.3,1)*15);
-}
-function priming() {
-  const cn = scens[tScen].cn, urea = gv('urea'), soc = gv('soc');
-  let s = 0;
-  s += cn < 15 ? 3 : cn < 20 ? 2 : 1;
-  s += urea > 200 ? 3 : urea > 100 ? 2 : 1;
-  s += soc < 3 ? 3 : soc < 5 ? 2 : 1;
-  return s;
-}
-function renderLayers() {
-  document.getElementById('lbars').innerHTML = layers.map(l => {
-    const raw = gv(l.key), pct = Math.min(100, l.key === 'soc' ? raw/l.max*100 : raw);
-    return `<div class="lbar-row"><span class="lb-name">${l.name}</span><div class="lb-track"><div class="lb-fill" style="width:${Math.round(pct)}%;background:${l.color}70;border-right:2px solid ${l.color}"></div></div><span class="lb-pct">${l.key==='soc' ? raw.toFixed(1)+'%' : Math.round(raw)+'%'}</span></div>`;
-  }).join('');
-}
-function renderScore() {
-  const sc = health(), pr = priming();
-  document.getElementById('tw-score').textContent = sc;
-  const cls = pr >= 7 ? 'rp-h' : pr >= 5 ? 'rp-m' : 'rp-l';
-  const lbl = pr >= 7 ? 'High priming risk' : pr >= 5 ? 'Medium priming risk' : 'Low priming risk';
-  document.getElementById('tw-risk').className = `risk-pill ${cls}`;
-  document.getElementById('tw-risk').innerHTML = `<i class="ti ti-alert-triangle"></i> ${lbl} (${pr}/9)`;
-}
-function buildPanels() {
-  const ip = document.getElementById('inp-panel');
-  ip.innerHTML = '<div class="io-label" style="color:#B5711A"><i class="ti ti-arrow-right"></i> inputs</div>';
-  inputs.forEach(inp => {
-    const raw = inp.key ? gv(inp.key) : null;
-    const v = raw !== null ? (inp.key==='soc'?raw.toFixed(1)+'%':inp.key==='co'?raw.toFixed(2)+' mg/kg':Math.round(raw)+' kg/ha/yr') : inp.unit;
-    const d = document.createElement('div');
-    d.className = 'io-card' + (tSel === inp.id ? ' sel' : '');
-    d.innerHTML = `<div class="io-top"><i class="ti ${inp.icon}"></i><span class="io-name">${inp.name}</span></div><div class="io-val">${v}</div>`;
-    d.onclick = () => { tSel = tSel === inp.id ? null : inp.id; buildPanels(); renderDetail(); };
-    ip.appendChild(d);
-  });
-  const op = document.getElementById('out-panel');
-  op.innerHTML = '<div class="io-label" style="color:#185FA5"><i class="ti ti-arrow-right"></i> outputs</div>';
-  outputs.forEach(out => {
-    const raw = out.key ? gv(out.key) : null;
-    const v = raw !== null ? (out.key==='soc'?raw.toFixed(1)+'%':out.key==='bnf'?Math.round(raw)+'% of N':out.key==='infilt'?raw.toFixed(1)+' mm/hr':Math.round(raw)+'') : out.unit;
-    const d = document.createElement('div');
-    d.className = 'io-card' + (tSel === out.id ? ' sel' : '');
-    d.innerHTML = `<div class="io-top"><i class="ti ${out.icon}"></i><span class="io-name">${out.name}</span></div><div class="io-val">${v}</div>`;
-    d.onclick = () => { tSel = tSel === out.id ? null : out.id; buildPanels(); renderDetail(); };
-    op.appendChild(d);
-  });
-}
-function renderDetail() {
-  if (!tSel) {
-    document.getElementById('td-name').textContent = 'Select an input or output above';
-    document.getElementById('td-body').textContent = 'Click any card on the left or right to explore how that variable connects to the soil biology and what decisions can change it.';
-    document.getElementById('td-grid').innerHTML = '';
-    document.getElementById('td-alert').innerHTML = '';
-    return;
-  }
-  const all = [...inputs, ...outputs], item = all.find(x => x.id === tSel);
-  if (!item) return;
-  document.getElementById('td-name').innerHTML = `<i class="ti ${item.icon}"></i> ${item.name}`;
-  document.getElementById('td-body').textContent = item.desc;
-  document.getElementById('td-grid').innerHTML = item.stats.map(s => {
-    let val = s.v;
-    if (!val && item.key) { const r = gv(item.key); val = item.key==='soc'?r.toFixed(1)+'%':item.key==='co'?r.toFixed(2)+' mg/kg':item.key==='bnf'?Math.round(r)+'% of N':item.key==='infilt'?r.toFixed(1)+' mm/hr':item.key==='urea'?Math.round(r)+' kg N/ha/yr':Math.round(r)+''; }
-    return `<div class="td-stat"><div class="td-stat-l">${s.l}</div><div class="td-stat-v">${val || '—'}</div></div>`;
-  }).join('');
-  document.getElementById('td-alert').innerHTML = '';
-  if (item.alert) {
-    const cls = item.alert.t === 'warn' ? 'ta-warn' : 'ta-ok';
-    document.getElementById('td-alert').innerHTML = `<div class="td-alert ${cls}"><i class="ti ti-${item.alert.t==='warn'?'alert-triangle':'circle-check'}"></i><span>${item.alert.m}</span></div>`;
-  }
-}
-function renderAll() { renderScore(); renderLayers(); buildPanels(); renderDetail(); }
-
-function onTime(v) {
-  tTime = parseInt(v);
-  document.getElementById('yr-lbl').textContent = BASE + tTime;
-  document.querySelectorAll('.pb').forEach(b => {
-    b.classList.remove('active');
-    if (tTime < -1 && b.dataset.ph === 'past') b.classList.add('active');
-    else if (tTime > 1 && b.dataset.ph === 'future') b.classList.add('active');
-    else if (Math.abs(tTime) <= 1 && b.dataset.ph === 'present') b.classList.add('active');
-  });
-  renderAll();
-}
-function setPhase(p, btn) {
-  document.querySelectorAll('.pb').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const sl = document.getElementById('tSlider');
-  tTime = p === 'past' ? -5 : p === 'present' ? 0 : 5;
-  sl.value = tTime;
-  document.getElementById('yr-lbl').textContent = BASE + tTime;
-  renderAll();
-}
-function setScen(sc, btn) {
-  tScen = sc;
-  document.querySelectorAll('.s-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderAll();
-}
-function showView(id) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('on'));
-  document.getElementById('view-' + id).classList.add('on');
-  document.querySelectorAll('.p-tab').forEach(t => t.classList.remove('active'));
-  const map = {ov:'tab-ov', tw:'tab-tw', st:'tab-st', rp:'tab-rp'};
-  if (map[id]) document.getElementById(map[id]).classList.add('active');
-}
-const layerDetails = [
-  'OBI-adapted NZ soil index · 21 indicators · WUR-validated · bankable',
-  '1m³ digital twin · IoT sensor fusion · time slider · SPARC visualisation',
-  'NAITRO AI engine · Priming Effect risk · BNF model · urea step-down planner',
-  'HUIGE MRV · one data source · five stakeholder outputs · NPS-FM 2020 · Cool Farm',
-];
-function showLayer(n) {
-  document.getElementById('layer-detail').textContent = layerDetails[n - 1];
-  showView('st');
-}
-function toggleRec(card) {
-  const was = card.classList.contains('open');
-  document.querySelectorAll('.rec-card').forEach(c => c.classList.remove('open'));
-  if (!was) card.classList.add('open');
-}
-
-renderAll();
 </script>
 </body>
 </html>
