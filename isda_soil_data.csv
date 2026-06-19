@@ -1,0 +1,154 @@
+site_id,site_name,region,lat,lon,property,depth_cm,value,unit,ci50_lower,ci50_upper
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,aluminium_extractable,0-20,11.2,ppm,1.8,52.7
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,aluminium_extractable,20-50,11.2,ppm,2.2,45.9
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,ph,0-20,6.8,,6.6,7.0
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,ph,20-50,6.9,,6.6,7.2
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,nitrogen_total,0-20,0.9,g/kg,0.8,1.0
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,nitrogen_total,20-50,0.6,g/kg,0.6,0.7
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,phosphorous_extractable,0-20,9.0,ppm,7.7,10.4
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,phosphorous_extractable,20-50,7.2,ppm,5.7,9.0
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,potassium_extractable,0-20,163.0,ppm,152.3,174.5
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,potassium_extractable,20-50,133.3,ppm,124.5,142.7
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,magnesium_extractable,0-20,297.9,ppm,243.1,364.9
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,magnesium_extractable,20-50,364.0,ppm,318.0,416.8
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,calcium_extractable,0-20,991.3,ppm,866.1,1134.6
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,calcium_extractable,20-50,991.3,ppm,866.1,1134.6
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,iron_extractable,0-20,72.7,ppm,55.3,95.5
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,iron_extractable,20-50,26.1,ppm,19.7,34.5
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,zinc_extractable,0-20,1.5,ppm,1.1,1.8
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,zinc_extractable,20-50,1.2,ppm,0,0
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,sulphur_extractable,0-20,21.2,ppm,11.9,37.1
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,sulphur_extractable,20-50,15.4,ppm,6.8,33.5
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,carbon_total,0-20,12.5,g/kg,11.6,13.4
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,carbon_total,20-50,11.2,g/kg,9.6,12.9
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,carbon_organic,0-20,7.2,g/kg,6.1,8.3
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,carbon_organic,20-50,4.5,g/kg,3.8,5.3
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,bulk_density,0-20,1.5,g/cm³,1.5,1.5
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,bulk_density,20-50,1.5,g/cm³,1.5,1.5
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,bedrock_depth,0-200,200,cm,187.0,213.0
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,stone_content,0-20,2.7,%,2.0,3.5
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,stone_content,20-50,2.7,%,2.0,3.5
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,silt_content,0-20,14,%,12.0,16.0
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,silt_content,20-50,13,%,10.3,15.7
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,clay_content,0-20,24,%,22.7,25.3
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,clay_content,20-50,30,%,28.7,31.3
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,sand_content,0-20,56,%,52.0,60.0
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,sand_content,20-50,53,%,50.3,55.7
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,texture_class,0-20,Sandy Clay Loam,,,
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,texture_class,20-50,Sandy Clay Loam,,,
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,cation_exchange_capacity,0-20,11.2,cmol(+)/kg,10.4,12.0
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,cation_exchange_capacity,20-50,11.2,cmol(+)/kg,10.4,12.0
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,slope_angle,0,1.4,°,,
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,fcc,0-50,No constraints,,,
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,land_cover_2015,0,Herbaceous vegetation,,,
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,crop_cover_2015,0,0,%,,
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,land_cover_2016,0,Herbaceous vegetation,,,
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,crop_cover_2016,0,0,%,,
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,land_cover_2017,0,Herbaceous vegetation,,,
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,crop_cover_2017,0,0,%,,
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,land_cover_2018,0,Herbaceous vegetation,,,
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,crop_cover_2018,0,0,%,,
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,land_cover_2019,0,Herbaceous vegetation,,,
+SA1,Bergvlei Grains,"Free State, South Africa",-28.4541,26.7968,crop_cover_2019,0,0,%,,
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,aluminium_extractable,0-20,72.7,ppm,31.8,164.6
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,aluminium_extractable,20-50,65.7,ppm,28.7,148.8
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,ph,0-20,6.3,,6.2,6.4
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,ph,20-50,6.3,,6.1,6.5
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,nitrogen_total,0-20,1.2,g/kg,1.1,1.3
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,nitrogen_total,20-50,0.9,g/kg,0.8,0.9
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,phosphorous_extractable,0-20,12.5,ppm,10.8,14.4
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,phosphorous_extractable,20-50,11.2,ppm,9.6,12.9
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,potassium_extractable,0-20,89.0,ppm,77.7,102.0
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,potassium_extractable,20-50,72.7,ppm,67.9,77.8
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,magnesium_extractable,0-20,297.9,ppm,260.2,341.0
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,magnesium_extractable,20-50,297.9,ppm,260.2,341.0
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,calcium_extractable,0-20,811.4,ppm,758.4,868.1
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,calcium_extractable,20-50,811.4,ppm,758.4,868.1
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,iron_extractable,0-20,72.7,ppm,55.3,95.5
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,iron_extractable,20-50,26.1,ppm,19.7,34.5
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,zinc_extractable,0-20,2.7,ppm,2.2,3.2
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,zinc_extractable,20-50,2.3,ppm,2.1,2.6
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,sulphur_extractable,0-20,5.7,ppm,4.5,7.2
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,sulphur_extractable,20-50,3.5,ppm,2.0,5.7
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,carbon_total,0-20,29.0,g/kg,20.4,41.0
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,carbon_total,20-50,21.2,g/kg,18.4,24.4
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,carbon_organic,0-20,13.9,g/kg,12.0,16.0
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,carbon_organic,20-50,8.0,g/kg,7.4,8.7
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,bulk_density,0-20,1.3,g/cm³,1.3,1.3
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,bulk_density,20-50,1.3,g/cm³,1.3,1.3
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,bedrock_depth,0-200,200,cm,189.0,211.0
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,stone_content,0-20,1.2,%,0.9,1.5
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,stone_content,20-50,1.2,%,0.9,1.5
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,silt_content,0-20,18,%,16.7,19.3
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,silt_content,20-50,18,%,16.7,19.3
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,clay_content,0-20,27,%,25.0,29.0
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,clay_content,20-50,31,%,29.0,33.0
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,sand_content,0-20,42,%,40.0,44.0
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,sand_content,20-50,39,%,37.0,41.0
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,texture_class,0-20,Sandy Clay Loam,,,
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,texture_class,20-50,Sandy Clay Loam,,,
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,cation_exchange_capacity,0-20,15.4,cmol(+)/kg,14.4,16.6
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,cation_exchange_capacity,20-50,15.4,cmol(+)/kg,14.4,16.6
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,slope_angle,0,10.0,°,,
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,fcc,0-50,Low K,,,
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,land_cover_2015,0,Cultivated and managed vegetation / agriculture,,,
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,crop_cover_2015,0,80,%,,
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,land_cover_2016,0,Cultivated and managed vegetation / agriculture,,,
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,crop_cover_2016,0,80,%,,
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,land_cover_2017,0,Cultivated and managed vegetation / agriculture,,,
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,crop_cover_2017,0,79,%,,
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,land_cover_2018,0,Cultivated and managed vegetation / agriculture,,,
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,crop_cover_2018,0,80,%,,
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,land_cover_2019,0,Cultivated and managed vegetation / agriculture,,,
+SA2,Umfolozi Cane,"KwaZulu-Natal, South Africa",-28.3667,32.0833,crop_cover_2019,0,80,%,,
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,aluminium_extractable,0-20,23.5,ppm,7.9,66.5
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,aluminium_extractable,20-50,23.5,ppm,8.5,62.1
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,ph,0-20,6.8,,6.7,6.9
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,ph,20-50,6.9,,6.7,7.1
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,nitrogen_total,0-20,1.2,g/kg,1.1,1.3
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,nitrogen_total,20-50,0.9,g/kg,0.8,1.0
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,phosphorous_extractable,0-20,15.4,ppm,13.4,17.8
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,phosphorous_extractable,20-50,12.5,ppm,10.8,14.4
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,potassium_extractable,0-20,108.9,ppm,88.8,133.6
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,potassium_extractable,20-50,98.5,ppm,80.3,120.8
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,magnesium_extractable,0-20,199.3,ppm,132.7,299.3
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,magnesium_extractable,20-50,199.3,ppm,142.0,279.7
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,calcium_extractable,0-20,491.7,ppm,306.3,789.1
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,calcium_extractable,20-50,444.9,ppm,258.9,763.8
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,iron_extractable,0-20,39.4,ppm,34.3,45.3
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,iron_extractable,20-50,19.1,ppm,16.6,22.0
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,zinc_extractable,0-20,2.0,ppm,1.8,2.2
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,zinc_extractable,20-50,1.5,ppm,0,0
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,sulphur_extractable,0-20,26.1,ppm,17.1,39.6
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,sulphur_extractable,20-50,17.2,ppm,8.9,32.3
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,carbon_total,0-20,21.2,g/kg,14.8,30.1
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,carbon_total,20-50,19.1,g/kg,14.3,25.3
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,carbon_organic,0-20,7.2,g/kg,6.1,8.3
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,carbon_organic,20-50,4.5,g/kg,4.1,4.9
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,bulk_density,0-20,1.4,g/cm³,1.3,1.4
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,bulk_density,20-50,1.4,g/cm³,1.3,1.4
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,bedrock_depth,0-200,194,cm,180.0,208.0
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,stone_content,0-20,2.7,%,1.8,3.8
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,stone_content,20-50,3.1,%,2.1,4.3
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,silt_content,0-20,22,%,18.6,25.4
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,silt_content,20-50,21,%,17.6,24.4
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,clay_content,0-20,25,%,21.6,28.4
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,clay_content,20-50,29,%,25.6,32.4
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,sand_content,0-20,49,%,44.3,53.7
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,sand_content,20-50,48,%,42.6,53.4
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,texture_class,0-20,Sandy Clay Loam,,,
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,texture_class,20-50,Sandy Clay Loam,,,
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,cation_exchange_capacity,0-20,8.0,cmol(+)/kg,5.9,10.8
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,cation_exchange_capacity,20-50,8.0,cmol(+)/kg,5.4,11.6
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,slope_angle,0,2.2,°,,
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,fcc,0-50,No constraints,,,
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,land_cover_2015,0,Urban / built up,,,
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,crop_cover_2015,0,0,%,,
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,land_cover_2016,0,Urban / built up,,,
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,crop_cover_2016,0,0,%,,
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,land_cover_2017,0,Urban / built up,,,
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,crop_cover_2017,0,0,%,,
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,land_cover_2018,0,Urban / built up,,,
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,crop_cover_2018,0,0,%,,
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,land_cover_2019,0,Urban / built up,,,
+SA3,Kaapzicht Estate,"Stellenbosch, Western Cape, South Africa",-33.9322,18.8602,crop_cover_2019,0,0,%,,

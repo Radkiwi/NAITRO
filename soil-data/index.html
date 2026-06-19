@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iSDA Soil Data — South Africa Sites | NAITRO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    :root {
+      --green-deep: #0F3D2E; --green-mid: #1D9E75; --green-light: #5DCAA5; --green-pale: #E1F5EE;
+      --blue-deep: #0C447C; --blue-mid: #185FA5; --blue-pale: #E6F1FB;
+      --amber: #E07B18; --amber-pale: #FAEEDA;
+      --red: #C0392B; --red-pale: #FCEBEB;
+      --purple: #534AB7; --purple-pale: #EEEDFE;
+      --text-dark: #1c1917; --text-mid: #44403c; --text-soft: #78716c; --text-faint: #a8a29e;
+      --border: #e7e5e4; --bg: #fafaf9; --white: #ffffff;
+      --radius: 12px; --radius-sm: 6px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text-dark); line-height: 1.6; }
+    nav { background: rgba(15,61,46,0.97); padding: 0 2rem; display: flex; align-items: center; height: 56px; position: sticky; top: 0; z-index: 100; }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo { width: 30px; height: 30px; background: var(--green-mid); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #fff; }
+    .nav-name { font-size: 15px; font-weight: 500; color: #fff; }
+    .nav-back { margin-left: auto; font-size: 12px; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 6px; text-decoration: none; padding: 5px 14px; border-radius: var(--radius-sm); border: 0.5px solid rgba(255,255,255,0.18); }
+    .nav-back:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+
+    .hero { background: linear-gradient(160deg, #0A2E20 0%, #0F3D2E 60%, #0a3040 100%); padding: 3rem 2rem 2.5rem; }
+    .hero-inner { max-width: 1080px; margin: 0 auto; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; color: var(--green-light); background: rgba(93,202,165,0.12); border: 0.5px solid rgba(93,202,165,0.3); padding: 4px 12px; border-radius: 99px; margin-bottom: 1.25rem; letter-spacing: .05em; text-transform: uppercase; }
+    .hero h1 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); font-weight: 300; color: #fff; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: .75rem; }
+    .hero h1 strong { font-weight: 600; color: var(--green-light); }
+    .hero-sub { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 720px; }
+
+    .main { max-width: 1080px; margin: 0 auto; padding: 2.5rem 2rem 5rem; }
+
+    .caveat { background: var(--amber-pale); border: 0.5px solid #FAC775; border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1.5rem; font-size: 13px; color: #7A4A08; line-height: 1.7; display: flex; gap: 10px; align-items: flex-start; }
+    .caveat i { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+
+    .site-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: .875rem; margin-bottom: 2rem; }
+    .site-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.125rem 1.25rem; }
+    .sc-id { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--green-mid); margin-bottom: 4px; }
+    .sc-name { font-size: 15px; font-weight: 500; color: var(--text-dark); margin-bottom: 2px; }
+    .sc-region { font-size: 12px; color: var(--text-soft); margin-bottom: .625rem; }
+    .sc-coord { font-size: 11px; color: var(--text-faint); font-family: monospace; }
+
+    .toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: .75rem; }
+    .toolbar-title { font-size: 16px; font-weight: 500; color: var(--text-dark); }
+    .toolbar-sub { font-size: 12px; color: var(--text-faint); margin-top: 2px; }
+    .dl-links { display: flex; gap: .5rem; }
+    .dl-link { font-size: 12px; padding: 6px 12px; border-radius: var(--radius-sm); border: 0.5px solid var(--border); background: var(--white); color: var(--text-mid); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .dl-link:hover { border-color: var(--green-mid); color: var(--green-deep); background: var(--green-pale); }
+
+    .table-wrap { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    thead th { background: var(--green-deep); color: #fff; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .04em; padding: .75rem .875rem; text-align: left; position: sticky; top: 56px; }
+    thead th.num { text-align: center; }
+    tbody tr.cat-row td { background: var(--bg); color: var(--green-deep); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; padding: .625rem .875rem; border-top: 1px solid var(--border); border-bottom: 0.5px solid var(--border); }
+    tbody tr:not(.cat-row):not(.sub-row) { border-top: 0.5px solid var(--border); }
+    td.prop-label { padding: .5rem .875rem; font-weight: 500; color: var(--text-dark); white-space: nowrap; }
+    td.unit-label { padding: .5rem .5rem; color: var(--text-faint); font-size: 11px; white-space: nowrap; }
+    td.val-cell { padding: .5rem .875rem; text-align: center; color: var(--text-dark); font-weight: 500; white-space: nowrap; }
+    td.val-cell.sub { color: var(--text-faint); font-weight: 400; font-size: 12px; padding-top: 0; padding-bottom: .5rem; }
+    tr.sub-row { background: var(--bg); }
+    span.unc { font-size: 10px; color: var(--text-faint); font-weight: 400; margin-left: 2px; }
+    span.depth-tag { display: block; font-size: 9px; color: var(--text-faint); font-weight: 400; text-transform: uppercase; letter-spacing: .03em; margin-top: 1px; }
+    tr.sub-row span.depth-tag { color: #c7c0bd; }
+
+    .legend { display: flex; gap: 1.5rem; margin-top: .875rem; font-size: 11px; color: var(--text-faint); flex-wrap: wrap; }
+    .legend span { display: flex; align-items: center; gap: 5px; }
+
+    .api-box { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-top: 2rem; }
+    .api-box h3 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: .5rem; display: flex; align-items: center; gap: 8px; }
+    .api-box p { font-size: 12px; color: var(--text-soft); line-height: 1.7; }
+    .api-box code { background: var(--bg); padding: 1px 6px; border-radius: 4px; font-size: 11px; }
+
+    @media (max-width: 768px) {
+      .site-cards { grid-template-columns: 1fr; }
+      .table-wrap { overflow-x: auto; }
+      table { min-width: 700px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="../">
+    <div class="nav-logo">N</div>
+    <span class="nav-name">NAITRO</span>
+  </a>
+  <a class="nav-back" href="../how-naitro-works/"><i class="ti ti-arrow-left"></i> How NAITRO works</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><i class="ti ti-satellite"></i> Live API data</div>
+    <h1>iSDA Africa soil data —<br><strong>three South African sites, ground-truthed.</strong></h1>
+    <p class="hero-sub">Queried live from the iSDA Africa Soil Property Service (isda-africa.com) — a 30m-resolution machine-learning soil map trained on continental African field samples. ~30 properties returned per coordinate, each with depth-stratified values (0–20cm and 20–50cm) and 50/68/90% confidence interval uncertainty bounds.</p>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="caveat">
+    <i class="ti ti-alert-triangle"></i>
+    <div><strong>Coordinates are rough regional estimates, not the real farm boundaries.</strong> SA1 (Free State), SA2 (KwaZulu-Natal), and SA3 (Stellenbosch) coordinates were chosen to represent each region's general growing area for this prototype. Treat the values below as illustrative of the iSDA data shape and resolution — not as the verified soil profile of the actual NAITRO pilot farms. Swap in real farm coordinates to re-query instantly.</div>
+  </div>
+
+  <div class="site-cards">
+    <div class="site-card">
+      <div class="sc-id">SA1 · Bergvlei Grains</div>
+      <div class="sc-name">Free State</div>
+      <div class="sc-region">Maize / soya / sunflower — 1,240 ha</div>
+      <div class="sc-coord">-28.4541, 26.7968</div>
+    </div>
+    <div class="site-card">
+      <div class="sc-id">SA2 · Umfolozi Cane</div>
+      <div class="sc-name">KwaZulu-Natal</div>
+      <div class="sc-region">Sugarcane — 680 ha</div>
+      <div class="sc-coord">-28.3667, 32.0833</div>
+    </div>
+    <div class="site-card">
+      <div class="sc-id">SA3 · Kaapzicht Estate</div>
+      <div class="sc-name">Stellenbosch, Western Cape</div>
+      <div class="sc-region">Wine grapes + olives — 185 ha</div>
+      <div class="sc-coord">-33.9322, 18.8602</div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div>
+      <div class="toolbar-title">Full property table — all 3 sites, both depths</div>
+      <div class="toolbar-sub">22 core agronomic properties shown · land-cover/crop-cover time series (2015–2019) included in raw export only</div>
+    </div>
+    <div class="dl-links">
+      <a class="dl-link" href="../isda_soil_data.csv" download><i class="ti ti-table"></i> Full CSV (153 rows)</a>
+      <a class="dl-link" href="../isda_soil_pivot.csv" download><i class="ti ti-layout-grid"></i> Pivot CSV</a>
+      <a class="dl-link" href="../isda_soil_results.json" download><i class="ti ti-code"></i> Raw JSON</a>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Unit</th>
+          <th class="num">SA1 · Bergvlei</th>
+          <th class="num">SA2 · Umfolozi</th>
+          <th class="num">SA3 · Kaapzicht</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="cat-row"><td colspan="5">Chemical</td></tr>
+        <tr>
+          <td class="prop-label">pH</td>
+          <td class="unit-label"></td>
+          <td class="val-cell">6.8 <span class="unc">(6.6–7.0)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">6.3 <span class="unc">(6.2–6.4)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">6.8 <span class="unc">(6.7–6.9)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">6.9<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">6.3<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">6.9<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Nitrogen (total)</td>
+          <td class="unit-label">g/kg</td>
+          <td class="val-cell">0.9 <span class="unc">(0.8–1.0)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">1.2 <span class="unc">(1.1–1.3)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">1.2 <span class="unc">(1.1–1.3)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">0.6<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">0.9<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">0.9<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Aluminium (extractable)</td>
+          <td class="unit-label">ppm</td>
+          <td class="val-cell">11.2 <span class="unc">(1.8–52.7)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">72.7 <span class="unc">(31.8–164.6)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">23.5 <span class="unc">(7.9–66.5)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">11.2<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">65.7<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">23.5<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Calcium (extractable)</td>
+          <td class="unit-label">ppm</td>
+          <td class="val-cell">991.3 <span class="unc">(866.1–1134.6)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">811.4 <span class="unc">(758.4–868.1)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">491.7 <span class="unc">(306.3–789.1)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">991.3<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">811.4<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">444.9<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Magnesium (extractable)</td>
+          <td class="unit-label">ppm</td>
+          <td class="val-cell">297.9 <span class="unc">(243.1–364.9)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">297.9 <span class="unc">(260.2–341.0)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">199.3 <span class="unc">(132.7–299.3)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">364.0<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">297.9<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">199.3<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Potassium (extractable)</td>
+          <td class="unit-label">ppm</td>
+          <td class="val-cell">163.0 <span class="unc">(152.3–174.5)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">89.0 <span class="unc">(77.7–102.0)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">108.9 <span class="unc">(88.8–133.6)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">133.3<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">72.7<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">98.5<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Iron (extractable)</td>
+          <td class="unit-label">ppm</td>
+          <td class="val-cell">72.7 <span class="unc">(55.3–95.5)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">72.7 <span class="unc">(55.3–95.5)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">39.4 <span class="unc">(34.3–45.3)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">26.1<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">26.1<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">19.1<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Cation exchange capacity</td>
+          <td class="unit-label">cmol(+)/kg</td>
+          <td class="val-cell">11.2 <span class="unc">(10.4–12.0)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">15.4 <span class="unc">(14.4–16.6)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">8.0 <span class="unc">(5.9–10.8)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">11.2<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">15.4<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">8.0<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr class="cat-row"><td colspan="5">Nutrients</td></tr>
+        <tr>
+          <td class="prop-label">Phosphorus (extractable)</td>
+          <td class="unit-label">ppm</td>
+          <td class="val-cell">9.0 <span class="unc">(7.7–10.4)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">12.5 <span class="unc">(10.8–14.4)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">15.4 <span class="unc">(13.4–17.8)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">7.2<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">11.2<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">12.5<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Sulphur (extractable)</td>
+          <td class="unit-label">ppm</td>
+          <td class="val-cell">21.2 <span class="unc">(11.9–37.1)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">5.7 <span class="unc">(4.5–7.2)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">26.1 <span class="unc">(17.1–39.6)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">15.4<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">3.5<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">17.2<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Zinc (extractable)</td>
+          <td class="unit-label">ppm</td>
+          <td class="val-cell">1.5 <span class="unc">(1.1–1.8)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">2.7 <span class="unc">(2.2–3.2)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">2.0 <span class="unc">(1.8–2.2)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">1.2<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">2.3<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">1.5<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr class="cat-row"><td colspan="5">Carbon &amp; Organic Matter</td></tr>
+        <tr>
+          <td class="prop-label">Carbon (total)</td>
+          <td class="unit-label">g/kg</td>
+          <td class="val-cell">12.5 <span class="unc">(11.6–13.4)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">29.0 <span class="unc">(20.4–41.0)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">21.2 <span class="unc">(14.8–30.1)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">11.2<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">21.2<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">19.1<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Carbon (organic)</td>
+          <td class="unit-label">g/kg</td>
+          <td class="val-cell">7.2 <span class="unc">(6.1–8.3)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">13.9 <span class="unc">(12.0–16.0)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">7.2 <span class="unc">(6.1–8.3)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">4.5<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">8.0<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">4.5<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr class="cat-row"><td colspan="5">Physical</td></tr>
+        <tr>
+          <td class="prop-label">Texture class</td>
+          <td class="unit-label"></td>
+          <td class="val-cell">Sandy Clay Loam <span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">Sandy Clay Loam <span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">Sandy Clay Loam <span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">Sandy Clay Loam<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">Sandy Clay Loam<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">Sandy Clay Loam<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Sand content</td>
+          <td class="unit-label">%</td>
+          <td class="val-cell">56 <span class="unc">(52.0–60.0)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">42 <span class="unc">(40.0–44.0)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">49 <span class="unc">(44.3–53.7)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">53<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">39<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">48<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Silt content</td>
+          <td class="unit-label">%</td>
+          <td class="val-cell">14 <span class="unc">(12.0–16.0)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">18 <span class="unc">(16.7–19.3)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">22 <span class="unc">(18.6–25.4)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">13<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">18<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">21<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Clay content</td>
+          <td class="unit-label">%</td>
+          <td class="val-cell">24 <span class="unc">(22.7–25.3)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">27 <span class="unc">(25.0–29.0)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">25 <span class="unc">(21.6–28.4)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">30<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">31<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">29<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Bulk density</td>
+          <td class="unit-label">g/cm³</td>
+          <td class="val-cell">1.5 <span class="unc">(1.5–1.5)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">1.3 <span class="unc">(1.3–1.3)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">1.4 <span class="unc">(1.3–1.4)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">1.5<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">1.3<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">1.4<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Stone content</td>
+          <td class="unit-label">%</td>
+          <td class="val-cell">2.7 <span class="unc">(2.0–3.5)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">1.2 <span class="unc">(0.9–1.5)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">2.7 <span class="unc">(1.8–3.8)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">2.7<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">1.2<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">3.1<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Bedrock depth</td>
+          <td class="unit-label">cm</td>
+          <td class="val-cell">200 <span class="unc">(187.0–213.0)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">200 <span class="unc">(189.0–211.0)</span><span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">194 <span class="unc">(180.0–208.0)</span><span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">200<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">200<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">194<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Slope angle</td>
+          <td class="unit-label">°</td>
+          <td class="val-cell">1.4 <span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">10.0 <span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">2.2 <span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">1.4<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">10.0<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">2.2<span class="depth-tag">20–50cm</span></td>
+        </tr>
+        <tr>
+          <td class="prop-label">Fertility capability class</td>
+          <td class="unit-label"></td>
+          <td class="val-cell">No constraints <span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">Low K <span class="depth-tag">0–20cm</span></td>
+          <td class="val-cell">No constraints <span class="depth-tag">0–20cm</span></td>
+        </tr>
+        <tr class="sub-row">
+          <td></td><td></td>
+          <td class="val-cell sub">No constraints<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">Low K<span class="depth-tag">20–50cm</span></td>
+          <td class="val-cell sub">No constraints<span class="depth-tag">20–50cm</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="legend">
+    <span><i class="ti ti-circle-filled" style="font-size:8px;color:var(--text-dark)"></i> Bold value = 0–20cm depth (primary row)</span>
+    <span><i class="ti ti-circle-filled" style="font-size:8px;color:var(--text-faint)"></i> Muted value = 20–50cm depth (sub-row)</span>
+    <span>(x–y) = 50% confidence interval bounds</span>
+  </div>
+
+  <div class="api-box">
+    <h3><i class="ti ti-api"></i> About the iSDA Africa Soil Property Service</h3>
+    <p>iSDA (innovative Solutions for Decision Agriculture) operates a continent-wide soil property API at <code>isda-africa.com/api/registration/</code>, built on machine-learning predictions trained against thousands of georeferenced African soil samples. Resolution is 30m × 30m. Each query returns point predictions plus uncertainty bounds — making it usable as a rapid baseline layer before physical soil sampling, or as a sense-check against lab results once they arrive. NAITRO's OBI scoring engine can ingest iSDA values directly for the Chemical and Physical domains (pH, P, K, CEC, texture), while Biological domain indicators (BNF rate, microbial biomass, mycorrhizal colonisation) still require field sampling or grower-reported data — iSDA does not measure soil biology.</p>
+  </div>
+
+</div>
+</body>
+</html>
