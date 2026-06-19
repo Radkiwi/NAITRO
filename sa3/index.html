@@ -55,7 +55,7 @@
     .ov-grid{display:grid;grid-template-columns:240px 1fr;gap:1rem;margin-bottom:1rem}
     .gauge-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.125rem;display:flex;flex-direction:column;align-items:center}
     .gc-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);margin-bottom:.625rem}
-    .gauge-wrap{position:relative;width:220px;height:140px}
+    .gauge-wrap{position:relative;width:240px;height:168px}
     .gauge-score-box{position:absolute;bottom:0;left:50%;transform:translateX(-50%);text-align:center}
     .g-num{font-size:32px;font-weight:500;color:var(--color-text-primary);line-height:1}
     .g-den{font-size:12px;color:var(--color-text-secondary)}
@@ -176,32 +176,32 @@
         <div class="gauge-card">
           <div class="gc-label">Soil health score</div>
           <div class="gauge-wrap">
-            <svg viewBox="0 0 220 140" width="220" height="140" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 240 168" width="240" height="168" xmlns="http://www.w3.org/2000/svg">
               <!-- Background track -->
-              <path d="M28,100 A82,82 0 0,1 192,100" fill="none" stroke="#e7e5e4" stroke-width="16" stroke-linecap="butt"/>
-              <!-- Poor zone: 0–30 (red) -->
-              <path d="M28,100 A82,82 0 0,1 62,34" fill="none" stroke="#C0392B" stroke-width="16" stroke-linecap="butt"/>
-              <!-- Average zone: 31–60 (amber) -->
-              <path d="M62,34 A82,82 0 0,1 135,22" fill="none" stroke="#E07B18" stroke-width="16" stroke-linecap="butt"/>
-              <!-- Optimal zone: 61–100 (green) -->
-              <path d="M135,22 A82,82 0 0,1 192,100" fill="none" stroke="#1D9E75" stroke-width="16" stroke-linecap="butt"/>
-              <!-- Divider ticks -->
-              <line x1="59" y1="36" x2="65" y2="32" stroke="white" stroke-width="2.5"/>
-              <line x1="132" y1="24" x2="138" y2="20" stroke="white" stroke-width="2.5"/>
-              <!-- Zone labels -->
-              <text x="22" y="118" font-size="10" font-weight="500" fill="#C0392B" font-family="Inter,sans-serif" text-anchor="middle">Poor</text>
-              <text x="22" y="129" font-size="9" fill="#c4b5b2" font-family="Inter,sans-serif" text-anchor="middle">0–30</text>
-              <text x="110" y="12" font-size="10" font-weight="500" fill="#E07B18" font-family="Inter,sans-serif" text-anchor="middle">Average</text>
-              <text x="110" y="23" font-size="9" fill="#c4b5b2" font-family="Inter,sans-serif" text-anchor="middle">31–60</text>
-              <text x="198" y="118" font-size="10" font-weight="500" fill="#1D9E75" font-family="Inter,sans-serif" text-anchor="middle">Optimal</text>
-              <text x="198" y="129" font-size="9" fill="#c4b5b2" font-family="Inter,sans-serif" text-anchor="middle">61–100</text>
+              <path d="M32,100 A88,88 0 0,1 208,100" fill="none" stroke="#e7e5e4" stroke-width="18" stroke-linecap="butt"/>
+              <!-- Poor zone 0–30 -->
+              <path d="M32,100 A88,88 0 0,1 68,29" fill="none" stroke="#C0392B" stroke-width="18" stroke-linecap="butt"/>
+              <!-- Average zone 31–60 -->
+              <path d="M68,29 A88,88 0 0,1 147,16" fill="none" stroke="#E07B18" stroke-width="18" stroke-linecap="butt"/>
+              <!-- Optimal zone 61–100 -->
+              <path d="M147,16 A88,88 0 0,1 208,100" fill="none" stroke="#1D9E75" stroke-width="18" stroke-linecap="butt"/>
+              <!-- Zone dividers -->
+              <line x1="63" y1="32" x2="73" y2="26" stroke="white" stroke-width="3"/>
+              <line x1="143" y1="19" x2="151" y2="13" stroke="white" stroke-width="3"/>
+              <!-- Zone labels — outside arc, no overlap -->
+              <text x="18" y="110" font-size="11" font-weight="600" fill="#C0392B" font-family="Inter,sans-serif" text-anchor="middle">Poor</text>
+              <text x="18" y="122" font-size="9" fill="#bfb8b5" font-family="Inter,sans-serif" text-anchor="middle">0–30</text>
+              <text x="120" y="8" font-size="11" font-weight="600" fill="#E07B18" font-family="Inter,sans-serif" text-anchor="middle">Average</text>
+              <text x="120" y="19" font-size="9" fill="#bfb8b5" font-family="Inter,sans-serif" text-anchor="middle">31–60</text>
+              <text x="222" y="110" font-size="11" font-weight="600" fill="#1D9E75" font-family="Inter,sans-serif" text-anchor="middle">Optimal</text>
+              <text x="222" y="122" font-size="9" fill="#bfb8b5" font-family="Inter,sans-serif" text-anchor="middle">61–100</text>
               <!-- Needle -->
-              <line x1="110" y1="100" x2="153" y2="45" stroke="#1c1917" stroke-width="2.5" stroke-linecap="round"/>
-              <circle cx="110" cy="100" r="6" fill="#1c1917"/>
-              <circle cx="110" cy="100" r="2.5" fill="#fafaf9"/>
-              <!-- Score -->
-              <text x="110" y="130" font-size="36" font-weight="500" fill="#1c1917" font-family="Inter,sans-serif" text-anchor="middle">71</text>
-              <text x="110" y="141" font-size="11" fill="#78716c" font-family="Inter,sans-serif" text-anchor="middle">/ 100</text>
+              <line x1="120" y1="100" x2="166" y2="41" stroke="#1c1917" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="120" cy="100" r="6" fill="#1c1917"/>
+              <circle cx="120" cy="100" r="2.5" fill="#fafaf9"/>
+              <!-- Score — well below pivot, no overlap -->
+              <text x="120" y="145" font-size="38" font-weight="500" fill="#1c1917" font-family="Inter,sans-serif" text-anchor="middle">71</text>
+              <text x="120" y="160" font-size="12" fill="#78716c" font-family="Inter,sans-serif" text-anchor="middle">/ 100</text>
             </svg>
               <div class="g-den">/100</div>
             </div>
@@ -344,25 +344,33 @@
       <div class="twin-grid">
         <div class="io-panel" id="inp-panel"><div class="io-label" style="color:#6B2D8B"><i class="ti ti-arrow-right"></i> inputs</div></div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem">
-          <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="100,8 192,58 192,142 100,192 8,142 8,58" fill="#6B4A7A" opacity=".75"/>
-            <polygon points="100,8 192,58 100,108 8,58" fill="#8A608A" opacity=".9"/>
-            <polygon points="8,58 100,108 100,192 8,142" fill="#4A3058" opacity=".85"/>
-            <polygon points="192,58 100,108 100,192 192,142" fill="#583868" opacity=".85"/>
-            <polygon points="100,8 192,58 100,108 8,58" fill="none" stroke="#3A1848" stroke-width="1.5"/>
-            <polygon points="8,58 100,108 100,192 8,142" fill="none" stroke="#3A1848" stroke-width="1.5"/>
-            <polygon points="192,58 100,108 100,192 192,142" fill="none" stroke="#3A1848" stroke-width="1.5"/>
-            <line x1="8" y1="142" x2="192" y2="142" stroke="#3A1848" stroke-width="1.5"/>
-            <polyline points="92,108 88,128 82,148 78,168" fill="none" stroke="#8B6B2E" stroke-width="2.5" opacity=".8"/>
-            <polyline points="92,108 76,120 68,138 64,158" fill="none" stroke="#8B6B2E" stroke-width="1.5" opacity=".5"/>
-            <polyline points="92,108 108,122 114,140 112,162" fill="none" stroke="#8B6B2E" stroke-width="1.5" opacity=".5"/>
-            <circle cx="82" cy="122" r="3" fill="#6B2D8B" opacity=".5"/>
-            <circle cx="74" cy="135" r="2.5" fill="#6B2D8B" opacity=".4"/>
-            <circle cx="96" cy="118" r="2.5" fill="#6B2D8B" opacity=".4"/>
-            <ellipse cx="92" cy="106" rx="12" ry="5" fill="#7A3D7A" opacity=".8"/>
-            <text id="tw-score" x="100" y="138" text-anchor="middle" font-size="20" font-weight="500" fill="#FFF" opacity=".9">--</text>
-            <text x="100" y="151" text-anchor="middle" font-size="8" fill="#FFF" opacity=".6">health score</text>
-          </svg>
+          <svg viewBox="0 0 240 168" width="240" height="168" xmlns="http://www.w3.org/2000/svg">
+              <!-- Background track -->
+              <path d="M32,100 A88,88 0 0,1 208,100" fill="none" stroke="#e7e5e4" stroke-width="18" stroke-linecap="butt"/>
+              <!-- Poor zone 0–30 -->
+              <path d="M32,100 A88,88 0 0,1 68,29" fill="none" stroke="#C0392B" stroke-width="18" stroke-linecap="butt"/>
+              <!-- Average zone 31–60 -->
+              <path d="M68,29 A88,88 0 0,1 147,16" fill="none" stroke="#E07B18" stroke-width="18" stroke-linecap="butt"/>
+              <!-- Optimal zone 61–100 -->
+              <path d="M147,16 A88,88 0 0,1 208,100" fill="none" stroke="#1D9E75" stroke-width="18" stroke-linecap="butt"/>
+              <!-- Zone dividers -->
+              <line x1="63" y1="32" x2="73" y2="26" stroke="white" stroke-width="3"/>
+              <line x1="143" y1="19" x2="151" y2="13" stroke="white" stroke-width="3"/>
+              <!-- Zone labels — outside arc, no overlap -->
+              <text x="18" y="110" font-size="11" font-weight="600" fill="#C0392B" font-family="Inter,sans-serif" text-anchor="middle">Poor</text>
+              <text x="18" y="122" font-size="9" fill="#bfb8b5" font-family="Inter,sans-serif" text-anchor="middle">0–30</text>
+              <text x="120" y="8" font-size="11" font-weight="600" fill="#E07B18" font-family="Inter,sans-serif" text-anchor="middle">Average</text>
+              <text x="120" y="19" font-size="9" fill="#bfb8b5" font-family="Inter,sans-serif" text-anchor="middle">31–60</text>
+              <text x="222" y="110" font-size="11" font-weight="600" fill="#1D9E75" font-family="Inter,sans-serif" text-anchor="middle">Optimal</text>
+              <text x="222" y="122" font-size="9" fill="#bfb8b5" font-family="Inter,sans-serif" text-anchor="middle">61–100</text>
+              <!-- Needle -->
+              <line x1="120" y1="100" x2="166" y2="41" stroke="#1c1917" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="120" cy="100" r="6" fill="#1c1917"/>
+              <circle cx="120" cy="100" r="2.5" fill="#fafaf9"/>
+              <!-- Score — well below pivot, no overlap -->
+              <text x="120" y="145" font-size="38" font-weight="500" fill="#1c1917" font-family="Inter,sans-serif" text-anchor="middle">71</text>
+              <text x="120" y="160" font-size="12" fill="#78716c" font-family="Inter,sans-serif" text-anchor="middle">/ 100</text>
+            </svg>
           <div class="lbars" id="lbars"></div>
         </div>
         <div class="io-panel" id="out-panel"><div class="io-label" style="color:#185FA5"><i class="ti ti-arrow-right"></i> outputs</div></div>
