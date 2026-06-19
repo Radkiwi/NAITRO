@@ -15,10 +15,11 @@
       --green-pale: #E1F5EE;
       --blue-deep: #0C447C;
       --blue-mid: #185FA5;
-      --blue-light: #85B7EB;
       --blue-pale: #E6F1FB;
-      --amber: #EF9F27;
+      --amber: #E07B18;
       --amber-pale: #FAEEDA;
+      --red: #C0392B;
+      --red-pale: #FCEBEB;
       --purple: #534AB7;
       --purple-pale: #EEEDFE;
       --text-dark: #1c1917;
@@ -36,14 +37,7 @@
     body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text-dark); line-height: 1.6; }
 
     /* ── NAV ── */
-    nav {
-      background: rgba(15,61,46,0.97);
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      height: 56px;
-      border-bottom: 0.5px solid rgba(255,255,255,0.08);
-    }
+    nav { background: rgba(15,61,46,0.97); padding: 0 2rem; display: flex; align-items: center; height: 56px; border-bottom: 0.5px solid rgba(255,255,255,0.08); position: sticky; top: 0; z-index: 100; }
     .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-logo { width: 30px; height: 30px; background: var(--green-mid); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #fff; }
     .nav-name { font-size: 15px; font-weight: 500; color: #fff; }
@@ -52,35 +46,141 @@
 
     /* ── HERO ── */
     .hero { background: linear-gradient(160deg, #0A2E20 0%, #0F3D2E 60%, #0a3040 100%); padding: 4rem 2rem 3.5rem; }
-    .hero-inner { max-width: 780px; margin: 0 auto; }
+    .hero-inner { max-width: 820px; margin: 0 auto; }
     .hero-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; color: var(--green-light); background: rgba(93,202,165,0.12); border: 0.5px solid rgba(93,202,165,0.3); padding: 4px 12px; border-radius: 99px; margin-bottom: 1.25rem; letter-spacing: .05em; text-transform: uppercase; }
     .hero h1 { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 300; color: #fff; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: .875rem; }
     .hero h1 strong { font-weight: 600; color: var(--green-light); }
-    .hero-sub { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 560px; }
+    .hero-sub { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 620px; margin-bottom: 2rem; }
+    .hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+    .hs-num { font-size: 28px; font-weight: 500; color: #fff; line-height: 1; }
+    .hs-label { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 4px; }
 
-    /* ── FLOW STRIP ── */
-    .flow-strip { background: var(--white); border-bottom: 0.5px solid var(--border); padding: 0 2rem; display: flex; justify-content: center; }
-    .flow-inner { display: flex; align-items: center; gap: 0; padding: .75rem 0; }
-    .fl-step { display: flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 99px; font-size: 12px; font-weight: 500; cursor: pointer; transition: all .15s; }
-    .fl-step:hover { opacity: .85; }
-    .fl1 { background: var(--green-pale); color: #085041; }
-    .fl2 { background: var(--blue-pale); color: var(--blue-deep); }
-    .fl3 { background: var(--amber-pale); color: #7A4A08; }
-    .fl4 { background: var(--purple-pale); color: #3C3489; }
-    .fl-arrow { font-size: 14px; color: var(--text-faint); margin: 0 6px; }
+    /* ── TOC STRIP ── */
+    .toc-strip { background: var(--white); border-bottom: 0.5px solid var(--border); padding: 0 2rem; display: flex; justify-content: center; overflow-x: auto; }
+    .toc-inner { display: flex; align-items: center; gap: 0; padding: .625rem 0; white-space: nowrap; }
+    .toc-step { display: flex; align-items: center; gap: 7px; padding: 5px 14px; border-radius: 99px; font-size: 12px; font-weight: 500; cursor: pointer; transition: all .15s; text-decoration: none; color: var(--text-soft); }
+    .toc-step:hover { background: var(--bg); color: var(--text-dark); }
+    .toc-nue { color: #7A2020; background: #FDF0F0; }
+    .toc-4r  { color: #085041; background: var(--green-pale); }
+    .toc-l1  { color: #085041; background: var(--green-pale); }
+    .toc-l2  { color: var(--blue-deep); background: var(--blue-pale); }
+    .toc-l3  { color: #7A4A08; background: var(--amber-pale); }
+    .toc-l4  { color: #3C3489; background: var(--purple-pale); }
+    .toc-arrow { font-size: 12px; color: var(--text-faint); margin: 0 4px; }
 
-    /* ── MAIN CONTENT ── */
-    .main { max-width: 960px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    /* ── MAIN ── */
+    .main { max-width: 980px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+    /* ── SECTION HEADER ── */
+    .sec-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; padding: 3px 10px; border-radius: 99px; margin-bottom: .75rem; }
+    .tag-red    { background: var(--red-pale); color: #7A2020; }
+    .tag-green  { background: var(--green-pale); color: #085041; }
+    .tag-blue   { background: var(--blue-pale); color: var(--blue-deep); }
+    .tag-amber  { background: var(--amber-pale); color: #7A4A08; }
+    .tag-purple { background: var(--purple-pale); color: #3C3489; }
+    .sec-title { font-size: 22px; font-weight: 500; color: var(--text-dark); letter-spacing: -0.015em; margin-bottom: .5rem; }
+    .sec-body { font-size: 14px; color: var(--text-soft); line-height: 1.8; max-width: 720px; margin-bottom: 1.25rem; }
+    .sec-body strong { color: var(--text-dark); font-weight: 500; }
+    .sec-divider { border: none; border-top: 0.5px solid var(--border); margin: 3.5rem 0; }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote { border-left: 3px solid var(--green-mid); padding: .875rem 1.25rem; margin: 1.25rem 0; }
+    .pull-quote p { font-size: 15px; font-style: italic; color: var(--text-mid); line-height: 1.7; }
+    .pull-quote cite { font-size: 11px; color: var(--text-faint); margin-top: 6px; display: block; font-style: normal; }
+
+    /* ── NUE EQUATION ── */
+    .eq-box { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.75rem 2rem; margin: 1.5rem 0; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+    .eq-part { text-align: center; }
+    .eq-label { font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-faint); margin-bottom: .375rem; }
+    .eq-val { font-size: 20px; font-weight: 500; color: var(--text-dark); }
+    .eq-sub { font-size: 11px; color: var(--text-soft); margin-top: 3px; }
+    .eq-op { font-size: 28px; color: var(--text-faint); font-weight: 300; }
+    .eq-result { background: var(--green-pale); border-radius: 10px; padding: .75rem 1.5rem; text-align: center; }
+    .eq-result .eq-val { color: #085041; }
+    .eq-note { flex: 1; min-width: 220px; font-size: 13px; color: var(--text-soft); line-height: 1.7; border-left: 2px solid var(--border); padding-left: 1.5rem; }
+    .eq-note strong { color: var(--text-dark); font-weight: 500; }
+
+    /* ── NUE PROGRESS ── */
+    .nue-progress { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin: 1rem 0; }
+    .np-label { font-size: 12px; font-weight: 500; color: var(--text-mid); margin-bottom: .875rem; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .25rem; }
+    .np-label span { font-size: 11px; color: var(--text-faint); font-weight: 400; }
+    .np-track { height: 32px; background: #f1f0ef; border-radius: 8px; position: relative; }
+    .np-fill { height: 100%; border-radius: 8px 0 0 8px; background: linear-gradient(90deg, #C0392B 0%, #E07B18 50%, #1D9E75 100%); display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; }
+    .np-fill-label { font-size: 12px; font-weight: 600; color: #fff; }
+    .np-target { position: absolute; right: 29%; top: -6px; bottom: -6px; width: 2px; background: var(--green-deep); border-radius: 1px; }
+    .np-target-label { position: absolute; top: -22px; left: 50%; transform: translateX(-50%); font-size: 10px; color: var(--green-deep); font-weight: 600; white-space: nowrap; }
+    .np-bands { display: flex; justify-content: space-between; margin-top: .625rem; font-size: 10px; }
+
+    /* ── LOSS GRID ── */
+    .loss-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; margin: 1.25rem 0; }
+    .loss-card { border-radius: var(--radius); padding: 1rem 1.125rem; }
+    .lc-air   { background: #FDF0F0; border: 0.5px solid #FCCACA; }
+    .lc-water { background: #E6F1FB; border: 0.5px solid #B5D4F4; }
+    .lc-soil  { background: var(--amber-pale); border: 0.5px solid #FAC775; }
+    .lc-crop  { background: var(--green-pale); border: 0.5px solid #9FE1CB; }
+    .loss-icon { font-size: 18px; margin-bottom: 6px; }
+    .loss-title { font-size: 12px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; }
+    .loss-desc { font-size: 11px; color: var(--text-soft); line-height: 1.6; }
+    .loss-pct { font-size: 20px; font-weight: 500; margin-top: .5rem; }
+
+    /* ── 4R GRID ── */
+    .four-r-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .875rem; margin: 1.25rem 0; }
+    .r-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.25rem; position: relative; overflow: hidden; }
+    .r-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .r1::before { background: var(--green-mid); }
+    .r2::before { background: var(--blue-mid); }
+    .r3::before { background: var(--amber); }
+    .r4::before { background: var(--purple); }
+    .r-num { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 4px; }
+    .r1 .r-num { color: var(--green-mid); } .r2 .r-num { color: var(--blue-mid); } .r3 .r-num { color: var(--amber); } .r4 .r-num { color: var(--purple); }
+    .r-title { font-size: 15px; font-weight: 500; color: var(--text-dark); margin-bottom: .5rem; }
+    .r-body { font-size: 12px; color: var(--text-soft); line-height: 1.7; margin-bottom: .75rem; }
+    .r-how { font-size: 11px; padding: .5rem .75rem; border-radius: 6px; line-height: 1.6; }
+    .r1 .r-how { background: var(--green-pale); color: #085041; }
+    .r2 .r-how { background: var(--blue-pale); color: var(--blue-deep); }
+    .r3 .r-how { background: var(--amber-pale); color: #7A4A08; }
+    .r4 .r-how { background: var(--purple-pale); color: #3C3489; }
+    .r-how-label { font-weight: 600; display: block; margin-bottom: 2px; }
+
+    /* ── EMISSION BOX ── */
+    .emission-box { background: linear-gradient(135deg, #0A2E20 0%, #0C3A2C 100%); border-radius: var(--radius); padding: 2rem; margin: 1.25rem 0; }
+    .em-title { font-size: 16px; font-weight: 500; color: #fff; margin-bottom: .375rem; }
+    .em-sub { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 1.5rem; }
+    .em-bars { display: flex; flex-direction: column; gap: .75rem; }
+    .em-row { display: flex; align-items: center; gap: 1rem; }
+    .em-label { font-size: 11px; color: rgba(255,255,255,0.55); width: 180px; flex-shrink: 0; }
+    .em-track { flex: 1; height: 22px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
+    .em-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 10px; font-weight: 500; color: #fff; white-space: nowrap; overflow: hidden; }
+    .ef-red   { background: rgba(192,57,43,0.75); }
+    .ef-amber { background: rgba(224,123,24,0.65); }
+    .ef-green { background: rgba(29,158,117,0.75); }
+    .em-val { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.7); width: 50px; text-align: right; flex-shrink: 0; }
+    .em-source { font-size: 10px; color: rgba(255,255,255,0.22); margin-top: 1rem; }
+
+    /* ── TWO COL ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0; }
+
+    /* ── DETAIL CARD ── */
+    .detail-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.125rem 1.25rem; }
+    .dc-label { font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-faint); margin-bottom: .5rem; }
+    .dc-title { font-size: 14px; font-weight: 500; color: var(--text-dark); margin-bottom: .5rem; }
+    .dc-body { font-size: 13px; color: var(--text-soft); line-height: 1.7; }
+    .dc-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: .75rem; }
+    .dc-pill { font-size: 11px; padding: 3px 9px; border-radius: 99px; border: 0.5px solid; }
+    .p-green  { background: #9FE1CB; color: #04342C; border-color: var(--green-light); }
+    .p-blue   { background: #B5D4F4; color: #042C53; border-color: #85B7EB; }
+    .p-amber  { background: #FAC775; color: #412402; border-color: var(--amber); }
+    .p-purple { background: #CECBF6; color: #26215C; border-color: #AFA9EC; }
+    .p-red    { background: #FCCACA; color: #7A2020; border-color: #F87171; }
 
     /* ── LAYER SECTIONS ── */
-    .layer-section { margin-bottom: 4rem; scroll-margin-top: 80px; }
+    .layer-section { scroll-margin-top: 80px; }
     .layer-head { display: flex; align-items: flex-start; gap: 1.25rem; margin-bottom: 1.5rem; }
     .layer-ico { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
     .l1 .layer-ico { background: var(--green-pale); color: #085041; }
     .l2 .layer-ico { background: var(--blue-pale); color: var(--blue-deep); }
     .l3 .layer-ico { background: var(--amber-pale); color: #7A4A08; }
     .l4 .layer-ico { background: var(--purple-pale); color: #3C3489; }
-    .layer-head-text {}
     .layer-num { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
     .l1 .layer-num { color: #085041; } .l2 .layer-num { color: var(--blue-deep); } .l3 .layer-num { color: #7A4A08; } .l4 .layer-num { color: #3C3489; }
     .layer-title { font-size: 22px; font-weight: 500; color: var(--text-dark); letter-spacing: -0.015em; margin-bottom: .375rem; }
@@ -91,79 +191,54 @@
     .l3 .layer-divider { background: linear-gradient(90deg, var(--amber), transparent); }
     .l4 .layer-divider { background: linear-gradient(90deg, var(--purple), transparent); }
 
-    /* ── DETAIL GRID ── */
-    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; }
-    .detail-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.125rem 1.25rem; }
-    .dc-label { font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-faint); margin-bottom: .5rem; }
-    .dc-title { font-size: 14px; font-weight: 500; color: var(--text-dark); margin-bottom: .5rem; }
-    .dc-body { font-size: 13px; color: var(--text-soft); line-height: 1.7; }
-    .dc-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: .75rem; }
-    .dc-pill { font-size: 11px; padding: 3px 9px; border-radius: 99px; border: 0.5px solid; }
-    .p-green { background: #9FE1CB; color: #04342C; border-color: var(--green-light); }
-    .p-blue { background: #B5D4F4; color: #042C53; border-color: var(--blue-light); }
-    .p-amber { background: #FAC775; color: #412402; border-color: var(--amber); }
-    .p-purple { background: #CECBF6; color: #26215C; border-color: #AFA9EC; }
-
-    /* ── INDICATOR GRID (OBI) ── */
-    .indicator-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; margin-bottom: 1.25rem; }
+    /* ── INDICATOR GRID ── */
+    .indicator-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; margin: 1.25rem 0; }
     .ind-group { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1rem 1.125rem; }
-    .ind-group-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #085041; margin-bottom: .625rem; display: flex; align-items: center; gap: 5px; }
-    .ind-group-label.blue { color: var(--blue-deep); }
-    .ind-group-label.amber { color: #7A4A08; }
-    .ind-group-label.purple { color: #3C3489; }
+    .ind-group-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-bottom: .625rem; display: flex; align-items: center; gap: 5px; }
+    .igl-green  { color: #085041; } .igl-blue { color: var(--blue-deep); } .igl-amber { color: #7A4A08; } .igl-purple { color: #3C3489; }
     .ind-item { font-size: 12px; color: var(--text-mid); padding: 3px 0; border-bottom: 0.5px solid var(--border); display: flex; align-items: center; gap: 6px; }
     .ind-item:last-child { border-bottom: none; }
     .ind-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
-    .dot-green { background: var(--green-mid); }
-    .dot-blue { background: var(--blue-mid); }
-    .dot-amber { background: var(--amber); }
-    .dot-purple { background: var(--purple); }
+    .dot-green { background: var(--green-mid); } .dot-blue { background: var(--blue-mid); } .dot-amber { background: var(--amber); } .dot-purple { background: var(--purple); }
+
+    /* ── SCIENCE BOX ── */
+    .sci-box { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin: 1rem 0; }
+    .sci-box h3 { font-size: 14px; font-weight: 500; color: var(--text-dark); margin-bottom: .625rem; display: flex; align-items: center; gap: 8px; }
+    .sci-box p { font-size: 13px; color: var(--text-soft); line-height: 1.75; }
+    .sci-box p + p { margin-top: .75rem; }
+    .sci-box strong { color: var(--text-dark); font-weight: 500; }
+
+    /* ── PRIMING BOX ── */
+    .priming-box { background: #FDF0F0; border: 0.5px solid #FCCACA; border-radius: var(--radius); padding: 1.5rem; margin: 1rem 0; }
+    .priming-box h3 { font-size: 14px; font-weight: 600; color: #7A2020; margin-bottom: .5rem; display: flex; align-items: center; gap: 8px; }
+    .priming-box p { font-size: 13px; color: #7A2020; line-height: 1.7; }
 
     /* ── HUIGE GRID ── */
-    .huige-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem; margin-bottom: 1.25rem; }
+    .huige-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem; margin: 1.25rem 0; }
     .huige-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: .875rem 1rem; text-align: center; }
     .hc-letter { font-size: 28px; font-weight: 600; margin-bottom: 4px; }
     .hc-name { font-size: 11px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; }
-    .hc-who { font-size: 11px; color: var(--text-soft); line-height: 1.5; }
-    .hc-outputs { display: flex; flex-direction: column; gap: 4px; margin-top: .625rem; }
-    .hc-output { font-size: 10px; background: var(--bg); border: 0.5px solid var(--border); border-radius: 4px; padding: 3px 7px; color: var(--text-soft); text-align: left; }
+    .hc-who { font-size: 11px; color: var(--text-soft); line-height: 1.4; margin-bottom: .5rem; }
+    .hc-output { font-size: 10px; background: var(--bg); border: 0.5px solid var(--border); border-radius: 4px; padding: 3px 7px; color: var(--text-soft); text-align: left; margin-top: 4px; }
 
-    /* ── PRIMING EXPLAINER ── */
-    .priming-box { background: #FCEBEB; border: 0.5px solid #FCA5A5; border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.25rem; }
-    .priming-box h3 { font-size: 15px; font-weight: 600; color: #A32D2D; margin-bottom: .5rem; display: flex; align-items: center; gap: 8px; }
-    .priming-box p { font-size: 13px; color: #7A2020; line-height: 1.7; }
+    /* ── CITE ── */
+    .cite { font-size: 10px; color: var(--text-faint); margin-top: .625rem; display: flex; align-items: flex-start; gap: 5px; line-height: 1.5; }
+    .cite a { color: var(--text-faint); text-decoration: underline; }
 
-    /* ── FARM CONTEXT CARDS ── */
-    .context-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; margin-bottom: 1.25rem; }
-    .ctx-card { border: 0.5px solid var(--border); border-radius: var(--radius); padding: .875rem 1rem; background: var(--white); text-decoration: none; display: block; transition: all .15s; }
-    .ctx-card:hover { border-color: var(--green-mid); transform: translateY(-1px); }
-    .ctx-flag { font-size: 20px; margin-bottom: .375rem; }
-    .ctx-name { font-size: 12px; font-weight: 500; color: var(--text-dark); }
-    .ctx-loc { font-size: 11px; color: var(--text-faint); margin-top: 2px; }
-    .ctx-note { font-size: 11px; color: var(--text-soft); margin-top: .5rem; line-height: 1.5; }
-
-    /* ── SCIENCE BOX ── */
-    .science-box { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1rem; }
-    .science-box h3 { font-size: 15px; font-weight: 500; color: var(--text-dark); margin-bottom: .625rem; display: flex; align-items: center; gap: 8px; }
-    .science-box p { font-size: 13px; color: var(--text-soft); line-height: 1.75; }
-    .science-box p + p { margin-top: .75rem; }
-
-    /* ── SECTION DIVIDER ── */
-    .section-divider { border: none; border-top: 0.5px solid var(--border); margin: 3.5rem 0; }
-
-    /* ── BOTTOM FARMS NAV ── */
-    .farms-nav { background: var(--green-deep); border-radius: var(--radius); padding: 2rem; display: grid; grid-template-columns: 1fr repeat(4, auto); gap: 1rem; align-items: center; }
+    /* ── FARMS NAV ── */
+    .farms-nav { background: var(--green-deep); border-radius: var(--radius); padding: 2rem; display: grid; grid-template-columns: 1fr repeat(4, auto); gap: 1rem; align-items: center; margin-top: 3rem; }
     .fn-label { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); }
     .fn-link { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); border: 0.5px solid rgba(255,255,255,0.15); border-radius: 8px; padding: .625rem 1rem; text-decoration: none; transition: all .15s; }
-    .fn-link:hover { background: rgba(255,255,255,0.14); }
+    .fn-link:hover { background: rgba(255,255,255,0.15); }
     .fn-link-flag { font-size: 16px; }
-    .fn-link-text { font-size: 12px; }
-    .fn-link-id { font-weight: 500; color: #fff; display: block; }
-    .fn-link-name { color: rgba(255,255,255,0.45); display: block; font-size: 10px; margin-top: 1px; }
+    .fn-link-id { font-weight: 500; color: #fff; display: block; font-size: 12px; }
+    .fn-link-name { color: rgba(255,255,255,0.4); display: block; font-size: 10px; margin-top: 1px; }
 
     @media (max-width: 768px) {
-      .detail-grid, .indicator-grid, .huige-grid, .context-grid { grid-template-columns: 1fr 1fr; }
+      .four-r-grid, .indicator-grid, .loss-grid, .huige-grid { grid-template-columns: 1fr 1fr; }
       .farms-nav { grid-template-columns: 1fr 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.25rem; }
     }
   </style>
 </head>
@@ -177,27 +252,273 @@
   <a class="nav-back" href="../"><i class="ti ti-arrow-left"></i> Back to all farms</a>
 </nav>
 
+<!-- ═══════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════ -->
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-tag"><i class="ti ti-stack"></i> Platform overview</div>
-    <h1>How NAITRO works —<br><strong>Four layers. One intelligence platform.</strong></h1>
-    <p class="hero-sub">NAITRO combines open-source soil science (OBI), digital twin visualisation, AI decision-making, and multi-stakeholder reporting into a single platform. Each layer builds on the one before.</p>
+    <h1>How NAITRO works —<br><strong>The science of soil intelligence.</strong></h1>
+    <p class="hero-sub">NAITRO is built on the same NUE science presented at the IFA World Conference in Cork 2026. Four layers of technology turn that science into actions every farmer can take today — and every stakeholder can measure and verify.</p>
+    <div class="hero-stats">
+      <div><div class="hs-num">55%</div><div class="hs-label">Global cropland NUE today</div></div>
+      <div><div class="hs-num">70%</div><div class="hs-label">IFA target by 2040</div></div>
+      <div><div class="hs-num">−71%</div><div class="hs-label">Achievable Scope 3 reduction</div></div>
+      <div><div class="hs-num">1.85 Gt</div><div class="hs-label">Annual soil carbon opportunity</div></div>
+    </div>
   </div>
 </div>
 
-<div class="flow-strip">
-  <div class="flow-inner">
-    <a class="fl-step fl1" href="#score"><i class="ti ti-chart-bar"></i> 1 · Score</a>
-    <span class="fl-arrow">→</span>
-    <a class="fl-step fl2" href="#visualise"><i class="ti ti-cube"></i> 2 · Visualise</a>
-    <span class="fl-arrow">→</span>
-    <a class="fl-step fl3" href="#decide"><i class="ti ti-cpu"></i> 3 · Decide</a>
-    <span class="fl-arrow">→</span>
-    <a class="fl-step fl4" href="#report"><i class="ti ti-report-analytics"></i> 4 · Report</a>
+<!-- ═══ TOC ═══ -->
+<div class="toc-strip">
+  <div class="toc-inner">
+    <a class="toc-step toc-nue" href="#nue"><i class="ti ti-chart-line"></i> NUE science</a>
+    <span class="toc-arrow">→</span>
+    <a class="toc-step toc-4r" href="#four-r"><i class="ti ti-list-check"></i> 4R framework</a>
+    <span class="toc-arrow">→</span>
+    <a class="toc-step toc-l1" href="#score"><i class="ti ti-chart-bar"></i> 1 · Score</a>
+    <span class="toc-arrow">→</span>
+    <a class="toc-step toc-l2" href="#visualise"><i class="ti ti-cube"></i> 2 · Visualise</a>
+    <span class="toc-arrow">→</span>
+    <a class="toc-step toc-l3" href="#decide"><i class="ti ti-cpu"></i> 3 · Decide</a>
+    <span class="toc-arrow">→</span>
+    <a class="toc-step toc-l4" href="#report"><i class="ti ti-report-analytics"></i> 4 · Report</a>
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════════════════════ -->
 <div class="main">
+
+  <!-- ═══ NUE SCIENCE ═══ -->
+  <div id="nue" style="scroll-margin-top:80px; margin-bottom:0">
+
+    <div class="sec-tag tag-red"><i class="ti ti-chart-line"></i> The nitrogen problem</div>
+    <div class="sec-title">Global NUE: 45 years of data, one stubborn curve</div>
+    <div class="sec-body">
+      Global cropland NUE sits at roughly <strong>55%</strong> — meaning nearly half of every nitrogen application is lost to air, water, or soil accumulation before a crop can use it. The International Fertilizer Association (IFA), in research presented at the IFAMA World Conference in Cork, Ireland (June 2026), identifies this as the single most tractable lever for reducing agriculture's environmental footprint while protecting food security. Both <strong>too-low NUE</strong> (soil mining in Sub-Saharan Africa) and <strong>too-high NUE losses</strong> (excess N in NZ dairy, SA sugarcane) need intervention — the problem is global and the solutions are farm-specific.
+    </div>
+
+    <div class="pull-quote">
+      <p>"Tracking and improving nutrient use efficiency is key — for farming profitability, environment, climate, soil health, closing the yield gap, food security, and resilience to future crises."</p>
+      <cite>— Patrick Heffer, IFA, IFAMA World Conference Cork, Ireland, June 2026</cite>
+    </div>
+
+    <!-- NUE Equation -->
+    <div class="eq-box">
+      <div class="eq-part">
+        <div class="eq-label">Nutrient Balance</div>
+        <div class="eq-val" style="font-size:18px">Inputs − Outputs</div>
+        <div class="eq-sub">Fertilizer · Manure · BNF · Deposition · Seed</div>
+      </div>
+      <div class="eq-op">⟹</div>
+      <div class="eq-result">
+        <div class="eq-label">NUE Formula (IFA)</div>
+        <div class="eq-val" style="color:#085041; font-size:20px">Outputs ÷ Inputs</div>
+        <div class="eq-sub" style="color:#1D9E75">Nutrient Use Efficiency</div>
+      </div>
+      <div class="eq-note">
+        A <strong>surplus</strong> = nitrogen escaping to air (NH₃, N₂O, N₂), water (NO₃⁻), or accumulating in soil. A <strong>deficit</strong> = soil nitrogen being mined — depleting long-term fertility. The IFA tracks both simultaneously because countries in each category exist on the same planet and share the same food system emissions challenge. NAITRO's OBI score measures both the chemical surplus/deficit AND the biological soil state that determines how efficiently any input is converted to yield.
+      </div>
+    </div>
+
+    <!-- NUE Progress bar -->
+    <div class="nue-progress">
+      <div class="np-label">
+        Global cropland NUE — current vs IFA 2040 ambition target
+        <span>Source: FAOSTAT / IFA Ambition Statement, fertilizer.org</span>
+      </div>
+      <div class="np-track">
+        <div class="np-fill" style="width:55%">
+          <span class="np-fill-label">55% today</span>
+        </div>
+        <div class="np-target"><div class="np-target-label">70% target (2040)</div></div>
+      </div>
+      <div class="np-bands">
+        <span style="color:#C0392B">← Soil N mining (&lt;40%)</span>
+        <span style="color:#E07B18">Manageable losses (40–60%)</span>
+        <span style="color:#1D9E75">Sustainable intensification (60–80%) →</span>
+      </div>
+    </div>
+
+    <!-- NUE Curve (SVG) -->
+    <div class="sci-box" style="padding:1.25rem 1.5rem">
+      <h3><i class="ti ti-trending-up"></i> The NUE–Yield curve — why more N does not mean better NUE</h3>
+      <svg viewBox="0 0 720 240" width="100%" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-top:.75rem">
+        <defs>
+          <linearGradient id="bgGrad" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%"   stop-color="#C0392B" stop-opacity="0.10"/>
+            <stop offset="40%"  stop-color="#E07B18" stop-opacity="0.09"/>
+            <stop offset="62%"  stop-color="#F5D76E" stop-opacity="0.11"/>
+            <stop offset="100%" stop-color="#1D9E75" stop-opacity="0.17"/>
+          </linearGradient>
+        </defs>
+        <!-- Background -->
+        <rect x="55" y="18" width="630" height="178" rx="8" fill="url(#bgGrad)"/>
+        <!-- 100% line -->
+        <line x1="55" y1="58" x2="685" y2="58" stroke="#44403c" stroke-width="1" stroke-dasharray="5,4"/>
+        <text x="690" y="62" font-size="10" fill="#44403c" font-family="Inter,sans-serif">100% NUE limit</text>
+        <!-- Sustainable zone box -->
+        <rect x="420" y="40" width="210" height="116" rx="5" fill="#1D9E75" fill-opacity="0.08" stroke="#1D9E75" stroke-width="0.75" stroke-dasharray="4,3"/>
+        <rect x="420" y="108" width="210" height="48" rx="3" fill="#1D9E75" fill-opacity="0.13"/>
+        <text x="525" y="34" font-size="10" fill="#1D9E75" font-family="Inter,sans-serif" font-weight="500" text-anchor="middle">Sustainable intensification</text>
+        <!-- Zone labels -->
+        <text x="108" y="32" font-size="10" fill="#C0392B" font-family="Inter,sans-serif" font-weight="500">Mining soil N</text>
+        <text x="270" y="32" font-size="10" fill="#E07B18" font-family="Inter,sans-serif" font-weight="500">Early development</text>
+        <!-- NUE curve -->
+        <path d="M 65,68 C 90,68 100,80 120,132 C 148,192 178,202 220,193 C 262,183 295,168 335,148 C 382,126 420,105 470,90 C 520,76 562,66 602,60 C 632,56 655,54 680,52" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
+        <!-- Current global avg -->
+        <circle cx="342" cy="145" r="5.5" fill="#E07B18" stroke="white" stroke-width="1.5"/>
+        <line x1="342" y1="145" x2="342" y2="210" stroke="#E07B18" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="342" y="222" font-size="10" fill="#E07B18" font-family="Inter,sans-serif" text-anchor="middle">55% global avg</text>
+        <!-- IFA target 70% -->
+        <circle cx="495" cy="88" r="5.5" fill="#1D9E75" stroke="white" stroke-width="1.5"/>
+        <line x1="495" y1="88" x2="495" y2="210" stroke="#1D9E75" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="495" y="222" font-size="10" fill="#1D9E75" font-family="Inter,sans-serif" text-anchor="middle">70% target 2040</text>
+        <!-- Axes -->
+        <line x1="55" y1="196" x2="685" y2="196" stroke="#d6d3d1" stroke-width="1"/>
+        <line x1="55" y1="18" x2="55" y2="200" stroke="#d6d3d1" stroke-width="1"/>
+        <text x="368" y="238" font-size="11" fill="#a8a29e" font-family="Inter,sans-serif" text-anchor="middle">Crop yield →</text>
+        <text x="16" y="108" font-size="11" fill="#a8a29e" font-family="Inter,sans-serif" text-anchor="middle" transform="rotate(-90,16,108)">NUE →</text>
+      </svg>
+      <div class="cite"><i class="ti ti-info-circle" style="flex-shrink:0"></i> Adapted from IFA / FAOSTAT. Patrick Heffer, IFAMA Cork 2026. The curve shows that both under-application (left — soil mining) and excess application (centre — high losses) reduce NUE. Sustainable intensification (green zone, right) is where yield and efficiency converge. This is the zone NAITRO is designed to reach.</div>
+    </div>
+
+    <!-- Loss pathways -->
+    <div class="loss-grid">
+      <div class="loss-card lc-air">
+        <div class="loss-icon"><i class="ti ti-wind" style="color:#C0392B"></i></div>
+        <div class="loss-title">Lost to Air</div>
+        <div class="loss-desc">Ammonia (NH₃) volatilises from surface-broadcast urea within hours. Nitrous oxide (N₂O) is 273× more potent than CO₂ over 100 years. Denitrification produces inert N₂ — all lost to yield.</div>
+        <div class="loss-pct" style="color:#C0392B">~20%</div>
+      </div>
+      <div class="loss-card lc-water">
+        <div class="loss-icon"><i class="ti ti-droplet" style="color:#185FA5"></i></div>
+        <div class="loss-title">Lost to Water</div>
+        <div class="loss-desc">Nitrate (NO₃⁻) is highly mobile and leaches through sandy or compacted soils into groundwater and rivers. Triggers eutrophication, freshwater dead zones, and drinking-water contamination. NPS-FM 2020 target.</div>
+        <div class="loss-pct" style="color:#185FA5">~15%</div>
+      </div>
+      <div class="loss-card lc-soil">
+        <div class="loss-icon"><i class="ti ti-layers-subtract" style="color:#7A4A08"></i></div>
+        <div class="loss-title">Soil Accumulation</div>
+        <div class="loss-desc">In high-input systems, excess N accumulates without uptake. Disrupts C:N balance and triggers the Priming Effect — microbes burn soil carbon to rebalance C:N, destroying the soil structure needed for future efficiency.</div>
+        <div class="loss-pct" style="color:#7A4A08">~10%</div>
+      </div>
+      <div class="loss-card lc-crop">
+        <div class="loss-icon"><i class="ti ti-plant" style="color:#085041"></i></div>
+        <div class="loss-title">Crop Uptake</div>
+        <div class="loss-desc">What actually becomes yield. Global average under farm conditions: 40–55%. Research plots with optimal 4R management achieve 60–80%. The gap between farm and research is the opportunity NAITRO is built to close.</div>
+        <div class="loss-pct" style="color:#085041">55% avg</div>
+      </div>
+    </div>
+
+    <!-- Emission reduction pathway -->
+    <div class="emission-box">
+      <div class="em-title">Scope 3 emissions from fertilizer can be reduced by 71% by 2050</div>
+      <div class="em-sub">IFA / Systemiq pathway analysis — relative contribution of each lever to total field-level N₂O emission reduction</div>
+      <div class="em-bars">
+        <div class="em-row">
+          <div class="em-label">NUE best practices</div>
+          <div class="em-track"><div class="em-fill ef-green" style="width:55%">Largest single lever — 4R implementation</div></div>
+          <div class="em-val">−55%</div>
+        </div>
+        <div class="em-row">
+          <div class="em-label">Inhibitors &amp; CRFs</div>
+          <div class="em-track"><div class="em-fill ef-green" style="width:28%">Urease + nitrification inhibitors, slow-release</div></div>
+          <div class="em-val">−28%</div>
+        </div>
+        <div class="em-row">
+          <div class="em-label">Crop rotations</div>
+          <div class="em-track"><div class="em-fill ef-amber" style="width:16%">Legumes, cover crops, rotation diversity</div></div>
+          <div class="em-val">−16%</div>
+        </div>
+        <div class="em-row">
+          <div class="em-label">Soil carbon sequestration</div>
+          <div class="em-track"><div class="em-fill ef-amber" style="width:11%">SOC rebuild, BNF, organic inputs</div></div>
+          <div class="em-val">−11%</div>
+        </div>
+        <div class="em-row">
+          <div class="em-label">Land sparing</div>
+          <div class="em-track"><div class="em-fill ef-amber" style="width:7%">Higher yield per ha = less total land</div></div>
+          <div class="em-val">−7%</div>
+        </div>
+      </div>
+      <div class="em-source">Source: IFA / Systemiq "Reducing Emissions from Fertilizer Use" (2022). fertilizer.org/Reducing-Emissions — BAU = Business as usual baseline.</div>
+    </div>
+
+    <div class="two-col">
+      <div class="detail-card">
+        <div class="dc-label">Countries with too-low NUE — soil mining</div>
+        <div class="dc-title">Sub-Saharan Africa, parts of South Asia</div>
+        <div class="dc-body">Insufficient fertilizer application depletes soil N faster than it is replenished — permanent degradation and yield stagnation follow. These regions need higher NUE <em>and</em> higher total N supply. Biological N fixation (BNF) is the solution that provides both: more N to the crop without more synthetic N cost. SA1 Bergvlei's rhizobia programme is the model.</div>
+        <div class="dc-pills"><span class="dc-pill p-red">Soil N mining</span><span class="dc-pill p-red">Yield gap</span><span class="dc-pill p-green">BNF solution</span></div>
+      </div>
+      <div class="detail-card">
+        <div class="dc-label">Countries with too-high NUE losses</div>
+        <div class="dc-title">China, Europe, NZ, parts of Southern Africa</div>
+        <div class="dc-body">Excess synthetic N application where crop uptake is saturated — the extra N enters loss pathways. NZ1 Ruakura (urea 90 kg N/ha) and SA2 Umfolozi (220 kg N/ha) both sit firmly in this quadrant. The IFA step-down + inhibitor pathway is the primary tool. NAITRO's 3-year N reduction planner is built on this IFA science.</div>
+        <div class="dc-pills"><span class="dc-pill p-red">N₂O emissions</span><span class="dc-pill p-red">NO₃ leaching</span><span class="dc-pill p-amber">Step-down plan</span></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sec-divider">
+
+  <!-- ═══ 4R FRAMEWORK ═══ -->
+  <div id="four-r" style="scroll-margin-top:80px">
+
+    <div class="sec-tag tag-green"><i class="ti ti-list-check"></i> 4R Nutrient Stewardship</div>
+    <div class="sec-title">Right source. Right rate. Right time. Right place.</div>
+    <div class="sec-body">The IFA's 4R Nutrient Stewardship framework is the global industry standard for closing the NUE gap. It recognises that <strong>how</strong> fertilizer is applied matters as much as <strong>how much</strong>. NAITRO's AI engine maps every recommendation to one or more of the four Rs — giving farmers a direct line between their soil score and IFA best practice.</div>
+
+    <div class="four-r-grid">
+      <div class="r-card r1">
+        <div class="r-num">R1 · Source</div>
+        <div class="r-title">Right Source</div>
+        <div class="r-body">Match nutrient form to crop requirements and soil properties. Urea, ammonium nitrate, slow-release CRFs, and biological N all have different volatilisation rates, soil interactions, and environmental profiles. Trace mineral form matters too — inorganic vs. chelated vs. biological carriers determine uptake efficiency by the microbial community that converts them.</div>
+        <div class="r-how">
+          <span class="r-how-label">How NAITRO applies this:</span>
+          SA1's pH 5.1 makes synthetic urea largely unavailable (Al toxicity blocks root uptake). Lime + rhizobia inoculant is the right source — providing N in a form plants can actually access at that pH. The OBI score flags this before another season of wasted urea.
+        </div>
+      </div>
+      <div class="r-card r2">
+        <div class="r-num">R2 · Rate</div>
+        <div class="r-title">Right Rate</div>
+        <div class="r-body">Apply the amount that balances agronomic benefit against economic and environmental cost. The NUE curve shows the inflection point — beyond optimal rate, every additional kg of N has decreasing uptake and increasing loss. At NZ1 (90 kg urea N/ha) and SA2 (220 kg N/ha), rates are past this inflection and in the high-loss zone.</div>
+        <div class="r-how">
+          <span class="r-how-label">How NAITRO applies this:</span>
+          The step-down N planner calculates the optimal rate trajectory for each farm — how much to reduce each season, what BNF rate offsets the cut, and what yield impact to expect at each stage with confidence intervals that are honest about biological uncertainty.
+        </div>
+      </div>
+      <div class="r-card r3">
+        <div class="r-num">R3 · Time</div>
+        <div class="r-title">Right Time</div>
+        <div class="r-body">Apply nutrients when crop demand is highest — at peak vegetative growth and grain fill. Split applications, slow-release CRFs, and urease inhibitors all extend N availability to match crop uptake curves. N applied before heavy rainfall is N lost to leaching regardless of rate — the IFA identifies timing as a leading contributor to the NUE gap in high-rainfall regions.</div>
+        <div class="r-how">
+          <span class="r-how-label">How NAITRO applies this:</span>
+          The digital twin models rainfall patterns, temperature, and crop growth stage to flag high-risk application windows. SA2's fertigation pathway replaces broadcast urea with drip-timed N matched to sugarcane growth phases — the most impactful single intervention for that farm.
+        </div>
+      </div>
+      <div class="r-card r4">
+        <div class="r-num">R4 · Place</div>
+        <div class="r-title">Right Place</div>
+        <div class="r-body">Place nutrients where roots can access them and environmental loss is minimised. Soil injection reduces NH₃ volatilisation by up to 80% vs. surface broadcast. Variable-rate application maps target high-performing zones and exclude waterways, riparian margins, and compacted areas where N passes through without uptake.</div>
+        <div class="r-how">
+          <span class="r-how-label">How NAITRO applies this:</span>
+          The OBI compaction index identifies paddocks where N is applied but roots cannot penetrate to access it. CTF (controlled traffic farming) in SA2 and sub-soiling at NZ1 are ranked as high-ROI recommendations because they unlock 4R Place compliance across the whole farm.
+        </div>
+      </div>
+    </div>
+
+    <div class="sci-box">
+      <h3><i class="ti ti-bulb"></i> Why 4R alone isn't enough — and what NAITRO adds</h3>
+      <p>The 4R framework tells farmers <em>when, where, how much, and what form</em> to apply. What it doesn't provide is a <strong>biological soil state model</strong> that predicts how efficiently any application will actually be used — given the current health of the microbial community, the SOC level, the C:N ratio, the trace mineral status, and the physical porosity that determines whether roots even reach the applied nutrient. A farm achieving 4R compliance but with pH 5.1, SOC 1.4%, or cobalt deficiency will still have poor NUE — because the soil biology that converts applied N into plant-available forms has been damaged.</p>
+      <p>NAITRO's OBI-based score is the biological intelligence layer that 4R assumes exists but doesn't measure. <strong>4R tells you how to apply. OBI tells you what the soil can actually do with what you apply.</strong> Together they provide the complete picture of a farm's NUE potential — and the specific sequence of actions needed to reach it.</p>
+    </div>
+  </div>
+
+  <hr class="sec-divider">
 
   <!-- ═══ LAYER 1 — SCORE ═══ -->
   <div class="layer-section l1" id="score">
@@ -205,71 +526,71 @@
       <div class="layer-ico"><i class="ti ti-chart-bar"></i></div>
       <div class="layer-head-text">
         <div class="layer-num">Layer 1</div>
-        <div class="layer-title">Score — OBI-adapted soil index</div>
-        <div class="layer-sub">21 indicators. Open-source. WUR-validated. Bankable.</div>
+        <div class="layer-title">Score — OBI-adapted soil health index</div>
+        <div class="layer-sub">21 indicators. Open-source. WUR-validated. Bankable. Calibrated for NZ volcanic and SA soil conditions.</div>
       </div>
     </div>
     <div class="layer-divider"></div>
 
-    <div class="science-box">
-      <h3><i class="ti ti-microscope"></i> The science behind the score</h3>
-      <p>The Open Bodemindex (OBI) was developed by Wageningen University Research (WUR) together with Rabobank, a.s.r. insurance, and Vitens water company in the Netherlands. It scores soil across 21 indicators in four domains — Chemical, Physical, Biological, and Management — on a 0–10 scale per indicator, producing a single 0–100 composite score.</p>
-      <p>NAITRO adapts the OBI framework for New Zealand and South African soil conditions, adjusting thresholds for NZ volcanic geology, SA ferralsols, and KZN coastal clays. The result is a <strong>standardised soil health language</strong> that is scientifically credible, comparable across farms and regions, and already proven as a bank lending tool in the Netherlands.</p>
+    <div class="sci-box">
+      <h3><i class="ti ti-microscope"></i> OBI + IFA nutrient balance — unified in one score</h3>
+      <p>The Open Bodemindex (OBI) was developed by Wageningen University Research (WUR) together with Rabobank, a.s.r. insurance, and Vitens water company. It scores 21 soil indicators across four domains — Chemical, Physical, Biological, and Management — on a 0–100 composite scale. NAITRO integrates the OBI framework directly with the IFA nutrient balance equation: the Chemical domain's N indicators correspond to the NUE surplus/deficit calculation, and the Biological domain captures the soil conditions that determine how efficiently applied N is converted to yield.</p>
+      <p>The result is a soil score that speaks two languages simultaneously: the agronomic language a farmer understands, and the NUE compliance language a bank, food company, or regulator needs. One number. Two conversations.</p>
     </div>
 
     <div class="indicator-grid">
       <div class="ind-group">
-        <div class="ind-group-label"><i class="ti ti-flask"></i> Chemical</div>
-        <div class="ind-item"><span class="ind-dot dot-green"></span>pH (soil acidity)</div>
-        <div class="ind-item"><span class="ind-dot dot-green"></span>Organic matter (SOC)</div>
-        <div class="ind-item"><span class="ind-dot dot-green"></span>Nitrogen (N, mineral)</div>
+        <div class="ind-group-label igl-green"><i class="ti ti-flask"></i> Chemical</div>
+        <div class="ind-item"><span class="ind-dot dot-green"></span>pH (soil acidity) · R1 Source gate</div>
+        <div class="ind-item"><span class="ind-dot dot-green"></span>SOC % · C:N ratio</div>
+        <div class="ind-item"><span class="ind-dot dot-green"></span>Mineral N · surplus/deficit (IFA)</div>
         <div class="ind-item"><span class="ind-dot dot-green"></span>Phosphorus (P-PAE)</div>
         <div class="ind-item"><span class="ind-dot dot-green"></span>Potassium (K)</div>
-        <div class="ind-item"><span class="ind-dot dot-green"></span>Trace minerals (Co, Cu, Se, Mo, Zn)</div>
+        <div class="ind-item"><span class="ind-dot dot-green"></span>Trace minerals: Co, Cu, Se, Mo, Zn, Si, B</div>
       </div>
       <div class="ind-group">
-        <div class="ind-group-label blue"><i class="ti ti-layers"></i> Physical</div>
-        <div class="ind-item"><span class="ind-dot dot-blue"></span>Macroporosity</div>
+        <div class="ind-group-label igl-blue"><i class="ti ti-layers"></i> Physical</div>
+        <div class="ind-item"><span class="ind-dot dot-blue"></span>Macroporosity · R4 Place gate</div>
         <div class="ind-item"><span class="ind-dot dot-blue"></span>Compaction index</div>
-        <div class="ind-item"><span class="ind-dot dot-blue"></span>Water infiltration rate</div>
+        <div class="ind-item"><span class="ind-dot dot-blue"></span>Water infiltration (mm/hr)</div>
         <div class="ind-item"><span class="ind-dot dot-blue"></span>Aggregate stability</div>
         <div class="ind-item"><span class="ind-dot dot-blue"></span>Bulk density</div>
       </div>
       <div class="ind-group">
-        <div class="ind-group-label amber"><i class="ti ti-leaf"></i> Biological</div>
+        <div class="ind-group-label igl-amber"><i class="ti ti-leaf"></i> Biological</div>
         <div class="ind-item"><span class="ind-dot dot-amber"></span>Microbial biomass C</div>
         <div class="ind-item"><span class="ind-dot dot-amber"></span>Fungal:Bacterial ratio</div>
-        <div class="ind-item"><span class="ind-dot dot-amber"></span>BNF activity (Rhizobia)</div>
-        <div class="ind-item"><span class="ind-dot dot-amber"></span>Mycorrhizal colonisation</div>
-        <div class="ind-item"><span class="ind-dot dot-amber"></span>Earthworm count</div>
-        <div class="ind-item"><span class="ind-dot dot-amber"></span>Soil respiration rate</div>
+        <div class="ind-item"><span class="ind-dot dot-amber"></span>BNF rate (Rhizobia / diazotrophs)</div>
+        <div class="ind-item"><span class="ind-dot dot-amber"></span>Mycorrhizal colonisation %</div>
+        <div class="ind-item"><span class="ind-dot dot-amber"></span>Earthworm density (per m²)</div>
+        <div class="ind-item"><span class="ind-dot dot-amber"></span>Soil respiration (CO₂ mg/hr)</div>
       </div>
       <div class="ind-group">
-        <div class="ind-group-label purple"><i class="ti ti-settings"></i> Management</div>
-        <div class="ind-item"><span class="ind-dot dot-purple"></span>Crop rotation diversity</div>
-        <div class="ind-item"><span class="ind-dot dot-purple"></span>Organic input rate</div>
-        <div class="ind-item"><span class="ind-dot dot-purple"></span>Tillage intensity</div>
-        <div class="ind-item"><span class="ind-dot dot-purple"></span>Pesticide use index</div>
+        <div class="ind-group-label igl-purple"><i class="ti ti-settings"></i> Management</div>
+        <div class="ind-item"><span class="ind-dot dot-purple"></span>Crop rotation diversity index</div>
+        <div class="ind-item"><span class="ind-dot dot-purple"></span>Organic input rate (t/ha/yr)</div>
+        <div class="ind-item"><span class="ind-dot dot-purple"></span>Tillage intensity score</div>
+        <div class="ind-item"><span class="ind-dot dot-purple"></span>Synthetic N rate · R2 Rate compliance</div>
       </div>
     </div>
 
-    <div class="detail-grid">
+    <div class="two-col">
       <div class="detail-card">
-        <div class="dc-label">Rabobank precedent</div>
-        <div class="dc-title">Already used for farm lending in the Netherlands</div>
-        <div class="dc-body">Rabobank uses the OBI framework to assess soil risk on agricultural loans and offer sustainability-linked interest rate reductions. NAITRO brings this model to NZ and SA — making your soil health score a financial instrument, not just a measurement.</div>
-        <div class="dc-pills"><span class="dc-pill p-green">OBI open source</span><span class="dc-pill p-green">WUR validated</span><span class="dc-pill p-green">Rabobank precedent</span></div>
+        <div class="dc-label">Rabobank Netherlands precedent</div>
+        <div class="dc-title">OBI already used for farm lending</div>
+        <div class="dc-body">Rabobank uses OBI scores to assess soil quality risk on agricultural loans and offer sustainability-linked interest rate reductions. NAITRO brings this model to NZ (Tier 2: −0.25% for score ≥70; Tier 3: −0.40% for score ≥85) and SA (Absa / Nedbank green loans). No separate audit required — IoT verification means the data is already MRV-grade.</div>
+        <div class="dc-pills"><span class="dc-pill p-green">OBI open-source</span><span class="dc-pill p-green">WUR validated</span><span class="dc-pill p-green">Rabobank precedent</span></div>
       </div>
       <div class="detail-card">
-        <div class="dc-label">NZ &amp; SA specific calibration</div>
-        <div class="dc-title">Local geology. Local thresholds. Local benchmarks.</div>
-        <div class="dc-body">NZ volcanic and marine sediment geology is naturally deficient in cobalt, copper, selenium, and molybdenum. SA ferralsol and vertic clay soils require different pH and compaction thresholds. NAITRO's calibration reflects each region's specific conditions rather than applying European norms.</div>
-        <div class="dc-pills"><span class="dc-pill p-green">NZ Co/Cu/Se/Mo</span><span class="dc-pill p-green">SA ferralsol pH</span><span class="dc-pill p-green">KZN vertic clay</span></div>
+        <div class="dc-label">Regional calibration</div>
+        <div class="dc-title">European OBI thresholds don't apply here</div>
+        <div class="dc-body">NZ volcanic geology is deficient in Co, Cu, Se, Mo — trace minerals that gate BNF enzyme function. These deficiencies don't appear in European OBI benchmarks. SA ferralsols have critical pH thresholds at 5.5 (vs 6.0 in Europe). KZN vertic clays have silicon requirements for Gluconacetobacter. NAITRO's calibration reflects each region's specific pedology rather than misapplying temperate-zone norms.</div>
+        <div class="dc-pills"><span class="dc-pill p-green">NZ: Co/Cu/Se/Mo</span><span class="dc-pill p-amber">SA: pH/Zn/S</span><span class="dc-pill p-amber">KZN: Si</span></div>
       </div>
     </div>
   </div>
 
-  <hr class="section-divider">
+  <hr class="sec-divider">
 
   <!-- ═══ LAYER 2 — VISUALISE ═══ -->
   <div class="layer-section l2" id="visualise">
@@ -278,66 +599,44 @@
       <div class="layer-head-text">
         <div class="layer-num">Layer 2</div>
         <div class="layer-title">Visualise — 1m³ digital twin soil block</div>
-        <div class="layer-sub">IoT sensor fusion. Input → Health → Output. Time slider for past, present, and future.</div>
+        <div class="layer-sub">IoT-verified inputs → soil health state → measurable outputs. Time slider ±10 years. Scenario comparison.</div>
       </div>
     </div>
     <div class="layer-divider"></div>
 
-    <div class="science-box">
-      <h3><i class="ti ti-cube"></i> What the digital twin models</h3>
-      <p>The 1m³ soil block is a digital twin of a representative paddock cross-section. It takes real IoT sensor inputs (sunlight, rainfall, fertiliser, CO₂) and models how those inputs flow through the soil health state (SOC, macroporosity, BNF, compaction, trace minerals) to produce measurable outputs (yield, N leaching, water runoff, soil respiration).</p>
-      <p>The time slider extends the model ±10 years from the present — so you can see what high-urea management did to soil carbon over the past decade, and model what a biological farming transition will achieve by 2035. Scenarios (current / step-down / herbal ley / full biological) allow side-by-side comparison of management choices.</p>
+    <div class="sci-box">
+      <h3><i class="ti ti-cube"></i> NUE made visible at paddock scale</h3>
+      <p>The 1m³ soil block is a digital twin of a representative paddock cross-section. Every input (N applied, rainfall, tillage, organic matter) flows through a soil health state model and produces measurable outputs — including a <strong>real-time NUE calculation</strong> matching the IFA formula: N in crop / N applied. As you move the time slider or switch management scenarios, the twin shows exactly how NUE changes — giving you the IFA's national-level tracking methodology, applied at paddock scale.</p>
+      <p>The twin also models the <strong>Priming Effect</strong> — the mechanism by which excess synthetic N destroys the soil carbon that biological N fixation depends on. This is the invisible cycle that traps farms in high-input dependency, and the digital twin makes it visible before it becomes irreversible.</p>
     </div>
 
-    <div class="detail-grid">
+    <div class="two-col">
       <div class="detail-card">
-        <div class="dc-label">Input layer</div>
-        <div class="dc-title">What you put in</div>
-        <div class="dc-body">Sunlight, rainfall, synthetic nitrogen (urea / LAN), CO₂ atmosphere, and trace mineral additions. Each input is tracked at paddock level via IoT sensors or manual entry. The model shows how each input changes the soil health state — including unintended consequences like the Priming Effect.</div>
-        <div class="dc-pills"><span class="dc-pill p-blue">IoT sensors</span><span class="dc-pill p-blue">Manual entry</span><span class="dc-pill p-blue">Real-time</span></div>
+        <div class="dc-label">Input layer — 4R digitised</div>
+        <div class="dc-title">Every 4R dimension tracked in real time</div>
+        <div class="dc-body">Sunlight (kJ/m²), rainfall (mm), synthetic N rate (kg/ha) — 4R Rate — and application timing and placement — 4R Time and Place — are logged via IoT sensors. The twin flags 4R compliance risks in real time: N applied before forecast rainfall events, broadcast vs. injection, application on compacted zones where root access is blocked.</div>
+        <div class="dc-pills"><span class="dc-pill p-blue">IoT sensors</span><span class="dc-pill p-blue">4R compliance log</span><span class="dc-pill p-blue">Live NUE %</span></div>
       </div>
       <div class="detail-card">
-        <div class="dc-label">Output layer</div>
-        <div class="dc-title">What comes out</div>
-        <div class="dc-body">Yield (DM, t/ha, Brix), N leaching (kg/ha/yr), water runoff (infiltration mm/hr), soil respiration (CO₂ mg/hr), and biological N fixation (% of total N demand). These outputs feed directly into the Layer 4 reporting stack — so every output has a stakeholder.</div>
-        <div class="dc-pills"><span class="dc-pill p-blue">Yield prediction</span><span class="dc-pill p-blue">N leaching</span><span class="dc-pill p-blue">BNF %</span></div>
+        <div class="dc-label">Output layer — IFA tracking metrics</div>
+        <div class="dc-title">N balance, NUE, and Scope 3 in one view</div>
+        <div class="dc-body">Outputs: crop N uptake (t/ha), N leaching (kg NO₃/ha/yr), N₂O emissions (kg CO₂eq/ha/yr), BNF (kg N/ha/yr). These populate the IFA nutrient balance equation directly and calculate field-level Scope 3 emissions — closing the loop between farm action, supply chain reporting, and national NUE tracking.</div>
+        <div class="dc-pills"><span class="dc-pill p-blue">N balance</span><span class="dc-pill p-blue">NUE %</span><span class="dc-pill p-blue">Scope 3 CO₂eq</span></div>
       </div>
     </div>
 
     <div class="priming-box">
-      <h3><i class="ti ti-alert-triangle"></i> The Priming Effect — what the twin makes visible</h3>
-      <p>When excess synthetic nitrogen is applied, soil microbes consume stored soil carbon to balance their C:N ratio. This "priming" of microbial activity accelerates carbon loss — destroying the aggregate structure, water-holding capacity, and biological activity that makes soil productive long-term. The digital twin's priming risk score (0–9) makes this invisible process visible and actionable before the damage becomes irreversible.</p>
+      <h3><i class="ti ti-alert-triangle"></i> The Priming Effect — the NUE trap that 4R cannot see without soil biology</h3>
+      <p>When soil C:N ratio drops below 15:1 (triggered by excess synthetic N with low organic matter), soil microbes begin burning stored soil carbon to rebalance it. This priming of microbial activity releases CO₂, destroys humus structure, and collapses the biological N fixation system that could have replaced synthetic N. The farm then needs <em>more</em> synthetic N to maintain yield — a self-reinforcing decline. This mechanism appears in the IFA's "too-high NUE loss" country pattern but is invisible to the 4R framework alone, because 4R measures application practice, not biological soil state. NAITRO's priming risk score (0–9) quantifies this risk in real time from the digital twin — the first field-level tool to do so.</p>
     </div>
 
-    <div class="context-grid">
-      <a class="ctx-card" href="../nz1/">
-        <div class="ctx-flag">🇳🇿</div>
-        <div class="ctx-name">NZ1 — Ruakura Dairy</div>
-        <div class="ctx-loc">Waikato · Urea step-down model</div>
-        <div class="ctx-note">Track cobalt deficiency impact on BNF and urea reduction pathway.</div>
-      </a>
-      <a class="ctx-card" href="../sa1/">
-        <div class="ctx-flag">🇿🇦</div>
-        <div class="ctx-name">SA1 — Bergvlei Grains</div>
-        <div class="ctx-loc">Free State · pH + LAN model</div>
-        <div class="ctx-note">See how soil acidification blocks N uptake and drives yield gap.</div>
-      </a>
-      <a class="ctx-card" href="../sa2/">
-        <div class="ctx-flag">🇿🇦</div>
-        <div class="ctx-name">SA2 — Umfolozi Cane</div>
-        <div class="ctx-loc">KZN · Trash burning impact</div>
-        <div class="ctx-note">Model SOC recovery from green cane + CTF compaction treatment.</div>
-      </a>
-      <a class="ctx-card" href="../sa3/">
-        <div class="ctx-flag">🇿🇦</div>
-        <div class="ctx-name">SA3 — Kaapzicht Estate</div>
-        <div class="ctx-loc">Stellenbosch · AMF + RDI model</div>
-        <div class="ctx-note">Track mycorrhizal network density and wine quality correlation.</div>
-      </a>
+    <div class="sci-box">
+      <h3><i class="ti ti-layers"></i> Soil carbon and the 1.85 Gt opportunity</h3>
+      <p>IFA data shows farmland soils hold 50–300 tonnes of carbon per hectare (180–1,100 t CO₂eq). Optimising fertilization — combining mineral and organic inputs — could sequester an additional <strong>1.85 billion tonnes of carbon annually</strong>, equivalent to the entire global transport sector's emissions. This represents 89% of agriculture's total future climate mitigation potential. The digital twin tracks SOC change over time, making this sequestration directly measurable and MRV-eligible for Verra VCS and Gold Standard carbon credit certification.</p>
     </div>
   </div>
 
-  <hr class="section-divider">
+  <hr class="sec-divider">
 
   <!-- ═══ LAYER 3 — DECIDE ═══ -->
   <div class="layer-section l3" id="decide">
@@ -346,46 +645,45 @@
       <div class="layer-head-text">
         <div class="layer-num">Layer 3</div>
         <div class="layer-title">Decide — NAITRO AI engine</div>
-        <div class="layer-sub">The "WHOOP for soil health." Turns scores into actions you can execute today.</div>
+        <div class="layer-sub">OBI score + 4R status + NUE model → ranked, farm-specific actions with modelled impact and confidence intervals.</div>
       </div>
     </div>
     <div class="layer-divider"></div>
 
-    <div class="science-box">
-      <h3><i class="ti ti-cpu"></i> How the AI engine works</h3>
-      <p>The NAITRO AI engine takes the 21 OBI indicators and the digital twin state as inputs, and outputs prioritised, farm-specific recommendations with three components: <strong>the science</strong> (why this matters), <strong>the action</strong> (what to do and when), and <strong>the impact</strong> (what changes and by how much). Recommendations are ranked by expected ROI so the highest-leverage actions always appear first.</p>
-      <p>The engine is calibrated for each farm context. A Free State maize farm gets pH correction as priority #1. A KZN sugarcane farm gets trash management first. A Stellenbosch wine estate gets mycorrhizal health. A NZ dairy farm gets cobalt and urea step-down. The AI knows which lever matters most for which system.</p>
+    <div class="sci-box">
+      <h3><i class="ti ti-cpu"></i> IFA identifies four levers. NAITRO is the Innovation lever.</h3>
+      <p>The IFA Cork 2026 presentation identifies four pathways to NUE improvement: <strong>Research, Innovation, Outreach, and Policy</strong>. NAITRO's AI engine is the Innovation pathway — it closes the gap between what WUR and IFA know works scientifically and what a specific farmer in Waikato or Free State should do <em>this season</em>. It takes the 21 OBI indicators, the digital twin's live NUE calculation, and the farm's current 4R profile and generates a ranked list of recommendations, each with the science, the specific action, and the modelled NUE and emission impact.</p>
     </div>
 
-    <div class="detail-grid">
+    <div class="four-r-grid">
       <div class="detail-card">
-        <div class="dc-label">Priming risk model</div>
-        <div class="dc-title">Three-factor priming risk score (0–9)</div>
-        <div class="dc-body">C:N ratio (&lt;15 = 3 pts), synthetic N rate (&gt;200 kg/ha = 3 pts), SOC level (&lt;3% = 3 pts). Score ≥7 triggers urgent alert. The model updates in real time as you move the time slider or switch scenarios — so you can see exactly which management change moves the needle most.</div>
+        <div class="dc-label">NUE Step-down Planner</div>
+        <div class="dc-title">IFA's #1 lever: NUE best practices</div>
+        <div class="dc-body">3-year synthetic N reduction schedule with yield protection at each stage. Farm-specific accounting for current trace mineral status (Co/Mo gate BNF), SOC level, legume cover %, and rainfall. Based on the IFA/Systemiq finding that NUE best practices are the largest single lever (−55%) in the 71% Scope 3 reduction pathway.</div>
+        <div class="dc-pills"><span class="dc-pill p-amber">3-yr schedule</span><span class="dc-pill p-amber">Yield protection</span><span class="dc-pill p-amber">BNF offset</span></div>
+      </div>
+      <div class="detail-card">
+        <div class="dc-label">Priming Risk Monitor</div>
+        <div class="dc-title">Three-factor score 0–9</div>
+        <div class="dc-body">SOC &lt;3% = 3 pts. Synthetic N &gt;200 kg/ha = 3 pts. C:N &lt;15:1 = 3 pts. Score ≥7 = urgent intervention. Score ≥5 = managed risk. This operationalises the IFA's too-high-NUE-loss diagnosis at individual farm level — identifying exactly which N loss mechanism is dominant and which 4R dimension to address first.</div>
         <div class="dc-pills"><span class="dc-pill p-amber">C:N ratio</span><span class="dc-pill p-amber">N rate</span><span class="dc-pill p-amber">SOC level</span></div>
       </div>
       <div class="detail-card">
-        <div class="dc-label">BNF potential model</div>
-        <div class="dc-title">Biological nitrogen fixation optimisation</div>
-        <div class="dc-body">Models the conditions required for Rhizobia (legumes), Gluconacetobacter (sugarcane), and free-living fixers to reach their N-fixing potential. Trace mineral sufficiency (Co, Mo for Rhizobia; Si for sugarcane) is checked first — without these cofactors, no legume cover produces meaningful BNF regardless of inoculation.</div>
-        <div class="dc-pills"><span class="dc-pill p-amber">Rhizobia model</span><span class="dc-pill p-amber">Gluconacetobacter</span><span class="dc-pill p-amber">Trace mineral gates</span></div>
+        <div class="dc-label">BNF Optimisation Engine</div>
+        <div class="dc-title">Biological N to replace synthetic N</div>
+        <div class="dc-body">Models the trace mineral gates for Rhizobia (Co, Mo — cofactors for nitrogenase enzyme), Gluconacetobacter in sugarcane (Si), and free-living diazotrophs. Without these cofactors, no cover crop or inoculant produces meaningful BNF. The most common failure mode in regenerative transitions is skipping this diagnosis — the AI checks it first, every time.</div>
+        <div class="dc-pills"><span class="dc-pill p-amber">Rhizobia gates</span><span class="dc-pill p-amber">Gluconacetobacter</span><span class="dc-pill p-amber">Trace mineral check</span></div>
       </div>
       <div class="detail-card">
-        <div class="dc-label">Urea / N step-down planner</div>
-        <div class="dc-title">3-year transition schedule with confidence intervals</div>
-        <div class="dc-body">Generates a farm-specific N reduction schedule that maintains yield while SOC recovers and biological N fixation increases. Accounts for existing soil carbon, legume cover percentage, trace mineral status, and rainfall pattern. Confidence intervals widen in years 2–3 to reflect biological uncertainty — the planner is honest about what it doesn't know.</div>
-        <div class="dc-pills"><span class="dc-pill p-amber">3-yr schedule</span><span class="dc-pill p-amber">Yield protection</span><span class="dc-pill p-amber">Variable-rate maps</span></div>
-      </div>
-      <div class="detail-card">
-        <div class="dc-label">Trace mineral gap analysis</div>
-        <div class="dc-title">NZ and SA specific deficiency diagnosis</div>
-        <div class="dc-body">NZ volcanic geology is deficient in Co, Cu, Se, Mo. SA Highveld is deficient in Zn and S. KZN sugarcane soils are deficient in Si. Cape granitic soils are deficient in B and K. The AI cross-references each farm's measured trace mineral levels against crop-specific sufficiency thresholds and flags deficiencies that are blocking the farm's biological potential.</div>
-        <div class="dc-pills"><span class="dc-pill p-amber">NZ: Co/Cu/Se/Mo</span><span class="dc-pill p-amber">SA: Zn/S/Si</span><span class="dc-pill p-amber">Cape: B/K</span></div>
+        <div class="dc-label">Crop Rotation Planner</div>
+        <div class="dc-title">IFA's third-largest emission reduction lever</div>
+        <div class="dc-body">Crop rotation (legume inclusion, cover crops, diversity index) contributes −16% of the IFA 71% total emission reduction target. NAITRO scores current rotation diversity against the OBI Management domain and generates rotation sequences that improve BNF, SOC, and 4R Source compliance simultaneously — tailored to the crop system (dairy, grain, sugarcane, viticulture).</div>
+        <div class="dc-pills"><span class="dc-pill p-amber">Legume sequence</span><span class="dc-pill p-amber">Cover crop timing</span><span class="dc-pill p-amber">SOC trajectory</span></div>
       </div>
     </div>
   </div>
 
-  <hr class="section-divider">
+  <hr class="sec-divider">
 
   <!-- ═══ LAYER 4 — REPORT ═══ -->
   <div class="layer-section l4" id="report">
@@ -394,111 +692,100 @@
       <div class="layer-head-text">
         <div class="layer-num">Layer 4</div>
         <div class="layer-title">Report — HUIGE multi-stakeholder MRV</div>
-        <div class="layer-sub">One data source. Five outputs. Every stakeholder gets the report they need.</div>
+        <div class="layer-sub">One IoT-verified NUE calculation. Five stakeholder outputs. Scope 3, NPS-FM, carbon credits — all from the same data.</div>
       </div>
     </div>
     <div class="layer-divider"></div>
 
-    <div class="science-box">
-      <h3><i class="ti ti-report-analytics"></i> The HUIGE framework</h3>
-      <p>HUIGE stands for <strong>H</strong>ealth, <strong>U</strong>tilities, <strong>I</strong>ndustries, <strong>G</strong>overnments, <strong>E</strong>cosystems — the five domains through which a farm's soil data creates value beyond the farm gate. The framework was developed by Craffft as part of a multi-stakeholder MRV (Measurement, Reporting, Verification) system for agricultural sustainability.</p>
-      <p>NAITRO implements HUIGE as a reporting router: the same IoT-verified soil data that generates the farmer's dashboard also populates the food company's Scope 3 report, the bank's risk score, the regional council's compliance report, and the government's NUE tracking dashboard — with no additional data entry required.</p>
+    <div class="sci-box">
+      <h3><i class="ti ti-report-analytics"></i> Action across the entire food system value chain</h3>
+      <p>The IFA Cork 2026 presentation makes a structural point that goes beyond farm management: <em>"Emissions from fertilizer in the field are of shared interest for the entire food system value chain. It requires action at company level, across the sector, and in coalition with the food chain."</em> This means the farmer alone cannot solve the NUE problem. The food company buying their product, the bank financing their land, and the regulator setting their compliance targets must all have access to the same verified soil data — simultaneously.</p>
+      <p>NAITRO's HUIGE reporting framework is the architecture that makes this possible. One IoT-verified NUE and OBI score simultaneously populates five stakeholder outputs, without any additional data collection.</p>
     </div>
 
     <div class="huige-grid">
       <div class="huige-card">
         <div class="hc-letter" style="color:#1D9E75">H</div>
         <div class="hc-name">Health</div>
-        <div class="hc-who" style="color:#085041">Farmer</div>
-        <div class="hc-outputs">
-          <div class="hc-output">Soil health score</div>
-          <div class="hc-output">Yield + cost dashboard</div>
-          <div class="hc-output">Step-down planner</div>
-          <div class="hc-output">Compliance trajectory</div>
-        </div>
+        <div class="hc-who" style="color:#085041">Farmer · Agronomist</div>
+        <div class="hc-output">OBI soil score (0–100)</div>
+        <div class="hc-output">NUE % at paddock level</div>
+        <div class="hc-output">4R compliance status</div>
+        <div class="hc-output">3-yr N step-down plan</div>
+        <div class="hc-output">BNF offset projection</div>
       </div>
       <div class="huige-card">
         <div class="hc-letter" style="color:#185FA5">U</div>
         <div class="hc-name">Utilities</div>
-        <div class="hc-who" style="color:#0C447C">Regional council · Water</div>
-        <div class="hc-outputs">
-          <div class="hc-output">N leaching (kg/ha/yr)</div>
-          <div class="hc-output">Catchment N load</div>
-          <div class="hc-output">NPS-FM 2020 status</div>
-          <div class="hc-output">DWS water licence</div>
-        </div>
+        <div class="hc-who" style="color:#0C447C">Regional council · Water authority</div>
+        <div class="hc-output">N leaching kg NO₃/ha/yr</div>
+        <div class="hc-output">Catchment N load total</div>
+        <div class="hc-output">NPS-FM 2020 trajectory</div>
+        <div class="hc-output">DWS water licence (SA)</div>
       </div>
       <div class="huige-card">
         <div class="hc-letter" style="color:#B5711A">I</div>
         <div class="hc-name">Industries</div>
-        <div class="hc-who" style="color:#7A4A08">Food company · Bank</div>
-        <div class="hc-outputs">
-          <div class="hc-output">Scope 3 / Cool Farm</div>
-          <div class="hc-output">NUE (supply chain)</div>
-          <div class="hc-output">OBI loan risk score</div>
-          <div class="hc-output">Bonsucro / WWF cert</div>
-        </div>
+        <div class="hc-who" style="color:#7A4A08">Food company · Bank · Certifier</div>
+        <div class="hc-output">Scope 3 N₂O (kg CO₂eq)</div>
+        <div class="hc-output">Supply chain NUE %</div>
+        <div class="hc-output">OBI loan risk score</div>
+        <div class="hc-output">Cool Farm / Bonsucro cert</div>
       </div>
       <div class="huige-card">
         <div class="hc-letter" style="color:#534AB7">G</div>
         <div class="hc-name">Governments</div>
-        <div class="hc-who" style="color:#3C3489">MPI · DAFF · IFA</div>
-        <div class="hc-outputs">
-          <div class="hc-output">National NUE tracking</div>
-          <div class="hc-output">IFA reference case</div>
-          <div class="hc-output">Policy evidence base</div>
-          <div class="hc-output">UN FAO / IPCC data</div>
-        </div>
+        <div class="hc-who" style="color:#3C3489">MPI · DAFF · IFA reference</div>
+        <div class="hc-output">National NUE tracking</div>
+        <div class="hc-output">IFA 55%→70% progress</div>
+        <div class="hc-output">FAOSTAT-compatible data</div>
+        <div class="hc-output">Policy evidence base</div>
       </div>
       <div class="huige-card">
         <div class="hc-letter" style="color:#1D9E75">E</div>
         <div class="hc-name">Ecosystems</div>
-        <div class="hc-who" style="color:#085041">Carbon markets</div>
-        <div class="hc-outputs">
-          <div class="hc-output">SOC sequestration</div>
-          <div class="hc-output">Verra VCS credits</div>
-          <div class="hc-output">Biodiversity index</div>
-          <div class="hc-output">EU Green Deal pack</div>
-        </div>
+        <div class="hc-who" style="color:#085041">Carbon markets · Biodiversity</div>
+        <div class="hc-output">SOC sequestration t C/ha</div>
+        <div class="hc-output">Verra VCS / Gold Std</div>
+        <div class="hc-output">N₂O avoided CO₂eq</div>
+        <div class="hc-output">EU Green Deal compliance</div>
       </div>
     </div>
 
-    <div class="detail-grid">
+    <div class="two-col">
       <div class="detail-card">
-        <div class="dc-label">Sustainability-linked lending</div>
-        <div class="dc-title">Three-tier loan rate structure</div>
-        <div class="dc-body">Farms with a NAITRO score ≥70 and NUE ≥55% qualify for Tier 2 (base −0.25%). Farms reaching score ≥85 with urea &lt;120 kg N/ha qualify for Tier 3 (base −0.40%). The OBI score is the single metric Rabobank-style lenders need — no separate audit required.</div>
-        <div class="dc-pills"><span class="dc-pill p-purple">Tier 1: base rate</span><span class="dc-pill p-purple">Tier 2: −0.25%</span><span class="dc-pill p-purple">Tier 3: −0.40%</span></div>
+        <div class="dc-label">The Overseer gap — NZ</div>
+        <div class="dc-title">Post-Overseer: why NZ needs NAITRO now</div>
+        <div class="dc-body">OverseerFM was declared "not fit for purpose" by NZ's Office of the Chief Science Advisor in 2021. NPS-FM 2020 requires catchment-level N compliance, but the only regulatory measurement tool has been discredited. Regional councils cannot enforce N load targets without a credible replacement. NAITRO's IoT-verified OBI framework has the scientific credibility (WUR/IFA methodology) and real-time verification that regulators need — the most important "Why Now" for NZ deployment, and a candidate regulatory reference case for the global IFA network.</div>
+        <div class="dc-pills"><span class="dc-pill p-purple">Post-Overseer gap</span><span class="dc-pill p-purple">NPS-FM 2020</span><span class="dc-pill p-purple">IoT verified</span></div>
       </div>
       <div class="detail-card">
-        <div class="dc-label">Overseer gap (NZ)</div>
-        <div class="dc-title">Replacing a discredited tool</div>
-        <div class="dc-body">OverseerFM was declared "not fit for purpose" by NZ's Office of Chief Science Advisor in 2021. NPS-FM 2020 requires catchment-level N compliance but there is no credible replacement tool. NAITRO's IoT-verified OBI framework is positioned to fill this regulatory vacuum — the most important "Why Now" for NZ deployment.</div>
-        <div class="dc-pills"><span class="dc-pill p-purple">Post-Overseer</span><span class="dc-pill p-purple">NPS-FM 2020</span><span class="dc-pill p-purple">IoT verified</span></div>
+        <div class="dc-label">IFA country-level NUE tracking</div>
+        <div class="dc-title">NAITRO as national NUE infrastructure</div>
+        <div class="dc-body">IFA's Cork 2026 presentation references FAOSTAT data showing cropland NUE trends across large agricultural nations. Currently, this data is modelled — no country has real-time IoT-verified NUE at farm level that aggregates to national tracking. NAITRO's architecture is designed to be that infrastructure: farm-level OBI + NUE data, aggregated to catchment and national scale, that feeds directly into IFA and government reporting — making it the first platform capable of closing the IFA's own measurement gap.</div>
+        <div class="dc-pills"><span class="dc-pill p-purple">FAOSTAT-compatible</span><span class="dc-pill p-purple">National rollup</span><span class="dc-pill p-purple">IFA reference case</span></div>
       </div>
     </div>
   </div>
-
-  <hr class="section-divider">
 
   <!-- ═══ FARM LINKS ═══ -->
   <div class="farms-nav">
     <div class="fn-label">Open a farm dashboard to see all four layers in action →</div>
     <a class="fn-link" href="../nz1/">
       <span class="fn-link-flag">🇳🇿</span>
-      <span class="fn-link-text"><span class="fn-link-id">NZ1 · Ruakura</span><span class="fn-link-name">Waikato dairy</span></span>
+      <span><span class="fn-link-id">NZ1 · Ruakura</span><span class="fn-link-name">Waikato dairy</span></span>
     </a>
     <a class="fn-link" href="../sa1/">
       <span class="fn-link-flag">🇿🇦</span>
-      <span class="fn-link-text"><span class="fn-link-id">SA1 · Bergvlei</span><span class="fn-link-name">Free State grains</span></span>
+      <span><span class="fn-link-id">SA1 · Bergvlei</span><span class="fn-link-name">Free State grains</span></span>
     </a>
     <a class="fn-link" href="../sa2/">
       <span class="fn-link-flag">🇿🇦</span>
-      <span class="fn-link-text"><span class="fn-link-id">SA2 · Umfolozi</span><span class="fn-link-name">KZN sugarcane</span></span>
+      <span><span class="fn-link-id">SA2 · Umfolozi</span><span class="fn-link-name">KZN sugarcane</span></span>
     </a>
     <a class="fn-link" href="../sa3/">
       <span class="fn-link-flag">🇿🇦</span>
-      <span class="fn-link-text"><span class="fn-link-id">SA3 · Kaapzicht</span><span class="fn-link-name">Stellenbosch wine</span></span>
+      <span><span class="fn-link-id">SA3 · Kaapzicht</span><span class="fn-link-name">Stellenbosch wine</span></span>
     </a>
   </div>
 
