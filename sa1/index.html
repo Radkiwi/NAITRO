@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="../assets/css/digital-twin.css">
   <style>
     :root {
       --font-sans:'Inter',system-ui,sans-serif;
@@ -311,166 +312,27 @@
     </div>
 
     <!-- TWIN -->
-    <div class="view" id="view-tw">
-      <div class="twin-header">
-        <div>
-          <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">1 m³ soil block · Bergvlei Grains, Free State</div>
-          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Ferralsol · Maize-soya rotation · Semi-arid summer rainfall</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <span id="tw-risk" class="risk-pill rp-h"><i class="ti ti-alert-triangle"></i> High priming risk</span>
-          <button class="back-btn" onclick="showView('ov')"><i class="ti ti-arrow-left"></i> Back to overview</button>
-        </div>
-      </div>
-
-      <div class="time-rail">
-        <div class="tr-top">
-          <span class="tr-label"><i class="ti ti-clock"></i> time horizon</span>
-          <div class="phase-btns">
-            <button class="pb active" data-ph="past" onclick="setPhase('past',this)">Past</button>
-            <button class="pb" data-ph="present" onclick="setPhase('present',this)">Present</button>
-            <button class="pb" data-ph="future" onclick="setPhase('future',this)">Future</button>
-          </div>
-        </div>
-        <div class="tr-slider">
-          <span style="font-size:10px;color:var(--color-text-tertiary)">−10 yr</span>
-          <input type="range" id="tSlider" min="-10" max="10" value="-5" step="1" oninput="onTime(this.value)">
-          <span style="font-size:10px;color:var(--color-text-tertiary)">+10 yr</span>
-        </div>
-        <div class="tr-bands">
-          <span>2015 — monoculture + heavy LAN</span>
-          <span id="yr-lbl" style="font-weight:500;color:var(--color-text-primary)">2020</span>
-          <span>2035 — cover crop + no-till recovery</span>
-        </div>
-      </div>
-
-      <div class="twin-grid">
-        <div class="io-panel" id="inp-panel"><div class="io-label" style="color:#B5711A"><i class="ti ti-arrow-right"></i> inputs</div></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem">
-          <svg viewBox="0 0 240 168" width="240" height="168" xmlns="http://www.w3.org/2000/svg">
-              <!-- Background track -->
-              <path d="M32,100 A88,88 0 0,1 208,100" fill="none" stroke="#e7e5e4" stroke-width="18" stroke-linecap="butt"/>
-              <!-- Poor zone 0–30 -->
-              <path d="M32,100 A88,88 0 0,1 68,29" fill="none" stroke="#C0392B" stroke-width="18" stroke-linecap="butt"/>
-              <!-- Average zone 31–60 -->
-              <path d="M68,29 A88,88 0 0,1 147,16" fill="none" stroke="#E07B18" stroke-width="18" stroke-linecap="butt"/>
-              <!-- Optimal zone 61–100 -->
-              <path d="M147,16 A88,88 0 0,1 208,100" fill="none" stroke="#1D9E75" stroke-width="18" stroke-linecap="butt"/>
-              <!-- Zone dividers -->
-              <line x1="63" y1="32" x2="73" y2="26" stroke="white" stroke-width="3"/>
-              <line x1="143" y1="19" x2="151" y2="13" stroke="white" stroke-width="3"/>
-              <!-- Zone labels — outside arc, no overlap -->
-              <text x="18" y="110" font-size="11" font-weight="600" fill="#C0392B" font-family="Inter,sans-serif" text-anchor="middle">Poor</text>
-              <text x="18" y="122" font-size="9" fill="#bfb8b5" font-family="Inter,sans-serif" text-anchor="middle">0–30</text>
-              <text x="120" y="8" font-size="11" font-weight="600" fill="#E07B18" font-family="Inter,sans-serif" text-anchor="middle">Average</text>
-              <text x="120" y="19" font-size="9" fill="#bfb8b5" font-family="Inter,sans-serif" text-anchor="middle">31–60</text>
-              <text x="222" y="110" font-size="11" font-weight="600" fill="#1D9E75" font-family="Inter,sans-serif" text-anchor="middle">Optimal</text>
-              <text x="222" y="122" font-size="9" fill="#bfb8b5" font-family="Inter,sans-serif" text-anchor="middle">61–100</text>
-              <!-- Needle -->
-              <line x1="120" y1="100" x2="148" y2="30" stroke="#1c1917" stroke-width="2.5" stroke-linecap="round"/>
-              <circle cx="120" cy="100" r="6" fill="#1c1917"/>
-              <circle cx="120" cy="100" r="2.5" fill="#fafaf9"/>
-              <!-- Score — well below pivot, no overlap -->
-              <text x="120" y="145" font-size="38" font-weight="500" fill="#1c1917" font-family="Inter,sans-serif" text-anchor="middle">62</text>
-              <text x="120" y="160" font-size="12" fill="#78716c" font-family="Inter,sans-serif" text-anchor="middle">/ 100</text>
-            </svg>
-          <div class="lbars" id="lbars"></div>
-        </div>
-        <div class="io-panel" id="out-panel"><div class="io-label" style="color:#185FA5"><i class="ti ti-arrow-right"></i> outputs</div></div>
-      </div>
-
-      <div class="twin-detail" id="tw-detail">
-        <div class="td-title"><i class="ti ti-info-circle"></i><span id="td-name">Select an input or output above</span></div>
-        <div class="td-body" id="td-body">Click any card on the left or right to explore how that variable connects to the soil biology and what decisions can change it.</div>
-        <div class="td-grid" id="td-grid"></div>
-        <div id="td-alert"></div>
-      </div>
-
-      <div class="scen-bar">
-        <span style="font-size:11px;color:var(--color-text-tertiary);align-self:center">Scenario:</span>
-        <button class="s-btn active" onclick="setScen('baseline',this)">Current (monoculture)</button>
-        <button class="s-btn" onclick="setScen('lime',this)">Lime + pH correction</button>
-        <button class="s-btn" onclick="setScen('cover',this)">Cover crops + no-till</button>
-        <button class="s-btn" onclick="setScen('full',this)">Full regenerative</button>
-      </div>
-    </div>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.875rem">
-        <div style="background:#FAEEDA;border:0.5px solid #EF9F27;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
-          <div style="font-size:11px;font-weight:500;color:#1D9E75;margin-bottom:.375rem"><i class="ti ti-chart-bar"></i> Score — OBI adapted for SA</div>
-          <div style="font-size:12px;color:#1D9E75;line-height:1.65">21 indicators recalibrated for Free State ferralsols and Highveld climate. pH correction weighted as priority indicator for SA maize belt context. Benchmarked against SA Grain Research Institute soil health norms.</div>
-        </div>
-        <div style="background:#E6F1FB;border:0.5px solid #85B7EB;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
-          <div style="font-size:11px;font-weight:500;color:#0C447C;margin-bottom:.375rem"><i class="ti ti-cube"></i> Visualise — digital twin</div>
-          <div style="font-size:12px;color:#0C447C;line-height:1.65">1m³ soil block models the Fe-Al chemistry of ferralsol soils. Inputs track rainfall variability (400–600 mm summer), LAN application, and lime. Output layer includes wind erosion risk — critical for Free State open-paddock context.</div>
-        </div>
-        <div style="background:#EEEDFE;border:0.5px solid #AFA9EC;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
-          <div style="font-size:11px;font-weight:500;color:#3C3489;margin-bottom:.375rem"><i class="ti ti-cpu"></i> Decide — AI recommendations</div>
-          <div style="font-size:12px;color:#3C3489;line-height:1.65">AI engine prioritises pH correction before N management — unlike NZ context where N is the primary lever. Covers SA-specific trace mineral deficiencies (Zn and S common in Highveld). Variable-rate lime and LAN maps by paddock block.</div>
-        </div>
-        <div style="background:#E1F5EE;border:0.5px solid #5DCAA5;border-radius:var(--border-radius-lg);padding:1rem 1.125rem">
-          <div style="font-size:11px;font-weight:500;color:#085041;margin-bottom:.375rem"><i class="ti ti-report-analytics"></i> Report — HUIGE for SA</div>
-          <div style="font-size:12px;color:#085041;line-height:1.65">Farmer + Tiger Brands / Pioneer Foods supply chain + Absa agri loan risk score + Department of Agriculture compliance + SA NUE tracking aligned to AfCFTA export requirements. One data source, five SA stakeholders.</div>
-        </div>
-      </div>
-    </div>
+    <div class="view" id="view-tw"></div>
 
   </div>
 </div>
 
+<script src="../assets/data/sa1-twin.js"></script>
+<script src="../assets/js/airtable-cms.js"></script>
+<script src="../assets/js/digital-twin.js"></script>
 <script>
-const BASE=2025;
-let tTime=-5,tScen='baseline',tSel=null;
-const scens={
-  baseline:{lan:145,lime:0,soc:1.8,ph:5.1,zn:0.6,bnf:22,comp:62,macro:28,infilt:4,erosion:75},
-  lime:    {lan:130,lime:2.5,soc:2.0,ph:5.8,zn:0.8,bnf:28,comp:55,macro:34,infilt:7,erosion:55},
-  cover:   {lan:100,lime:2.5,soc:2.6,ph:6.1,zn:1.0,bnf:38,comp:40,macro:48,infilt:14,erosion:30},
-  full:    {lan:60, lime:2.0,soc:3.5,ph:6.3,zn:1.2,bnf:55,comp:18,macro:65,infilt:24,erosion:12},
-};
-const mods={
-  baseline:{soc:[-.4,0,.6],bnf:[-5,0,3],comp:[8,0,-5],lan:[20,0,-10]},
-  lime:    {soc:[-.3,0,.9],bnf:[-4,0,10],comp:[6,0,-12],lan:[15,0,-30]},
-  cover:   {soc:[-.2,0,1.4],bnf:[-3,0,18],comp:[4,0,-20],lan:[10,0,-40]},
-  full:    {soc:[-.1,0,2.0],bnf:[-2,0,25],comp:[3,0,-28],lan:[8,0,-50]},
-};
-const inputs=[
-  {id:'sun',icon:'ti-sun',name:'Sunlight',key:null,unit:'kJ/m²/day',desc:'Free State receives 2,900–3,100 sunshine hours/year — among the highest globally. Ideal for maize photosynthesis when soil biology can support it.',stats:[{l:'Annual sunshine',v:'3,050 hrs'},{l:'Summer peak',v:'Oct–Feb'}],alert:null},
-  {id:'rain',icon:'ti-cloud-rain',name:'Rainfall',key:null,unit:'mm/season',desc:'Summer rainfall (450–550 mm) comes in high-intensity events that overwhelm compacted soil. Low SOC means water runs off rather than infiltrating.',stats:[{l:'Annual rainfall',v:'510 mm'},{l:'Intensity risk',v:'High — compaction'}],alert:{t:'warn',m:'Current infiltration rate of 4 mm/hr means over 60% of summer rainfall is lost as runoff, carrying topsoil and nutrients.'}},
-  {id:'lan',icon:'ti-flask',name:'LAN applied',key:'lan',unit:'kg N/ha/yr',desc:'Limestone ammonium nitrate at 145 kg N/ha on pH 5.1 soil is significantly less efficient than target. Acid soils acidify further with repeated LAN applications, creating a downward spiral.',stats:[{l:'Current rate',v:null},{l:'Optimal rate',v:'100–110 kg N/ha'}],alert:{t:'warn',m:'LAN is acidifying the soil further with each application. Switching to urea or liquid N reduces acidification rate by 60%.'}},
-  {id:'lime',icon:'ti-droplet',name:'Lime applied',key:'lime',unit:'t/ha',desc:'Dolomitic lime corrects pH and adds calcium and magnesium — both critical for maize root development and chlorophyll synthesis.',stats:[{l:'Last lime app',v:'4 years ago'},{l:'Current pH',v:'5.1 — critical'}],alert:{t:'warn',m:'pH has dropped 0.3 units since last lime application. Immediate re-liming required.'}},
-  {id:'min',icon:'ti-atom',name:'Trace minerals',key:'zn',unit:'Zn / S / B',desc:'Zinc deficiency is widespread in SA Highveld soils. Critical for maize pollen viability and grain fill. Sulphur deficiency limits protein synthesis.',stats:[{l:'Zinc level',v:null},{l:'Sufficiency',v:'>1.0 mg/kg'}],alert:{t:'warn',m:'Zinc at 0.6 mg/kg is below sufficiency. Maize yield loss from Zn deficiency estimated at 0.8–1.2 t/ha.'}},
-];
-const outputs=[
-  {id:'yield',icon:'ti-bread',name:'Maize yield',key:null,unit:'t/ha',desc:'Current yield of 6.8 t/ha vs a biological potential of 9–11 t/ha on this soil type with correct pH and soil biology.',stats:[{l:'Current yield',v:'6.8 t/ha'},{l:'Soil potential',v:'9–11 t/ha'}],alert:{t:'warn',m:'Yield gap of 2–4 t/ha is directly attributable to pH, compaction, and low SOC. No additional inputs needed — only soil correction.'}},
-  {id:'bnf',icon:'ti-test-pipe',name:'N fixation',key:'bnf',unit:'% of N',desc:'Soya bean rotation with rhizobia inoculation is the most cost-effective N source available. Currently contributing only 22% of N due to low pH inhibiting rhizobia activity.',stats:[{l:'BNF contribution',v:null},{l:'Potential at pH 6.2',v:'55–65% of N'}],alert:null},
-  {id:'erosion',icon:'ti-wind',name:'Erosion risk',key:'erosion',unit:'% risk',desc:'Low SOC + compaction + bare winter fallow = active wind and water erosion. The Free State loses an estimated 8–12 t/ha/yr of topsoil under conventional bare-till maize.',stats:[{l:'Erosion risk',v:null},{l:'Acceptable',v:'<20%'}],alert:{t:'warn',m:'At current erosion rate, the farm is losing approximately R650/ha/yr in topsoil fertility value that cannot be replaced with fertiliser.'}},
-  {id:'infilt',icon:'ti-ripple',name:'Water use',key:'infilt',unit:'mm/hr infiltration',desc:'Water infiltration determines how much of summer rainfall is captured vs lost as runoff. Target for clay-loam ferralsol is >15 mm/hr.',stats:[{l:'Infiltration rate',v:null},{l:'Target',v:'>15 mm/hr'}],alert:{t:'warn',m:'At 4 mm/hr, the soil is shedding water in every rain event. No-till and cover crops can restore infiltration to >15 mm/hr within 2 seasons.'}},
-  {id:'nue',icon:'ti-bolt',name:'NUE',key:null,unit:'N use efficiency',desc:'Nutrient use efficiency — N in grain divided by N applied. Currently at 38% due to low pH, leaching, and poor timing. Target is 55–65%.',stats:[{l:'Current NUE',v:'38%'},{l:'Target NUE',v:'55–65%'}],alert:null},
-];
-const layers=[
-  {name:'SOC',key:'soc',max:6,color:'#8B6340'},
-  {name:'Macropores',key:'macro',max:100,color:'#6B8B40'},
-  {name:'BNF',key:'bnf',max:100,color:'#185FA5'},
-  {name:'Compaction',key:'comp',max:100,color:'#D85A30'},
-];
-function gv(key){const s=scens[tScen],m=mods[tScen][key];if(!m)return s[key];const f=tTime/10;return Math.max(0,tTime<0?s[key]+m[0]*(-f):s[key]+m[2]*f);}
-function health(){const soc=gv('soc'),bnf=gv('bnf'),comp=gv('comp'),ph=scens[tScen].ph;return Math.round(Math.min(soc/5,1)*25+bnf/100*25+(1-comp/100)*25+Math.min((ph-4.5)/2,1)*25);}
-function priming(){const soc=gv('soc'),lan=gv('lan'),ph=scens[tScen].ph;let s=0;s+=soc<2?3:soc<3?2:1;s+=lan>130?3:lan>90?2:1;s+=ph<5.5?3:ph<6.0?2:1;return s;}
-function renderLayers(){document.getElementById('lbars').innerHTML=layers.map(l=>{const raw=gv(l.key),pct=Math.min(100,l.key==='soc'?raw/l.max*100:raw);return `<div class="lbar-row"><span class="lb-name">${l.name}</span><div class="lb-track"><div class="lb-fill" style="width:${Math.round(pct)}%;background:${l.color}70;border-right:2px solid ${l.color}"></div></div><span class="lb-pct">${l.key==='soc'?raw.toFixed(1)+'%':Math.round(raw)+'%'}</span></div>`;}).join('');}
-function renderScore(){const sc=health(),pr=priming();document.getElementById('tw-score').textContent=sc;const cls=pr>=7?'rp-h':pr>=5?'rp-m':'rp-l';const lbl=pr>=7?'High priming risk':pr>=5?'Medium priming risk':'Low priming risk';document.getElementById('tw-risk').className=`risk-pill ${cls}`;document.getElementById('tw-risk').innerHTML=`<i class="ti ti-alert-triangle"></i> ${lbl} (${pr}/9)`;}
-function buildPanels(){
-  const ip=document.getElementById('inp-panel');ip.innerHTML='<div class="io-label" style="color:#B5711A"><i class="ti ti-arrow-right"></i> inputs</div>';
-  inputs.forEach(inp=>{const raw=inp.key?gv(inp.key):null;const v=raw!==null?(inp.key==='lime'?raw.toFixed(1)+' t/ha':inp.key==='zn'?raw.toFixed(1)+' mg/kg':inp.key==='soc'?raw.toFixed(1)+'%':Math.round(raw)+''):inp.unit;const d=document.createElement('div');d.className='io-card'+(tSel===inp.id?' sel':'');d.innerHTML=`<div class="io-top"><i class="ti ${inp.icon}"></i><span class="io-name">${inp.name}</span></div><div class="io-val">${v}</div>`;d.onclick=()=>{tSel=tSel===inp.id?null:inp.id;buildPanels();renderDetail();};ip.appendChild(d);});
-  const op=document.getElementById('out-panel');op.innerHTML='<div class="io-label" style="color:#185FA5"><i class="ti ti-arrow-right"></i> outputs</div>';
-  outputs.forEach(out=>{const raw=out.key?gv(out.key):null;const v=raw!==null?(out.key==='infilt'?raw.toFixed(1)+' mm/hr':out.key==='bnf'?Math.round(raw)+'% of N':out.key==='erosion'?Math.round(raw)+'%':Math.round(raw)):out.unit;const d=document.createElement('div');d.className='io-card'+(tSel===out.id?' sel':'');d.innerHTML=`<div class="io-top"><i class="ti ${out.icon}"></i><span class="io-name">${out.name}</span></div><div class="io-val">${v}</div>`;d.onclick=()=>{tSel=tSel===out.id?null:out.id;buildPanels();renderDetail();};op.appendChild(d);});
-}
-function renderDetail(){if(!tSel){document.getElementById('td-name').textContent='Select an input or output above';document.getElementById('td-body').textContent='Click any card on the left or right to explore how that variable connects to the soil biology.';document.getElementById('td-grid').innerHTML='';document.getElementById('td-alert').innerHTML='';return;}const all=[...inputs,...outputs],item=all.find(x=>x.id===tSel);if(!item)return;document.getElementById('td-name').innerHTML=`<i class="ti ${item.icon}"></i> ${item.name}`;document.getElementById('td-body').textContent=item.desc;document.getElementById('td-grid').innerHTML=item.stats.map(s=>{let val=s.v;if(!val&&item.key){const r=gv(item.key);val=item.key==='lime'?r.toFixed(1)+' t/ha':item.key==='zn'?r.toFixed(1)+' mg/kg':item.key==='soc'?r.toFixed(1)+'%':item.key==='infilt'?r.toFixed(1)+' mm/hr':item.key==='bnf'?Math.round(r)+'% of N':item.key==='erosion'?Math.round(r)+'%':item.key==='lan'?Math.round(r)+' kg/ha':Math.round(r)+'';}return `<div class="td-stat"><div class="td-stat-l">${s.l}</div><div class="td-stat-v">${val||'—'}</div></div>`;}).join('');document.getElementById('td-alert').innerHTML='';if(item.alert){const cls=item.alert.t==='warn'?'ta-warn':'ta-ok';document.getElementById('td-alert').innerHTML=`<div class="td-alert ${cls}"><i class="ti ti-${item.alert.t==='warn'?'alert-triangle':'circle-check'}"></i><span>${item.alert.m}</span></div>`;}}
-function renderAll(){renderScore();renderLayers();buildPanels();renderDetail();}
-function onTime(v){tTime=parseInt(v);document.getElementById('yr-lbl').textContent=BASE+tTime;document.querySelectorAll('.pb').forEach(b=>{b.classList.remove('active');if(tTime<-1&&b.dataset.ph==='past')b.classList.add('active');else if(tTime>1&&b.dataset.ph==='future')b.classList.add('active');else if(Math.abs(tTime)<=1&&b.dataset.ph==='present')b.classList.add('active');});renderAll();}
-function setPhase(p,btn){document.querySelectorAll('.pb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const sl=document.getElementById('tSlider');tTime=p==='past'?-5:p==='present'?0:5;sl.value=tTime;document.getElementById('yr-lbl').textContent=BASE+tTime;renderAll();}
-function setScen(sc,btn){tScen=sc;document.querySelectorAll('.s-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderAll();}
+  (function() {
+    const local = window.NAITRO_TWIN_DATA.sa1;
+    const cfg = AirtableCMS.getFarmConfig('sa1', local, (fresh) => {
+      twin = NaitroTwin.mount('#view-tw', fresh); // re-mount only if Airtable returns newer data
+    });
+    cfg.onBack = () => showView('ov');
+    var twin = NaitroTwin.mount('#view-tw', cfg);
+  })();
+</script>
+<script>
 function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));document.getElementById('view-'+id).classList.add('on');document.querySelectorAll('.p-tab').forEach(t=>t.classList.remove('active'));const map={ov:'tab-ov',tw:'tab-tw'};if(map[id])document.getElementById(map[id]).classList.add('active');}
 function toggleRec(card){const was=card.classList.contains('open');document.querySelectorAll('.rec-card').forEach(c=>c.classList.remove('open'));if(!was)card.classList.add('open');}
-renderAll();
 </script>
 </body>
 </html>
