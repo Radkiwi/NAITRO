@@ -1,0 +1,148 @@
+/* NAITRO Soil Variables Explainer — local fallback data.
+   Mirrors the Airtable base "NZ Soil Health Platform — Data Model"
+   (table: tblPQAi77LZNHdzoS, view: viweYpNHh8z3OPgSu). Renders
+   instantly with this data; VariableCMS overlays live Airtable
+   text + image attachments once base access is granted (see
+   /assets/js/variable-cms.js for the Airtable schema this expects). */
+window.NAITRO_SOIL_VARIABLES = [
+  {
+    id: 'microbial-biomass-carbon',
+    name: 'Microbial biomass carbon',
+    category: 'Soil Biology',
+    unit: 'mg C/kg soil',
+    description: 'Key indicator of biological activity',
+    nzNote: 'Reduced on high-urea farms due to the Priming Effect — excess synthetic N causes microbes to burn through stored soil carbon faster than it can be replenished.',
+    thresholds: { highMedium: 500, mediumLow: 375 },
+    states: {
+      high: { label: '>500 mg C/kg', visual: "Dense glowing web of bright cyan microbial nodes pulsing throughout the cube's cross-section, root hairs wrapped in luminous biofilm, soil crumbs visibly teeming with light." },
+      medium: { label: '375–500 mg C/kg', visual: 'Moderate scattering of cyan microbial nodes across the cube, patchy biofilm glow concentrated near root zones, visible but uneven biological activity.' },
+      low: { label: '<375 mg C/kg', visual: 'Sparse, faint cyan flecks barely visible in the soil matrix, dull lifeless-looking aggregates, root hairs bare with almost no biofilm glow.' },
+    },
+  },
+  {
+    id: 'macroporosity',
+    name: 'Macroporosity',
+    category: 'Soil Biology',
+    unit: '% volume',
+    description: 'Large pore space needed for air, water and microbiome',
+    nzNote: 'Collapses under compaction — an estimated ~50% of NZ dairy sites are affected by reduced macroporosity from heavy machinery and stocking pressure.',
+    thresholds: { highMedium: 12, mediumLow: 8.5 },
+    states: {
+      high: { label: '≥12% macropore volume', visual: 'Open honeycomb of large interconnected air channels running through the cube, light passing visibly through pore networks, loose crumbly structure.' },
+      medium: { label: '8.5–12% macropore volume', visual: 'Moderate scattering of air channels with some interconnection, soil structure visibly tighter, light only partially passing through.' },
+      low: { label: '<8.5% macropore volume', visual: 'Tightly packed, almost solid soil mass with few visible voids, dense slab-like structure, no light passing through pore spaces.' },
+    },
+  },
+  {
+    id: 'fungal-bacterial-ratio',
+    name: 'Fungal:Bacterial ratio',
+    category: 'Soil Biology',
+    unit: 'Ratio',
+    description: 'Healthy soils favour fungi; synthetic N shifts the balance toward bacteria',
+    nzNote: 'Disrupted by urea applications and tillage — both suppress fungal networks faster than bacterial populations, shifting soils toward a degraded, bacteria-dominant state.',
+    thresholds: { highMedium: 0.8, mediumLow: 0.55 },
+    states: {
+      high: { label: '≥0.8 (fungal-dominant)', visual: "Fine web of luminous white mycelial threads dominating the cube's interior, hyphae visibly outcompeting bacterial colonies, intricate branching fungal network glow." },
+      medium: { label: '0.55–0.8 (balanced)', visual: 'Balanced mix of glowing mycelial threads and small bacterial colony clusters, moderate fungal network with visible bacterial dots interspersed.' },
+      low: { label: '<0.55 (bacteria-dominant)', visual: 'Thin scattering of small glowing bacterial-colony dots with almost no visible fungal threads, sparse and disconnected microbial points.' },
+    },
+  },
+  {
+    id: 'earthworm-count',
+    name: 'Earthworm count',
+    category: 'Soil Biology',
+    unit: 'Count/m²',
+    description: 'Proxy for overall soil biology health',
+    nzNote: 'NZ pastures should support high counts under good management — earthworm density is one of the simplest on-farm indicators a farmer can check without sending samples to a lab.',
+    thresholds: { highMedium: 50, mediumLow: 32.5 },
+    states: {
+      high: { label: '>50 worms/m²', visual: 'Many glowing worm channels and burrow tunnels winding through the cube, visible castings and crumb structure, signs of abundant earthworm activity throughout.' },
+      medium: { label: '32.5–50 worms/m²', visual: 'A moderate number of glowing burrow tunnels scattered through the cube, some visible castings, patchy earthworm activity.' },
+      low: { label: '<32.5 worms/m²', visual: 'Almost no visible burrow tunnels, compact undisturbed soil with a rare faint channel, minimal signs of earthworm activity.' },
+    },
+  },
+  {
+    id: 'rhizobia-activity',
+    name: 'Rhizobia activity',
+    category: 'Soil Biology',
+    unit: 'Qualitative score',
+    description: 'Nitrogen-fixing bacteria in legume roots',
+    nzNote: 'Requires cobalt and molybdenum as enzyme cofactors — both are naturally deficient in NZ\'s young volcanic soils, which caps biological N fixation even when legume cover is high.',
+    thresholds: { highMedium: 65, mediumLow: 47.5 },
+    states: {
+      high: { label: '>65 (active nodulation)', visual: 'Legume roots studded with many large glowing pink-white nitrogen-fixing nodules, vivid bioluminescent clusters along the root system, abundant nodulation.' },
+      medium: { label: '47.5–65 (partial nodulation)', visual: 'Legume roots with a scattering of small glowing nodules, moderate and uneven nodulation along the root hairs.' },
+      low: { label: '<47.5 (minimal nodulation)', visual: 'Thin pale legume roots with almost no visible nodules, bare root hairs lacking the glowing nodule clusters of active nitrogen fixation.' },
+    },
+  },
+  {
+    id: 'total-nitrogen',
+    name: 'Total nitrogen',
+    category: 'Macro Nutrients',
+    unit: 'kg N/ha',
+    description: 'Overall nitrogen pool in soil',
+    nzNote: 'Excess synthetic N triggers the Priming Effect, so a high total-N reading isn\'t automatically good — it matters how much of that pool is plant-available versus locked up or about to be lost.',
+    thresholds: { highMedium: 6000, mediumLow: 4500 },
+    states: {
+      high: { label: '>6,000 kg N/ha', visual: 'Dense luminous blue nitrogen gradient saturating the entire soil cross-section, glowing data overlay showing a thick, uniform nutrient pool.' },
+      medium: { label: '4,500–6,000 kg N/ha', visual: 'Moderate blue nitrogen gradient visible in patches across the cube, uneven glowing data overlay with medium nutrient density.' },
+      low: { label: '<4,500 kg N/ha', visual: 'Thin, faint blue gradient barely visible in the soil matrix, sparse glowing data overlay indicating a depleted nutrient pool.' },
+    },
+  },
+  {
+    id: 'plant-available-nitrogen',
+    name: 'Plant-available nitrogen',
+    category: 'Macro Nutrients',
+    unit: 'kg N/ha',
+    description: 'The fraction plants can actually use — more meaningful than total N',
+    nzNote: 'This is the figure that actually predicts yield response, not total N. A farm can show a large total-N pool and still be N-limited if very little of it is in plant-available form.',
+    thresholds: { highMedium: 100, mediumLow: 70 },
+    states: {
+      high: { label: '>100 kg N/ha', visual: 'Bright blue luminous particles streaming toward root hairs throughout the cube, dense plant-available nitrogen overlay actively flowing into the root system.' },
+      medium: { label: '70–100 kg N/ha', visual: 'A moderate stream of glowing blue particles drifting toward roots, patchy plant-available nitrogen flow.' },
+      low: { label: '<70 kg N/ha', visual: 'A few faint blue particles barely drifting near the roots, minimal plant-available nitrogen flow visible.' },
+    },
+  },
+  {
+    id: 'total-phosphorus',
+    name: 'Total phosphorus',
+    category: 'Macro Nutrients',
+    unit: 'mg/kg',
+    description: 'Overall phosphorus level in soil',
+    nzNote: 'Roughly a third of NZ soils carry excessive P from decades of over-fertilisation — a high reading here is a water-quality risk flag as much as a fertility one.',
+    thresholds: { highMedium: 1000, mediumLow: 750 },
+    states: {
+      high: { label: '>1,000 mg/kg', visual: 'Thick orange phosphorus gradient saturating the cube, glowing mineral-bound clusters densely packed through the soil profile.' },
+      medium: { label: '750–1,000 mg/kg', visual: 'Moderate orange phosphorus gradient in visible patches, scattered glowing mineral clusters of medium density.' },
+      low: { label: '<750 mg/kg', visual: 'Faint orange tint barely present in the soil matrix, very few glowing mineral-bound phosphorus clusters.' },
+    },
+  },
+  {
+    id: 'olsen-p',
+    name: 'Plant-available phosphorus (Olsen P)',
+    category: 'Macro Nutrients',
+    unit: 'mg/L',
+    description: 'The standard NZ measure of plant-available phosphorus',
+    nzNote: 'Olsen P above 25 is considered excessive for water quality — this is the rare variable where "High" on this dashboard should be read as a caution flag, not a target.',
+    thresholds: { highMedium: 25, mediumLow: 17.5 },
+    states: {
+      high: { label: '>25 mg/L', visual: 'Bright orange luminous particles concentrated densely around root tips, strong plant-available phosphorus overlay actively feeding the root system.' },
+      medium: { label: '17.5–25 mg/L', visual: 'A moderate orange particle field around root tips, adequate but uneven plant-available phosphorus visible.' },
+      low: { label: '<17.5 mg/L', visual: 'Sparse, dim orange specks near root tips, weak plant-available phosphorus overlay signalling deficiency.' },
+    },
+  },
+  {
+    id: 'potassium',
+    name: 'Potassium',
+    category: 'Macro Nutrients',
+    unit: 'cmol/kg',
+    description: 'Essential macro nutrient',
+    nzNote: 'Generally adequate across NZ pastoral soils, but still worth monitoring — potassium can be drawn down quickly under intensive silage or hay removal.',
+    thresholds: { highMedium: 0.6, mediumLow: 0.45 },
+    states: {
+      high: { label: '>0.6 cmol/kg', visual: 'Dense violet potassium gradient glowing evenly through the soil cube, mineral particles richly saturated with luminous purple data overlay.' },
+      medium: { label: '0.45–0.6 cmol/kg', visual: 'Moderate violet gradient in patches through the cube, medium-density glowing potassium particles.' },
+      low: { label: '<0.45 cmol/kg', visual: 'Thin, faint violet tint with scattered glowing particles, low-density potassium overlay across the soil matrix.' },
+    },
+  },
+];
