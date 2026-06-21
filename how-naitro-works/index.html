@@ -102,7 +102,7 @@
 
     /* ── NUE PROGRESS ── */
     .nue-progress { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin: 1rem 0; }
-    .np-label { font-size: 12px; font-weight: 500; color: var(--text-mid); margin-bottom: .875rem; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .25rem; }
+    .np-label { font-size: 12px; font-weight: 500; color: var(--text-mid); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .25rem; }
     .np-label span { font-size: 11px; color: var(--text-faint); font-weight: 400; }
     .np-track { height: 32px; background: #f1f0ef; border-radius: 8px; position: relative; }
     .np-fill { height: 100%; border-radius: 8px 0 0 8px; background: linear-gradient(90deg, #C0392B 0%, #E07B18 50%, #1D9E75 100%); display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; }
@@ -277,7 +277,7 @@
   <div class="hero-inner">
     <div class="hero-tag"><i class="ti ti-stack"></i> Platform overview</div>
     <h1>How NAITRO works —<br><strong>The science of soil intelligence.</strong></h1>
-    <p class="hero-sub">NAITRO is built on the same NUE science presented at the IFA World Conference in Cork 2026. Four layers of technology turn that science into actions every farmer can take today — and every stakeholder can measure and verify.</p>
+    <p class="hero-sub">NAITRO is being developed on the world's best soil science insights. Four layers of technology turn that science into actions every farmer can take today — and every stakeholder can measure and verify.</p>
     <div class="hero-stats">
       <div><div class="hs-num">55%</div><div class="hs-label">Global cropland NUE today</div></div>
       <div><div class="hs-num">70%</div><div class="hs-label">IFA target by 2040</div></div>
@@ -315,30 +315,12 @@
     <div class="sec-tag tag-red"><i class="ti ti-chart-line"></i> The nitrogen problem</div>
     <div class="sec-title">Global NUE: 45 years of data, one stubborn curve</div>
     <div class="sec-body">
-      Global cropland NUE sits at roughly <strong>55%</strong> — meaning nearly half of every nitrogen application is lost to air, water, or soil accumulation before a crop can use it. The International Fertilizer Association (IFA), in research presented at the IFAMA World Conference in Cork, Ireland (June 2026), identifies this as the single most tractable lever for reducing agriculture's environmental footprint while protecting food security. Both <strong>too-low NUE</strong> (soil mining in Sub-Saharan Africa) and <strong>too-high NUE losses</strong> (excess N in NZ dairy, SA sugarcane) need intervention — the problem is global and the solutions are farm-specific.
+      Global cropland NUE sits at roughly <strong>55%</strong> — meaning nearly half of every nitrogen application is lost to air, water, or soil accumulation before a crop can use it. The International Fertilizer Association (IFA), in research presented at the IFAMA World Conference in Cork, Ireland (June 2026), identifies this as the single most tractable lever for reducing agriculture's environmental footprint while protecting food security. Both <strong>too-low NUE</strong> and <strong>too-high NUE losses</strong> need intervention — the problem is global and the solutions are farm-specific.
     </div>
 
     <div class="pull-quote">
       <p>"Tracking and improving nutrient use efficiency is key — for farming profitability, environment, climate, soil health, closing the yield gap, food security, and resilience to future crises."</p>
       <cite>— Patrick Heffer, IFA, IFAMA World Conference Cork, Ireland, June 2026</cite>
-    </div>
-
-    <!-- NUE Equation -->
-    <div class="eq-box">
-      <div class="eq-part">
-        <div class="eq-label">Nutrient Balance</div>
-        <div class="eq-val" style="font-size:18px">Inputs − Outputs</div>
-        <div class="eq-sub">Fertilizer · Manure · BNF · Deposition · Seed</div>
-      </div>
-      <div class="eq-op">⟹</div>
-      <div class="eq-result">
-        <div class="eq-label">NUE Formula (IFA)</div>
-        <div class="eq-val" style="color:#085041; font-size:20px">Outputs ÷ Inputs</div>
-        <div class="eq-sub" style="color:#1D9E75">Nutrient Use Efficiency</div>
-      </div>
-      <div class="eq-note">
-        A <strong>surplus</strong> = nitrogen escaping to air (NH₃, N₂O, N₂), water (NO₃⁻), or accumulating in soil. A <strong>deficit</strong> = soil nitrogen being mined — depleting long-term fertility. The IFA tracks both simultaneously because countries in each category exist on the same planet and share the same food system emissions challenge. NAITRO's OBI score measures both the chemical surplus/deficit AND the biological soil state that determines how efficiently any input is converted to yield.
-      </div>
     </div>
 
     <!-- NUE Progress bar -->
@@ -401,6 +383,56 @@
         <text x="16" y="108" font-size="11" fill="#a8a29e" font-family="Inter,sans-serif" text-anchor="middle" transform="rotate(-90,16,108)">NUE →</text>
       </svg>
       <div class="cite"><i class="ti ti-info-circle" style="flex-shrink:0"></i> Adapted from IFA / FAOSTAT. Patrick Heffer, IFAMA Cork 2026. The curve shows that both under-application (left — soil mining) and excess application (centre — high losses) reduce NUE. Sustainable intensification (green zone, right) is where yield and efficiency converge. This is the zone NAITRO is designed to reach.</div>
+    </div>
+
+    <!-- Nitrogen cycle diagram -->
+    <div class="sci-box" style="padding:1.5rem 1.5rem 1rem">
+      <h3 style="margin-bottom:.5rem"><i class="ti ti-arrows-split"></i> Where every kg of applied nitrogen actually goes</h3>
+      <svg viewBox="0 0 700 480" width="100%" xmlns="http://www.w3.org/2000/svg" style="display:block">
+        <defs>
+          <marker id="arrowRed" markerWidth="9" markerHeight="9" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#C0392B"/></marker>
+          <marker id="arrowBlue" markerWidth="9" markerHeight="9" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#185FA5"/></marker>
+          <marker id="arrowAmber" markerWidth="9" markerHeight="9" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#B5711A"/></marker>
+          <marker id="arrowGreen" markerWidth="9" markerHeight="9" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#1D9E75"/></marker>
+        </defs>
+
+        <!-- Soil block (isometric cube, simplified — no data overlays) -->
+        <g transform="translate(150,70) scale(2)">
+          <polygon points="100,8 192,58 192,142 100,192 8,142 8,58" fill="#A0785A"/>
+          <polygon points="100,8 192,58 100,108 8,58" fill="#B8906A"/>
+          <polygon points="8,58 100,108 100,192 8,142" fill="#7A5C42"/>
+          <polygon points="192,58 100,108 100,192 192,142" fill="#8C6A4E"/>
+          <polygon points="100,8 192,58 100,108 8,58" fill="none" stroke="#5C3D22" stroke-width="1.5"/>
+          <polygon points="8,58 100,108 100,192 8,142" fill="none" stroke="#5C3D22" stroke-width="1.5"/>
+          <polygon points="192,58 100,108 100,192 192,142" fill="none" stroke="#5C3D22" stroke-width="1.5"/>
+          <line x1="8" y1="142" x2="192" y2="142" stroke="#5C3D22" stroke-width="1.5"/>
+          <ellipse cx="92" cy="106" rx="11" ry="5" fill="#5a9e4a"/>
+          <ellipse cx="78" cy="100" rx="8" ry="4" fill="#6aaa58"/>
+          <ellipse cx="106" cy="101" rx="7" ry="3.5" fill="#5a9e4a"/>
+        </g>
+
+        <!-- Lost to Air -->
+        <line x1="350" y1="84" x2="350" y2="24" stroke="#C0392B" stroke-width="3" marker-end="url(#arrowRed)"/>
+        <text x="350" y="16" text-anchor="middle" font-size="13" font-weight="500" fill="#C0392B" font-family="Inter,sans-serif">Lost to Air</text>
+        <text x="350" y="32" text-anchor="middle" font-size="10" fill="#a8a29e" font-family="Inter,sans-serif">NH₃ · N₂O · N₂</text>
+
+        <!-- Lost to Water -->
+        <line x1="470" y1="330" x2="610" y2="420" stroke="#185FA5" stroke-width="3" marker-end="url(#arrowBlue)"/>
+        <text x="618" y="430" text-anchor="start" font-size="13" font-weight="500" fill="#185FA5" font-family="Inter,sans-serif">Lost to Water</text>
+        <text x="618" y="446" text-anchor="start" font-size="10" fill="#a8a29e" font-family="Inter,sans-serif">NO₃⁻ leaching</text>
+        <path d="M600,440 q10,10 20,0 t20,0 t20,0" fill="none" stroke="#185FA5" stroke-width="2" opacity="0.5"/>
+
+        <!-- Soil Accumulation -->
+        <path d="M310,440 a 28 14 0 1 1 56 0" fill="none" stroke="#B5711A" stroke-width="3" marker-end="url(#arrowAmber)"/>
+        <text x="338" y="472" text-anchor="middle" font-size="13" font-weight="500" fill="#B5711A" font-family="Inter,sans-serif">Soil Accumulation</text>
+
+        <!-- Crop Uptake -->
+        <line x1="230" y1="160" x2="120" y2="60" stroke="#1D9E75" stroke-width="3" marker-end="url(#arrowGreen)"/>
+        <text x="112" y="44" text-anchor="middle" font-size="13" font-weight="500" fill="#1D9E75" font-family="Inter,sans-serif">Crop Uptake</text>
+        <path d="M105,38 q-6,-14 8,-18 q4,12 -8,18 Z" fill="#5a9e4a"/>
+        <path d="M118,40 q10,-10 4,-22 q-12,4 -10,18 Z" fill="#6aaa58"/>
+      </svg>
+      <div class="cite"><i class="ti ti-info-circle" style="flex-shrink:0"></i> Simplified schematic — arrow thickness is illustrative, not to scale. See exact percentages in the cards below.</div>
     </div>
 
     <!-- Loss pathways -->
