@@ -26,8 +26,18 @@
   </div>
 </div>
 
-<div class="toc-strip">
-  <div class="toc-inner" id="toc-inner"></div>
+<div class="filter-bar">
+  <select class="filter-select" id="filter-category">
+    <option value="">All Categories</option>
+  </select>
+  <select class="filter-select" id="filter-variable">
+    <option value="">All Variables</option>
+  </select>
+  <span class="filter-count" id="filter-count"></span>
+  <div class="filter-search-wrap">
+    <i class="ti ti-search"></i>
+    <input class="filter-search" id="filter-search" type="text" placeholder="Search variables…">
+  </div>
 </div>
 
 <div class="main" id="variables-root"></div>
@@ -36,14 +46,15 @@
 <script src="../assets/js/variable-cms.js"></script>
 <script>
 (function () {
-  const TARGET_IDS = [
-    'microbial-biomass-carbon', 'macroporosity', 'fungal-bacterial-ratio',
-    'earthworm-count', 'rhizobia-activity', 'total-nitrogen',
-    'plant-available-nitrogen', 'total-phosphorus', 'olsen-p', 'potassium',
+  // Category display order — drives both the dropdown and section ordering.
+  const CATEGORY_ORDER = [
+    'Soil Biology', 'Macro Nutrients', 'Trace Minerals', 'Carbon',
+    'Soil Structure', 'Management History', 'Pasture Composition', 'Environmental',
   ];
-
-  const SECTIONS = ['Soil Biology', 'Macro Nutrients'];
   const STATE_LABEL = { high: 'Optimal', medium: 'Average', low: 'Poor' };
+
+  let allVars = [];
+  let filters = { category: '', variableId: '', search: '' };
 
   function joinUnit(unit) {
     if (!unit) return '';
@@ -83,6 +94,13 @@
   }
 
   function renderVariable(v) {
+    if (v.comingSoon) {
+      return `
+        <div class="var-block coming-soon" id="${v.id}">
+          <div><span class="cs-name">${v.name}</span><span class="cs-unit">${v.unit || ''}</span></div>
+          <span class="cs-badge">Coming soon</span>
+        </div>`;
+    }
     return `
       <div class="var-block" id="${v.id}">
         <h1 class="var-title">${v.name}</h1>
@@ -100,35 +118,87 @@
       </div>`;
   }
 
-  function renderSection(category, vars) {
+  function renderSection(category, vars, num) {
     const varsInSection = vars.filter(v => v.category === category);
     if (!varsInSection.length) return '';
     return `
       <section class="category-section" id="section-${category.toLowerCase().replace(/\s+/g, '-')}">
         <div class="category-header">
-          <div class="category-num">${category === 'Soil Biology' ? '01' : '02'}</div>
+          <div class="category-num">${String(num).padStart(2, '0')}</div>
           <h2 class="category-title">${category}</h2>
         </div>
         ${varsInSection.map(renderVariable).join('')}
       </section>`;
   }
 
-  function renderToc(vars) {
-    document.getElementById('toc-inner').innerHTML = vars.map(v =>
-      `<a class="toc-step" href="#${v.id}">${v.name}</a>`
-    ).join('');
+  function applyFilters(vars) {
+    const term = filters.search.trim().toLowerCase();
+    return vars.filter(v => {
+      if (filters.category && v.category !== filters.category) return false;
+      if (filters.variableId && v.id !== filters.variableId) return false;
+      if (term && !v.name.toLowerCase().includes(term)) return false;
+      return true;
+    });
   }
 
-  function renderAll(vars) {
-    document.getElementById('variables-root').innerHTML = SECTIONS.map(cat => renderSection(cat, vars)).join('');
-    renderToc(vars);
+  function populateCategoryOptions() {
+    const sel = document.getElementById('filter-category');
+    sel.innerHTML = '<option value="">All Categories</option>' +
+      CATEGORY_ORDER.map(c => `<option value="${c}">${c}</option>`).join('');
   }
 
-  const localVars = VariableCMS.getVariables(window.NAITRO_SOIL_VARIABLES, TARGET_IDS, (mergedVars) => {
-    renderAll(mergedVars);
+  function populateVariableOptions() {
+    const sel = document.getElementById('filter-variable');
+    const pool = filters.category ? allVars.filter(v => v.category === filters.category) : allVars;
+    const current = filters.variableId;
+    sel.innerHTML = '<option value="">All Variables</option>' +
+      pool.map(v => `<option value="${v.id}">${v.name}${v.comingSoon ? ' (coming soon)' : ''}</option>`).join('');
+    if (pool.some(v => v.id === current)) sel.value = current;
+    else { filters.variableId = ''; sel.value = ''; }
+  }
+
+  function renderAll() {
+    const filtered = applyFilters(allVars);
+    const root = document.getElementById('variables-root');
+    if (!filtered.length) {
+      root.innerHTML = '<div class="filter-empty"><i class="ti ti-search-off" style="font-size:24px;display:block;margin-bottom:.5rem"></i>No variables match your filters.</div>';
+    } else {
+      root.innerHTML = CATEGORY_ORDER.map((cat, i) => renderSection(cat, filtered, i + 1)).join('');
+    }
+    const total = allVars.length;
+    document.getElementById('filter-count').textContent = `${filtered.length} of ${total}`;
+  }
+
+  function wireFilters() {
+    populateCategoryOptions();
+    populateVariableOptions();
+
+    document.getElementById('filter-category').addEventListener('change', (e) => {
+      filters.category = e.target.value;
+      populateVariableOptions();
+      renderAll();
+    });
+    document.getElementById('filter-variable').addEventListener('change', (e) => {
+      filters.variableId = e.target.value;
+      renderAll();
+      if (filters.variableId) {
+        document.getElementById(filters.variableId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+    document.getElementById('filter-search').addEventListener('input', (e) => {
+      filters.search = e.target.value;
+      renderAll();
+    });
+  }
+
+  allVars = VariableCMS.getVariables(window.NAITRO_SOIL_VARIABLES, null, (mergedVars) => {
+    allVars = mergedVars;
+    populateVariableOptions();
+    renderAll();
   });
 
-  renderAll(localVars);
+  wireFilters();
+  renderAll();
 })();
 </script>
 

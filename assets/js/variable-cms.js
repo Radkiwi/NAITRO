@@ -69,33 +69,41 @@
   }
 
   function mergeRecordIntoVariable(record, localVar) {
+    if (localVar.comingSoon && !record.fields?.['High: AI Image generation prompt']) {
+      // Stub variable with no Airtable content yet — leave as "coming soon" rather than
+      // merging partial fields into a half-formed states object.
+      return localVar;
+    }
     const f = record.fields || {};
+    const blankState = { label: '', visual: '' };
+    const baseStates = localVar.states || { high: blankState, medium: blankState, low: blankState };
     return {
       ...localVar,
+      comingSoon: false,
       name: f['Variable'] || localVar.name,
       category: f['Category'] || localVar.category,
       unit: f['Unit / Type'] || localVar.unit,
       description: f['Description'] || localVar.description,
       nzNote: f['NZ-Specific Note'] || localVar.nzNote,
       thresholds: {
-        highMedium: f['High-Medium Threshold'] ?? localVar.thresholds.highMedium,
-        mediumLow: f['Medium-Low Threshold'] ?? localVar.thresholds.mediumLow,
+        highMedium: f['High-Medium Threshold'] ?? localVar.thresholds?.highMedium,
+        mediumLow: f['Medium-Low Threshold'] ?? localVar.thresholds?.mediumLow,
       },
       states: {
         high: {
-          label: localVar.states.high.label,
-          visual: f['High: AI Image generation prompt'] || localVar.states.high.visual,
-          imageUrl: attachmentUrl(f['High image']) || localVar.states.high.imageUrl,
+          label: baseStates.high.label,
+          visual: f['High: AI Image generation prompt'] || baseStates.high.visual,
+          imageUrl: attachmentUrl(f['High image']) || baseStates.high.imageUrl,
         },
         medium: {
-          label: localVar.states.medium.label,
-          visual: f['Medium: AI Image generation prompt'] || localVar.states.medium.visual,
-          imageUrl: attachmentUrl(f['Medium image']) || localVar.states.medium.imageUrl,
+          label: baseStates.medium.label,
+          visual: f['Medium: AI Image generation prompt'] || baseStates.medium.visual,
+          imageUrl: attachmentUrl(f['Medium image']) || baseStates.medium.imageUrl,
         },
         low: {
-          label: localVar.states.low.label,
-          visual: f['Low: AI Image generation prompt'] || localVar.states.low.visual,
-          imageUrl: attachmentUrl(f['Low image']) || localVar.states.low.imageUrl,
+          label: baseStates.low.label,
+          visual: f['Low: AI Image generation prompt'] || baseStates.low.visual,
+          imageUrl: attachmentUrl(f['Low image']) || baseStates.low.imageUrl,
         },
       },
     };
