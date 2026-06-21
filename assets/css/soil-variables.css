@@ -18,8 +18,9 @@ nav { background: rgba(15,61,46,0.97); padding: 0 2rem; display: flex; align-ite
 .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .nav-logo { width: 30px; height: 30px; background: var(--green-mid); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #fff; }
 .nav-name { font-size: 15px; font-weight: 500; color: #fff; }
-.nav-back { margin-left: auto; font-size: 12px; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 6px; text-decoration: none; padding: 5px 14px; border-radius: var(--radius-sm); border: 0.5px solid rgba(255,255,255,0.18); }
-.nav-back:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+.nav-links { display: flex; gap: 0; margin-left: 2.5rem; }
+.nav-links a { font-size: 13px; color: rgba(255,255,255,0.6); padding: 0 14px; height: 56px; display: flex; align-items: center; text-decoration: none; transition: color .15s; }
+.nav-links a:hover, .nav-links a.active { color: #fff; }
 
 .hero { background: linear-gradient(160deg, #0A2E20 0%, #0F3D2E 60%, #0a3040 100%); padding: 3rem 2rem 2.5rem; }
 .hero-inner { max-width: 1080px; margin: 0 auto; }

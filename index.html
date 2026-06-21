@@ -207,7 +207,7 @@
 
     /* ── FOOTER ── */
     footer { background: #080F0B; padding: 3rem 2rem 2rem; }
-    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 2.5rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 2.25rem; margin-bottom: 2.5rem; }
     .footer-brand p { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: .75rem; max-width: 260px; }
     .footer-col h4 { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; color: rgba(255,255,255,0.35); margin-bottom: .875rem; }
     .footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 6px; transition: color .15s; }
@@ -233,15 +233,17 @@
 
 <!-- ── NAV ── -->
 <nav>
-  <div class="nav-brand">
+  <a class="nav-brand" href="./">
     <div class="nav-logo">N</div>
     <span class="nav-name">NAITRO</span>
-  </div>
+  </a>
   <div class="nav-links">
-    <a href="#product">Product</a>
-    <a href="#stakeholders">For you</a>
+    <a href="#product">Platform</a>
+    <a href="#stakeholders">Stakeholders</a>
     <a href="#farms">Live farms</a>
-    <a href="#science">Science</a>
+    <a href="how-naitro-works/">How it works</a>
+    <a href="soil-variables/">Soil variables</a>
+    <a href="datasources/">Data sources</a>
   </div>
   <div class="nav-right">
     <a class="nav-demo" href="#farms">View demo farms</a>
@@ -253,28 +255,7 @@
 <section class="hero">
   <div class="hero-tag"><i class="ti ti-leaf"></i> Soil intelligence · Built for agricultural transition</div>
   <h1>The soil health platform that <strong>every stakeholder</strong> has been waiting for</h1>
-  <p class="hero-sub">One data source. Five outputs. Farmers reduce costs, banks lend smarter, councils get compliance, food companies prove their supply chain.</p>
-  <div class="hero-btns">
-    <button class="btn-primary" onclick="document.getElementById('farms').scrollIntoView({behavior:'smooth'})"><i class="ti ti-eye"></i> See live farm dashboards</button>
-    <a class="btn-ghost" href="#product"><i class="ti ti-stack"></i> How the platform works</a>
-  </div>
-  <div class="hero-farms">
-    <span class="farm-chip-label">Live dashboards →</span>
-    <a class="farm-chip" href="nz1/"><i class="ti ti-map-pin"></i> 🇳🇿 NZ1 · Ruakura Dairy, Waikato</a>
-    <a class="farm-chip" href="sa1/"><i class="ti ti-map-pin"></i> 🇿🇦 SA1 · Bergvlei, Free State</a>
-    <a class="farm-chip" href="sa2/"><i class="ti ti-map-pin"></i> 🇿🇦 SA2 · KwaZulu-Natal</a>
-    <a class="farm-chip" href="sa3/"><i class="ti ti-map-pin"></i> 🇿🇦 SA3 · Stellenbosch, W Cape</a>
-  </div>
 </section>
-
-<!-- ── STATS ── -->
-<div class="stats-bar">
-  <div class="stat-item"><div class="stat-num">21</div><div class="stat-label">OBI indicators per farm</div></div>
-  <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Stakeholder outputs<br>from one data source</div></div>
-  <div class="stat-item"><div class="stat-num">−40%</div><div class="stat-label">Urea reduction achieved<br>in transition farms</div></div>
-  <div class="stat-item"><div class="stat-num">$58</div><div class="stat-label">Avg savings per ha/yr<br>sustainability loan + inputs</div></div>
-  <div class="stat-item"><div class="stat-num">2021</div><div class="stat-label">Year OverseerFM declared<br>"not fit for purpose"</div></div>
-</div>
 
 <!-- ── PROBLEM ── -->
 <div class="section" id="problem">
@@ -309,7 +290,7 @@
     <div class="gap-icon"><i class="ti ti-shield-check"></i></div>
     <div class="gap-body">
       <h3>Why the OBI matters: the Rabobank precedent</h3>
-      <p>The Open Bodemindex (OBI) is already used by Rabobank Netherlands to assess farm loan risk. Developed by WUR (Wageningen University), a.s.r. insurance, and Vitens water company. NAITRO adapts this validated framework for NZ and SA conditions — making your soil health score bankable.</p>
+      <p>The Open Bodemindex (OBI) is already used by Rabobank Netherlands to assess farm loan risk. Developed by WUR (Wageningen University), a.s.r. insurance, and Vitens water company. NAITRO adapts this validated framework for NZ and SA conditions — making your soil health score bankable. <a href="datasources/" style="color:var(--green-deep);text-decoration:underline;font-weight:500">See all data sources →</a></p>
     </div>
     <div class="gap-badge">OBI · Open source · WUR validated</div>
   </div>
@@ -326,8 +307,8 @@
         <div class="sc-num"><i class="ti ti-chart-bar"></i> Layer 1</div>
         <div class="sc-ico"><i class="ti ti-chart-bar"></i></div>
         <div class="sc-name">Score</div>
-        <p class="sc-desc">OBI-adapted NZ &amp; SA soil index. 21 indicators across Chemical, Physical, Biological, and Management domains. Open-source, WUR-validated, scientifically credible, comparable across farms.</p>
-        <div class="sc-pills"><span class="sc-pill">OBI framework</span><span class="sc-pill">21 indicators</span><span class="sc-pill">0–100 score</span></div>
+        <p class="sc-desc">OBI-adapted NZ &amp; SA soil index. 21 core indicators across Chemical, Physical, Biological, and Management domains, expanded to a 41-variable NZ data model. Open-source, WUR-validated, scientifically credible, comparable across farms. <a href="soil-variables/" style="color:var(--green-mid);text-decoration:underline">Browse all variables →</a></p>
+        <div class="sc-pills"><span class="sc-pill">OBI framework</span><span class="sc-pill">41 variables</span><span class="sc-pill">0–100 score</span></div>
       </div>
       <div class="stack-col sc2">
         <div class="sc-num"><i class="ti ti-cube"></i> Layer 2</div>
@@ -347,8 +328,8 @@
         <div class="sc-num"><i class="ti ti-report-analytics"></i> Layer 4</div>
         <div class="sc-ico"><i class="ti ti-report-analytics"></i></div>
         <div class="sc-name">Report</div>
-        <p class="sc-desc">HUIGE multi-stakeholder MRV. One data source. Five outputs: farmer dashboard, food company Scope 3, bank risk score, regional council NPS-FM compliance, government NUE tracking.</p>
-        <div class="sc-pills"><span class="sc-pill">HUIGE</span><span class="sc-pill">NPS-FM 2020</span><span class="sc-pill">Cool Farm</span></div>
+        <p class="sc-desc">Multi-stakeholder MRV. One data source. Five outputs: farmer dashboard, food company Scope 3, bank risk score, regional council NPS-FM compliance, government NUE tracking. <a href="how-naitro-works/#report" style="color:var(--green-mid);text-decoration:underline">See the full reporting architecture →</a></p>
+        <div class="sc-pills"><span class="sc-pill">5 stakeholder outputs</span><span class="sc-pill">NPS-FM 2020</span><span class="sc-pill">Cool Farm</span></div>
       </div>
     </div>
   </div>
@@ -471,11 +452,11 @@
   <div class="sh-panel" id="sh-govt">
     <div class="sh-content">
       <h3>National NUE tracking. Policy evidence that holds up.</h3>
-      <p>NAITRO's HUIGE framework maps soil health data to government reporting at national scale. NUE (Nutrient Use Efficiency) tracked at every supply chain segment — from farm input to food company output — providing the evidence base for agricultural policy.</p>
+      <p>NAITRO's multi-stakeholder reporting maps soil health data to government reporting at national scale. NUE (Nutrient Use Efficiency) tracked at every supply chain segment — from farm input to food company output — providing the evidence base for agricultural policy. <a href="how-naitro-works/#nue" style="color:var(--green-mid);text-decoration:underline">Read the NUE science →</a></p>
       <ul class="sh-bullets">
         <li>National NUE dashboard — farm, processor, and supply chain segments</li>
-        <li>IFA Hackathon-aligned NUE methodology (1 kg bread reference case)</li>
-        <li>HUIGE framework: Health, Utilities, Industries, Governments, Ecosystems</li>
+        <li>IFA-aligned NUE methodology (1 kg bread reference case)</li>
+        <li>Five stakeholder outputs: Farmers, Water Regulators, Food &amp; Finance, Governments, Planet &amp; Markets</li>
         <li>Exportable data for UN FAO, IPCC, and global sustainability reporting</li>
         <li>Policy levers: which interventions move the needle most at national scale</li>
       </ul>
@@ -485,7 +466,7 @@
       <div class="sh-metric-grid">
         <div class="sh-metric"><div class="sh-metric-l">Farm NUE avg</div><div class="sh-metric-v" style="color:#085041">55%</div><div class="sh-metric-d">N output / N input</div></div>
         <div class="sh-metric"><div class="sh-metric-l">Processor NUE</div><div class="sh-metric-v" style="color:var(--blue-mid)">72%</div><div class="sh-metric-d">processing segment</div></div>
-        <div class="sh-metric"><div class="sh-metric-l">HUIGE domains</div><div class="sh-metric-v">5</div><div class="sh-metric-d">H·U·I·G·E mapped</div></div>
+        <div class="sh-metric"><div class="sh-metric-l">Stakeholder outputs</div><div class="sh-metric-v">5</div><div class="sh-metric-d">one data source, five reports</div></div>
         <div class="sh-metric"><div class="sh-metric-l">Policy evidence</div><div class="sh-metric-v" style="color:var(--purple)">Ready</div><div class="sh-metric-d">exportable dataset</div></div>
       </div>
     </div>
@@ -555,7 +536,7 @@
 <div class="section" id="science">
   <div class="section-tag">The science</div>
   <h2>Built on open science.<br><strong>Validated by world leaders.</strong></h2>
-  <p class="section-sub">NAITRO doesn't invent new science. It makes the world's best soil science accessible to every farmer, bank, and council on earth.</p>
+  <p class="section-sub">NAITRO doesn't invent new science. It makes the world's best soil science accessible to every farmer, bank, and council on earth. <a href="how-naitro-works/" style="color:var(--green-mid);text-decoration:underline;font-weight:500">Read the full science breakdown →</a></p>
   <div class="testi-grid">
     <div class="testi-card">
       <div class="testi-stars">★★★★★</div>
@@ -612,7 +593,7 @@
       <a href="#product">Score (OBI)</a>
       <a href="#product">Visualise (digital twin)</a>
       <a href="#product">Decide (AI engine)</a>
-      <a href="#product">Report (HUIGE MRV)</a>
+      <a href="how-naitro-works/#report">Report (multi-stakeholder)</a>
     </div>
     <div class="footer-col">
       <h4>Live farms</h4>
@@ -629,13 +610,20 @@
       <a href="#stakeholders">Regional councils</a>
       <a href="#stakeholders">Government</a>
     </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="how-naitro-works/">How NAITRO works</a>
+      <a href="soil-variables/">Soil variables</a>
+      <a href="datasources/">Data sources</a>
+      <a href="iSDA_Africa/">iSDA Africa data</a>
+    </div>
   </div>
   <div class="footer-bottom">
     <p>© 2025 NAITRO. Soil intelligence platform. Built for NZ &amp; SA agricultural transition.</p>
     <div class="footer-badges">
       <span class="f-badge">OBI · WUR</span>
       <span class="f-badge">NPS-FM 2020</span>
-      <span class="f-badge">HUIGE MRV</span>
+      <span class="f-badge">Multi-stakeholder MRV</span>
       <span class="f-badge">IFA NUE</span>
     </div>
   </div>
