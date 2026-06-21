@@ -21,15 +21,9 @@
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-tag"><i class="ti ti-stack-2"></i> Soil Biology &amp; Macro Nutrients</div>
-    <h1>What's actually in the soil —<br><strong>and what High, Medium and Low look like.</strong></h1>
-    <p class="hero-sub">Ten variables from the NZ Soil Health Platform data model, each shown as a visual state at three thresholds. Content is served from a local cache first for speed, then overlaid with live data and images from Airtable the moment the base is shared with this integration.</p>
+    <h1>What's actually in the soil —<br><strong>and what Optimal, Average and Poor look like.</strong></h1>
+    <p class="hero-sub">Ten of the Forty-one variables from the Soil Health Platform data model, each shown as a visual state at three thresholds.</p>
   </div>
-</div>
-
-<div id="cms-status" class="cms-banner live">
-  <i class="ti ti-database-check"></i>
-  <span>Images and copy below are synced from Airtable (table tblPQAi77LZNHdzoS) and self-hosted in <code>/assets/img/soil-variables/</code> for fast, reliable loading. A background check still runs against the live base — if the source content changes, this page picks it up automatically.</span>
 </div>
 
 <div class="toc-strip">
@@ -48,8 +42,12 @@
     'plant-available-nitrogen', 'total-phosphorus', 'olsen-p', 'potassium',
   ];
 
-  function categoryTagClass(cat) {
-    return cat === 'Soil Biology' ? 'tag-bio' : 'tag-nutrient';
+  const SECTIONS = ['Soil Biology', 'Macro Nutrients'];
+  const STATE_LABEL = { high: 'Optimal', medium: 'Average', low: 'Poor' };
+
+  function joinUnit(unit) {
+    if (!unit) return '';
+    return unit.charAt(0).toLowerCase() + unit.slice(1);
   }
 
   function cubePlaceholderSvg() {
@@ -61,7 +59,7 @@
   }
 
   function hmlCard(state, data) {
-    const cls = state; // 'high' | 'medium' | 'low'
+    const cls = state; // 'high' | 'medium' | 'low' — internal key, label is shown via STATE_LABEL
     const visualInner = data.imageUrl
       ? `<img src="${data.imageUrl}" alt="${data.visual}">`
       : `<div class="hml-placeholder ${cls}">
@@ -71,7 +69,7 @@
     return `
       <div class="hml-card">
         <div class="hml-head ${cls}">
-          <span class="hml-state">${state}</span>
+          <span class="hml-state">${STATE_LABEL[state]}</span>
           <span class="hml-label">${data.label}</span>
         </div>
         <div class="hml-visual">
@@ -87,16 +85,12 @@
   function renderVariable(v) {
     return `
       <div class="var-block" id="${v.id}">
-        <div class="var-tags">
-          <span class="var-tag ${categoryTagClass(v.category)}">${v.category}</span>
-          <span class="var-tag tag-unit">${v.unit}</span>
-        </div>
         <h1 class="var-title">${v.name}</h1>
-        <p class="var-desc">${v.description}</p>
+        <p class="var-desc">${v.description} measured in ${joinUnit(v.unit)}.</p>
         <div class="var-note"><i class="ti ti-leaf"></i><span>${v.nzNote}</span></div>
         <div class="threshold-row">
-          <span class="threshold-chip"><span class="threshold-dot" style="background:#1D9E75"></span>High–Medium threshold: <strong>${v.thresholds.highMedium}</strong></span>
-          <span class="threshold-chip"><span class="threshold-dot" style="background:#E07B18"></span>Medium–Low threshold: <strong>${v.thresholds.mediumLow}</strong></span>
+          <span class="threshold-chip"><span class="threshold-dot" style="background:#1D9E75"></span>Optimal–Average threshold: <strong>${v.thresholds.highMedium}</strong></span>
+          <span class="threshold-chip"><span class="threshold-dot" style="background:#E07B18"></span>Average–Poor threshold: <strong>${v.thresholds.mediumLow}</strong></span>
         </div>
         <div class="hml-grid">
           ${hmlCard('high', v.states.high)}
@@ -106,6 +100,19 @@
       </div>`;
   }
 
+  function renderSection(category, vars) {
+    const varsInSection = vars.filter(v => v.category === category);
+    if (!varsInSection.length) return '';
+    return `
+      <section class="category-section" id="section-${category.toLowerCase().replace(/\s+/g, '-')}">
+        <div class="category-header">
+          <div class="category-num">${category === 'Soil Biology' ? '01' : '02'}</div>
+          <h2 class="category-title">${category}</h2>
+        </div>
+        ${varsInSection.map(renderVariable).join('')}
+      </section>`;
+  }
+
   function renderToc(vars) {
     document.getElementById('toc-inner').innerHTML = vars.map(v =>
       `<a class="toc-step" href="#${v.id}">${v.name}</a>`
@@ -113,21 +120,12 @@
   }
 
   function renderAll(vars) {
-    document.getElementById('variables-root').innerHTML = vars.map(renderVariable).join('');
+    document.getElementById('variables-root').innerHTML = SECTIONS.map(cat => renderSection(cat, vars)).join('');
     renderToc(vars);
-  }
-
-  function setCmsStatus(live) {
-    const el = document.getElementById('cms-status');
-    if (live) {
-      el.className = 'cms-banner live';
-      el.innerHTML = '<i class="ti ti-database-check"></i><span>Live data loaded from Airtable — descriptions, thresholds and images reflect the current base.</span>';
-    }
   }
 
   const localVars = VariableCMS.getVariables(window.NAITRO_SOIL_VARIABLES, TARGET_IDS, (mergedVars) => {
     renderAll(mergedVars);
-    setCmsStatus(true);
   });
 
   renderAll(localVars);
