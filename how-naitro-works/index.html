@@ -146,15 +146,15 @@
     .emission-box { background: linear-gradient(135deg, #0A2E20 0%, #0C3A2C 100%); border-radius: var(--radius); padding: 2rem; margin: 1.25rem 0; }
     .em-title { font-size: 16px; font-weight: 500; color: #fff; margin-bottom: .375rem; }
     .em-sub { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 1.5rem; }
-    .em-bars { display: flex; flex-direction: column; gap: .75rem; }
-    .em-row { display: flex; align-items: center; gap: 1rem; }
-    .em-label { font-size: 11px; color: rgba(255,255,255,0.55); width: 180px; flex-shrink: 0; }
-    .em-track { flex: 1; height: 22px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
-    .em-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 10px; font-weight: 500; color: #fff; white-space: nowrap; overflow: hidden; }
+    .em-bars { display: flex; flex-direction: column; gap: 1.25rem; }
+    .em-row { display: flex; flex-direction: column; gap: .375rem; }
+    .em-label { font-size: 11px; color: rgba(255,255,255,0.55); }
+    .em-track { position: relative; height: 24px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
+    .em-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #fff; }
     .ef-red   { background: rgba(192,57,43,0.75); }
     .ef-amber { background: rgba(224,123,24,0.65); }
     .ef-green { background: rgba(29,158,117,0.75); }
-    .em-val { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.7); width: 50px; text-align: right; flex-shrink: 0; }
+    .em-caption { font-size: 10px; color: rgba(255,255,255,0.4); }
     .em-source { font-size: 10px; color: rgba(255,255,255,0.22); margin-top: 1rem; }
 
     /* ── TWO COL ── */
@@ -244,8 +244,9 @@
     .cite a { color: var(--text-faint); text-decoration: underline; }
 
     /* ── FARMS NAV ── */
-    .farms-nav { background: var(--green-deep); border-radius: var(--radius); padding: 2rem; display: grid; grid-template-columns: 1fr repeat(6, auto); gap: 1rem; align-items: center; margin-top: 3rem; }
-    .fn-label { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); }
+    .farms-nav { background: var(--green-deep); border-radius: var(--radius); padding: 2rem; margin-top: 3rem; }
+    .fn-header { font-size: 16px; font-weight: 500; color: #fff; white-space: nowrap; margin-bottom: 1.25rem; }
+    .fn-tiles { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
     .fn-link { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); border: 0.5px solid rgba(255,255,255,0.15); border-radius: 8px; padding: .625rem 1rem; text-decoration: none; transition: all .15s; }
     .fn-link:hover { background: rgba(255,255,255,0.15); }
     .fn-link-flag { font-size: 16px; }
@@ -254,7 +255,7 @@
 
     @media (max-width: 768px) {
       .four-r-grid, .indicator-grid, .loss-grid, .sh-grid { grid-template-columns: 1fr 1fr; }
-      .farms-nav { grid-template-columns: 1fr 1fr; }
+      .fn-tiles { grid-template-columns: 1fr 1fr; }
       .two-col { grid-template-columns: 1fr; }
       .hero-stats { gap: 1.25rem; }
     }
@@ -470,28 +471,28 @@
       <div class="em-bars">
         <div class="em-row">
           <div class="em-label">NUE best practices</div>
-          <div class="em-track"><div class="em-fill ef-green" style="width:55%">Largest single lever — 4R implementation</div></div>
-          <div class="em-val">−55%</div>
+          <div class="em-track"><div class="em-fill ef-green" style="width:55%">−55%</div></div>
+          <div class="em-caption">Largest single lever — 4R implementation</div>
         </div>
         <div class="em-row">
           <div class="em-label">Inhibitors &amp; CRFs</div>
-          <div class="em-track"><div class="em-fill ef-green" style="width:28%">Urease + nitrification inhibitors, slow-release</div></div>
-          <div class="em-val">−28%</div>
+          <div class="em-track"><div class="em-fill ef-green" style="width:28%">−28%</div></div>
+          <div class="em-caption">Urease + nitrification inhibitors, slow-release</div>
         </div>
         <div class="em-row">
           <div class="em-label">Crop rotations</div>
-          <div class="em-track"><div class="em-fill ef-amber" style="width:16%">Legumes, cover crops, rotation diversity</div></div>
-          <div class="em-val">−16%</div>
+          <div class="em-track"><div class="em-fill ef-amber" style="width:16%">−16%</div></div>
+          <div class="em-caption">Legumes, cover crops, rotation diversity</div>
         </div>
         <div class="em-row">
           <div class="em-label">Soil carbon sequestration</div>
-          <div class="em-track"><div class="em-fill ef-amber" style="width:11%">SOC rebuild, BNF, organic inputs</div></div>
-          <div class="em-val">−11%</div>
+          <div class="em-track"><div class="em-fill ef-amber" style="width:11%">−11%</div></div>
+          <div class="em-caption">SOC rebuild, BNF, organic inputs</div>
         </div>
         <div class="em-row">
           <div class="em-label">Land sparing</div>
-          <div class="em-track"><div class="em-fill ef-amber" style="width:7%">Higher yield per ha = less total land</div></div>
-          <div class="em-val">−7%</div>
+          <div class="em-track"><div class="em-fill ef-amber" style="width:7%">−7%</div></div>
+          <div class="em-caption">Higher yield per ha = less total land</div>
         </div>
       </div>
       <div class="em-source">Source: IFA / Systemiq "Reducing Emissions from Fertilizer Use" (2022). fertilizer.org/Reducing-Emissions — BAU = Business as usual baseline.</div>
@@ -824,7 +825,8 @@
 
   <!-- ═══ FARM LINKS ═══ -->
   <div class="farms-nav">
-    <div class="fn-label">Open a farm dashboard to see all four layers in action →</div>
+    <div class="fn-header">Open a farm dashboard to see all four layers in action →</div>
+    <div class="fn-tiles">
     <a class="fn-link" href="../nz1/">
       <span class="fn-link-flag">🇳🇿</span>
       <span><span class="fn-link-id">NZ1 · Ruakura</span><span class="fn-link-name">Waikato dairy</span></span>
@@ -841,14 +843,11 @@
       <span class="fn-link-flag">🇿🇦</span>
       <span><span class="fn-link-id">SA3 · Kaapzicht</span><span class="fn-link-name">Stellenbosch wine</span></span>
     </a>
-    <a class="fn-link" href="../soil-data/">
-      <span class="fn-link-flag"><i class="ti ti-satellite"></i></span>
-      <span><span class="fn-link-id">iSDA soil data</span><span class="fn-link-name">Live API results</span></span>
-    </a>
     <a class="fn-link" href="../soil-variables/">
       <span class="fn-link-flag"><i class="ti ti-cube-3d-sphere"></i></span>
       <span><span class="fn-link-id">Soil variables</span><span class="fn-link-name">High/Med/Low explained</span></span>
     </a>
+    </div>
   </div>
 
 </div>
