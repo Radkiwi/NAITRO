@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Data Sources | NAITRO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    :root {
+      --green-deep: #0F3D2E; --green-mid: #1D9E75; --green-light: #5DCAA5; --green-pale: #E1F5EE;
+      --blue-deep: #0C447C; --blue-mid: #185FA5; --blue-pale: #E6F1FB;
+      --amber: #E07B18; --amber-pale: #FAEEDA;
+      --text-dark: #1c1917; --text-mid: #44403c; --text-soft: #78716c; --text-faint: #a8a29e;
+      --border: #e7e5e4; --bg: #fafaf9; --white: #ffffff;
+      --radius: 12px; --radius-sm: 6px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text-dark); line-height: 1.6; }
+
+    nav { background: rgba(15,61,46,0.97); padding: 0 2rem; display: flex; align-items: center; height: 56px; position: sticky; top: 0; z-index: 100; }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo { width: 30px; height: 30px; background: var(--green-mid); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #fff; }
+    .nav-name { font-size: 15px; font-weight: 500; color: #fff; }
+    .nav-back { margin-left: auto; font-size: 12px; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 6px; text-decoration: none; padding: 5px 14px; border-radius: var(--radius-sm); border: 0.5px solid rgba(255,255,255,0.18); }
+    .nav-back:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+
+    .hero { background: linear-gradient(160deg, #0A2E20 0%, #0F3D2E 60%, #0a3040 100%); padding: 3rem 2rem 2.5rem; }
+    .hero-inner { max-width: 1080px; margin: 0 auto; }
+    .hero h1 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); font-weight: 300; color: #fff; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: .75rem; }
+    .hero h1 strong { font-weight: 600; color: var(--green-light); }
+    .hero-sub { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 720px; }
+
+    .main { max-width: 1080px; margin: 0 auto; padding: 2.5rem 2rem 5rem; }
+
+    .category-header { display: flex; align-items: baseline; gap: .875rem; margin: 2.5rem 0 1.5rem; padding-bottom: .75rem; border-bottom: 2px solid var(--green-mid); }
+    .category-header:first-child { margin-top: 0; }
+    .category-title { font-size: 20px; font-weight: 500; color: var(--text-dark); letter-spacing: -0.01em; }
+    .category-sub { font-size: 12px; color: var(--text-faint); }
+
+    .ds-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .ds-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.375rem; display: flex; flex-direction: column; transition: border-color .15s; }
+    .ds-card.linked { cursor: pointer; }
+    .ds-card.linked:hover { border-color: var(--green-mid); box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+    .ds-top { display: flex; align-items: flex-start; justify-content: space-between; gap: .75rem; margin-bottom: .625rem; }
+    .ds-name { font-size: 16px; font-weight: 500; color: var(--text-dark); }
+    .ds-org { font-size: 11px; color: var(--text-faint); margin-top: 2px; }
+    .ds-status { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; padding: 3px 9px; border-radius: 99px; white-space: nowrap; flex-shrink: 0; }
+    .status-live { background: var(--green-pale); color: #085041; }
+    .status-ref { background: var(--bg); color: var(--text-faint); border: 0.5px solid var(--border); }
+    .status-internal { background: var(--blue-pale); color: var(--blue-deep); }
+    .ds-desc { font-size: 13px; color: var(--text-soft); line-height: 1.7; margin-bottom: .875rem; flex: 1; }
+    .ds-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: .875rem; }
+    .ds-pill { font-size: 10px; padding: 3px 8px; border-radius: 99px; background: var(--bg); color: var(--text-soft); border: 0.5px solid var(--border); }
+    .ds-link { font-size: 12px; font-weight: 500; color: var(--green-mid); text-decoration: none; display: flex; align-items: center; gap: 5px; }
+    .ds-link:hover { color: var(--green-deep); }
+    .ds-link.disabled { color: var(--text-faint); pointer-events: none; }
+
+    @media (max-width: 768px) {
+      .ds-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="../">
+    <div class="nav-logo">N</div>
+    <span class="nav-name">NAITRO</span>
+  </a>
+  <a class="nav-back" href="../how-naitro-works/"><i class="ti ti-arrow-left"></i> How NAITRO works</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Global data sources —<br><strong>where NAITRO's numbers come from.</strong></h1>
+    <p class="hero-sub">Every score, threshold and recommendation on this platform traces back to a named source. This page lists the datasets, APIs and frameworks NAITRO draws on — what's live and queryable today, and what's used as a reference framework.</p>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="category-header">
+    <div class="category-title">Live soil data APIs</div>
+    <div class="category-sub">Queried directly, results stored and versioned in this repo</div>
+  </div>
+  <div class="ds-grid">
+    <a class="ds-card linked" href="../iSDA_Africa/">
+      <div class="ds-top">
+        <div>
+          <div class="ds-name">iSDA Africa</div>
+          <div class="ds-org">innovative Solutions for Decision Agriculture</div>
+        </div>
+        <span class="ds-status status-live">Live API</span>
+      </div>
+      <div class="ds-desc">Continent-wide, 30m-resolution machine-learning soil property service covering ~30 properties per coordinate (pH, N, P, K, CEC, texture, carbon) with depth stratification and uncertainty bounds. Queried for SA1, SA2, and SA3.</div>
+      <div class="ds-meta">
+        <span class="ds-pill">Chemical</span>
+        <span class="ds-pill">Physical</span>
+        <span class="ds-pill">Carbon</span>
+        <span class="ds-pill">South Africa</span>
+      </div>
+      <span class="ds-link">View results <i class="ti ti-arrow-right"></i></span>
+    </a>
+  </div>
+
+  <div class="category-header">
+    <div class="category-title">Internal content sources</div>
+    <div class="category-sub">CMS-backed data that powers in-platform pages</div>
+  </div>
+  <div class="ds-grid">
+    <a class="ds-card linked" href="../soil-variables/">
+      <div class="ds-top">
+        <div>
+          <div class="ds-name">NZ Soil Health Platform — Data Model</div>
+          <div class="ds-org">Airtable base</div>
+        </div>
+        <span class="ds-status status-internal">Internal CMS</span>
+      </div>
+      <div class="ds-desc">41-variable soil health data model (Soil Biology, Macro Nutrients, Trace Minerals, Carbon, Structure, Management, Pasture, Environmental) with Optimal/Average/Poor thresholds and AI-generated visual states. Ten variables currently published.</div>
+      <div class="ds-meta">
+        <span class="ds-pill">Soil Biology</span>
+        <span class="ds-pill">Macro Nutrients</span>
+        <span class="ds-pill">Airtable</span>
+      </div>
+      <span class="ds-link">View soil variables <i class="ti ti-arrow-right"></i></span>
+    </a>
+  </div>
+
+  <div class="category-header">
+    <div class="category-title">Reference frameworks</div>
+    <div class="category-sub">Scientific and policy frameworks NAITRO's scoring is built on — no direct API integration</div>
+  </div>
+  <div class="ds-grid">
+    <div class="ds-card">
+      <div class="ds-top">
+        <div>
+          <div class="ds-name">IFA / fertilizer.org</div>
+          <div class="ds-org">International Fertilizer Association</div>
+        </div>
+        <span class="ds-status status-ref">Reference</span>
+      </div>
+      <div class="ds-desc">Global NUE tracking methodology, 4R Nutrient Stewardship framework, and the Scope 3 emissions reduction pathway analysis (with Systemiq). Basis for the NUE science section in How NAITRO Works.</div>
+      <div class="ds-meta">
+        <span class="ds-pill">NUE</span>
+        <span class="ds-pill">4R Stewardship</span>
+        <span class="ds-pill">Policy</span>
+      </div>
+      <a class="ds-link" href="https://www.fertilizer.org" target="_blank" rel="noopener">fertilizer.org <i class="ti ti-external-link"></i></a>
+    </div>
+
+    <div class="ds-card">
+      <div class="ds-top">
+        <div>
+          <div class="ds-name">FAOSTAT</div>
+          <div class="ds-org">UN Food and Agriculture Organization</div>
+        </div>
+        <span class="ds-status status-ref">Reference</span>
+      </div>
+      <div class="ds-desc">Country-level cropland nutrient use efficiency trends, cited as the data source behind the global 55% NUE figure used throughout the platform.</div>
+      <div class="ds-meta">
+        <span class="ds-pill">National NUE</span>
+        <span class="ds-pill">Country data</span>
+      </div>
+      <a class="ds-link" href="https://www.fao.org/faostat" target="_blank" rel="noopener">fao.org/faostat <i class="ti ti-external-link"></i></a>
+    </div>
+
+    <div class="ds-card">
+      <div class="ds-top">
+        <div>
+          <div class="ds-name">Open Bodemindex (OBI)</div>
+          <div class="ds-org">Wageningen University Research, with Rabobank, a.s.r., Vitens</div>
+        </div>
+        <span class="ds-status status-ref">Reference</span>
+      </div>
+      <div class="ds-desc">21-indicator open-source soil quality scoring framework across Chemical, Physical, Biological, and Management domains. The architecture NAITRO's farm-level Soil Health Score is adapted from for NZ and SA conditions.</div>
+      <div class="ds-meta">
+        <span class="ds-pill">Scoring framework</span>
+        <span class="ds-pill">Netherlands</span>
+      </div>
+      <span class="ds-link disabled">No public API <i class="ti ti-lock"></i></span>
+    </div>
+
+    <div class="ds-card">
+      <div class="ds-top">
+        <div>
+          <div class="ds-name">NPS-FM 2020 / Overseer</div>
+          <div class="ds-org">NZ Ministry for the Environment</div>
+        </div>
+        <span class="ds-status status-ref">Reference</span>
+      </div>
+      <div class="ds-desc">New Zealand's freshwater nutrient compliance regulation. OverseerFM, the prior modelling tool used to assess compliance, was found "not fit for purpose" by the Office of the Chief Science Advisor in 2021 — the regulatory gap NAITRO's IoT-verified scoring is designed to fill.</div>
+      <div class="ds-meta">
+        <span class="ds-pill">NZ regulation</span>
+        <span class="ds-pill">Water quality</span>
+      </div>
+      <span class="ds-link disabled">No public API <i class="ti ti-lock"></i></span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
